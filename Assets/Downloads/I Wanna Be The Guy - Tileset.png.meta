@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 72f8cdb9abb0cab4aacb293253e0fe3a
+guid: 7b3a1c8df8e816e4db6c602ce791c03f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 22
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,106 +136,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skeleton_01_White_Hurt_0
+      name: I Wanna Be The Guy - Tileset_0
       rect:
         serializedVersion: 2
-        x: 34
-        y: 0
-        width: 34
-        height: 46
-      alignment: 9
-      pivot: {x: 0.32, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 06a91cc883c3e7c47b2c673416892b95
-      internalID: 1027058914
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_01_White_Hurt_1
-      rect:
-        serializedVersion: 2
-        x: 126
-        y: 0
-        width: 27
-        height: 42
-      alignment: 9
-      pivot: {x: 0.5, y: 0.55}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4d041321495fdd94694813e94dea5b63
-      internalID: 226640410
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_01_White_Hurt_2
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 26
-        height: 43
-      alignment: 9
-      pivot: {x: 0.42, y: 0.54}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b6070ef5da4c99e4f97b7f98d02a340e
-      internalID: -1007077492
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_01_White_Hurt_3
-      rect:
-        serializedVersion: 2
-        x: 322
-        y: 0
+        x: 17
+        y: 170
         width: 32
-        height: 45
-      alignment: 9
-      pivot: {x: 0.34, y: 0.51}
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 351105c6972d6f2419092aa0cee2dfc0
-      internalID: 1094090455
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skeleton_01_White_Hurt_4
-      rect:
-        serializedVersion: 2
-        x: 417
-        y: 0
-        width: 34
-        height: 46
-      alignment: 9
-      pivot: {x: 0.35, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7ad4b8324a2460145a3ff621767bfcdd
-      internalID: -1874810087
+      spriteID: 6e0332963134a464088e8d42243a53c5
+      internalID: 346613255
       vertices: []
       indices: 
       edges: []
@@ -251,11 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Skeleton_01_White_Hurt_0: 1027058914
-      Skeleton_01_White_Hurt_1: 226640410
-      Skeleton_01_White_Hurt_2: -1007077492
-      Skeleton_01_White_Hurt_3: 1094090455
-      Skeleton_01_White_Hurt_4: -1874810087
+      I Wanna Be The Guy - Tileset_0: 346613255
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
