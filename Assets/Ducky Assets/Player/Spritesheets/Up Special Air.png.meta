@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -71,7 +71,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -134,7 +134,196 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Up Special Air_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 19
+        width: 24
+        height: 26
+      alignment: 9
+      pivot: {x: 0.2916667, y: 0.1923077}
+      border: {x: 0, y: 5, z: 9, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78f1a5cff8e37754c80a0c599cf53f38
+      internalID: -1920237983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Up Special Air_2
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 16
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.2916667, y: 0.33333334}
+      border: {x: 0, y: 8, z: 9, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37ad2cd1566b9024bacdbb966a822ec1
+      internalID: 229780107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Up Special Air_3
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 16
+        width: 26
+        height: 24
+      alignment: 9
+      pivot: {x: 0.4615385, y: 0.33333334}
+      border: {x: 5, y: 8, z: 6, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c5144c1bb849924789c78b34aaa6b2a
+      internalID: -1804854817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Up Special Air_4
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 16
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0.33333334}
+      border: {x: 9, y: 8, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65a57ddeb5e966447aedb9bfafa98d18
+      internalID: -1278917932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Up Special Air_6
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 19
+        width: 24
+        height: 26
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0.1923077}
+      border: {x: 9, y: 5, z: 0, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c33b3ab82dc3424cb23a2eb2b4d353d
+      internalID: 950969601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Up Special Air_8
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0}
+      border: {x: 9, y: 0, z: 0, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e7eb3ea73a50e74dbac116b8917499c
+      internalID: 1539128668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Up Special Air_9
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 24
+        width: 26
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 6, y: 0, z: 5, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe40a453816a042419f4ad091539a048
+      internalID: 745395143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Up Special Air_10
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.2916667, y: 0}
+      border: {x: 0, y: 0, z: 9, w: 8}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa35a85d8e3ec9647826c6e8f390515d
+      internalID: 1814964542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Up Special Air_12
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 24
+        width: 28
+        height: 21
+      alignment: 9
+      pivot: {x: 0.2857143, y: 0}
+      border: {x: 0, y: 0, z: 12, w: 5}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5107eedeff024046aafd8b86b525a28
+      internalID: 1446651413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +334,22 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Up Special Air_0: -1920237983
+      Up Special Air_1: 2109964156
+      Up Special Air_10: 1814964542
+      Up Special Air_11: 1448879353
+      Up Special Air_12: 1446651413
+      Up Special Air_13: 1040334744
+      Up Special Air_14: -1137569167
+      Up Special Air_2: 229780107
+      Up Special Air_3: -1804854817
+      Up Special Air_4: -1278917932
+      Up Special Air_5: -701564526
+      Up Special Air_6: 950969601
+      Up Special Air_7: -951741319
+      Up Special Air_8: 1539128668
+      Up Special Air_9: 745395143
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

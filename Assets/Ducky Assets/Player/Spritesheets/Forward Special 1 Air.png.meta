@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -71,7 +71,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -134,7 +134,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Forward Special 1 Air_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 21
+        width: 21
+        height: 18
+      alignment: 9
+      pivot: {x: 0.61904764, y: 0.16666667}
+      border: {x: 5, y: 3, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 417a26dcc3e701540bc02aa7e27ebde7
+      internalID: 683092070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forward Special 1 Air_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 20
+        width: 24
+        height: 19
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0.21052632}
+      border: {x: 9, y: 4, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aad41d05cf2b3684da275286c97c8e9a
+      internalID: -541741709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forward Special 1 Air_2
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 20
+        width: 22
+        height: 19
+      alignment: 9
+      pivot: {x: 0.36363637, y: 0.21052632}
+      border: {x: 0, y: 4, z: 5, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa14b58e344ecd040ac2a7d1cad7342f
+      internalID: -1096213332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forward Special 1 Air_3
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 24
+        width: 26
+        height: 15
+      alignment: 9
+      pivot: {x: 0.30769232, y: -0}
+      border: {x: 0, y: 0, z: 10, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33993d796d2c800479ca3b9149106aec
+      internalID: -942558586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forward Special 1 Air_4
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 24
+        width: 26
+        height: 15
+      alignment: 9
+      pivot: {x: 0.6923077, y: 0}
+      border: {x: 10, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87ff54fc748441d44919dfe9c8483f31
+      internalID: -2048421609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +250,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Forward Special 1 Air_0: 683092070
+      Forward Special 1 Air_1: -541741709
+      Forward Special 1 Air_2: -1096213332
+      Forward Special 1 Air_3: -942558586
+      Forward Special 1 Air_4: -2048421609
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

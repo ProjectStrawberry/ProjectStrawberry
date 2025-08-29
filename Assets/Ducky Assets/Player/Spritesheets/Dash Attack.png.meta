@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -71,7 +71,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -134,7 +134,259 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Dash Attack_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 24
+        width: 16
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f10807b91b58ec7459d10ed864a9371f
+      internalID: 1877972517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Attack_1
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 24
+        width: 24
+        height: 13
+      alignment: 9
+      pivot: {x: 0.6666667, y: -0}
+      border: {x: 8, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 586add99e31614147bde71d403eb45fd
+      internalID: -323057852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Attack_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 24
+        width: 24
+        height: 13
+      alignment: 9
+      pivot: {x: 0.6666667, y: -0}
+      border: {x: 8, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8558708727f2d1846bf5303fcad48309
+      internalID: -1395292408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Attack_3
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 24
+        width: 24
+        height: 16
+      alignment: 9
+      pivot: {x: 0.6666667, y: -0}
+      border: {x: 8, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12ca44b69309ca34da3ffa673bb35058
+      internalID: -1005008730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Attack_4
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 24
+        width: 24
+        height: 16
+      alignment: 9
+      pivot: {x: 0.6666667, y: -0}
+      border: {x: 8, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0660cf5f19921e4d88ce2dbcf0eec7e
+      internalID: -1609753135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Attack_5
+      rect:
+        serializedVersion: 2
+        x: 339
+        y: 24
+        width: 24
+        height: 15
+      alignment: 9
+      pivot: {x: 0.6666667, y: -0}
+      border: {x: 8, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef7dfeebe25c05e4c80aa62abb868e1b
+      internalID: -539189777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Attack_6
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 24
+        width: 24
+        height: 15
+      alignment: 9
+      pivot: {x: 0.6666667, y: -0}
+      border: {x: 8, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5592af01219eaca4e812d61f50056989
+      internalID: -1424491696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Attack_7
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 24
+        width: 24
+        height: 16
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0}
+      border: {x: 8, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33a511d7437b7b948b6780259d907d85
+      internalID: 1982270634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Attack_8
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 24
+        width: 24
+        height: 16
+      alignment: 9
+      pivot: {x: 0.6666667, y: -0}
+      border: {x: 8, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdf1ee791b893ce4b82234c53ab01892
+      internalID: 1473986462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Attack_9
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 24
+        width: 22
+        height: 16
+      alignment: 9
+      pivot: {x: 0.6363636, y: -0}
+      border: {x: 6, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5f75472ac4cd32418af5f08b78c1da5
+      internalID: -603160433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Attack_10
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 24
+        width: 16
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3788ca3e3f5880c4799d226aca6c683b
+      internalID: -1081372469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dash Attack_11
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 24
+        width: 15
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac8dc29a8b867b945bc4c167a1dcfc0a
+      internalID: -1534970943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +397,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Dash Attack_0: 1877972517
+      Dash Attack_1: -323057852
+      Dash Attack_10: -1081372469
+      Dash Attack_11: -1534970943
+      Dash Attack_2: -1395292408
+      Dash Attack_3: -1005008730
+      Dash Attack_4: -1609753135
+      Dash Attack_5: -539189777
+      Dash Attack_6: -1424491696
+      Dash Attack_7: 1982270634
+      Dash Attack_8: 1473986462
+      Dash Attack_9: -603160433
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
