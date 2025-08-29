@@ -12,6 +12,10 @@ public class PlatformSpawner : MonoBehaviour
     private float spawnInterval = 2f;
     private WaitForSeconds waitingtime;
 
+    Queue<GameObject> semiSolidPool = new Queue<GameObject>();
+    Queue<GameObject> solidPool= new Queue<GameObject>();
+
+
     private float platformHeight = 1f;
     private void Start()
     {
@@ -34,24 +38,58 @@ public class PlatformSpawner : MonoBehaviour
 
     private void SpawnPlatform(PlatformData platformData)
     {
+        GameObject go;
         if(platformData.platformType==PlatformType.SemiSolid)
         {
-            GameObject go= Instantiate(semiSolidPrefab,platformData.platformPosition, Quaternion.identity);
-            var spriteRenderer = go.GetComponent<SpriteRenderer>();
-            spriteRenderer.size = new Vector2(platformData.platformWidth, platformHeight);
-            var collider = go.GetComponent<BoxCollider2D>();
-            collider.size = spriteRenderer.size;
+            Debug.Log("세미솔리드 발판");
+            if(semiSolidPool.Count > 0)
+            {
+                go=semiSolidPool.Dequeue();
+                go.transform.position=platformData.platformPosition;
+                go.SetActive(true);
+                Debug.Log($"{go.name}세미솔리드 발판 풀에서 생성");
+            }
+            else
+            {
+                go = Instantiate(semiSolidPrefab, platformData.platformPosition, Quaternion.identity);
+                
+            }
+            
         }
         else
         {
-            GameObject go=Instantiate(solidPrefab,platformData.platformPosition,Quaternion.identity);
-            var spriteRenderer = go.GetComponent<SpriteRenderer>();
-            spriteRenderer.size = new Vector2(platformData.platformWidth, platformHeight);
-            var collider = go.GetComponent<BoxCollider2D>();
-            collider.size = spriteRenderer.size;
+            if(solidPool.Count > 0)
+            {
+                go=solidPool.Dequeue();
+                go.transform.position = platformData.platformPosition;
+                go.SetActive(true);
+            }
+            else
+            {
+                go = Instantiate(solidPrefab, platformData.platformPosition, Quaternion.identity);
+            }
+               
         }
+        var spriteRenderer = go.GetComponent<SpriteRenderer>();
+        spriteRenderer.size = new Vector2(platformData.platformWidth, platformHeight);
+        var collider = go.GetComponent<BoxCollider2D>();
+        collider.size = spriteRenderer.size;
+    }
+
+  
 
 
+    public void ReturnToSolidPool(GameObject gameObject)
+    {
+        solidPool.Enqueue(gameObject);
+        Debug.Log("솔리드 풀로 돌아감");
+        gameObject.SetActive(false);
+    }
+
+    public void ReturnToSemiSolidPool(GameObject gameObject)
+    {
+        semiSolidPool.Enqueue(gameObject);
+        gameObject.SetActive(false);
     }
 
 }
