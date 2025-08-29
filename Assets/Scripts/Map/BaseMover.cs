@@ -4,20 +4,28 @@ using UnityEngine;
 
 public abstract class BaseMover : MonoBehaviour
 {
-    private float movingSpeed = 1f;
+    public static float movingSpeed = 1f;
     Rigidbody2D rb;
 
-    private void Start()
+    void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        TryGetComponent(out rb); 
     }
 
-    private void FixedUpdate()
+    void Update()
     {
-        Move();
+        if (rb == null)
+        {
+            transform.Translate(Vector2.down * movingSpeed * Time.deltaTime);
+        }
     }
-    public void Move()
+
+    void FixedUpdate()
     {
-        rb.MovePosition(rb.position + Vector2.down * movingSpeed * Time.fixedDeltaTime);
+        if (rb != null)
+        {
+            rb.MovePosition(rb.position + Vector2.down * movingSpeed * Time.fixedDeltaTime);
+        }
     }
 }
+
