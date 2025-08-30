@@ -14,7 +14,7 @@ public class BackgroundLooper : MonoBehaviour
     void Start()
     {
         
-        Debug.Log(height);
+
         var background_1 = Instantiate(tilemaps[0]);
         var background_2= Instantiate(tilemaps[1]);
         backgrounds.Add(background_1);

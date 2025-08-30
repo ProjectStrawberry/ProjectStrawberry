@@ -434,6 +434,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   platformPaternList:
   - {fileID: 11400000, guid: fa28e9578853f774fa131e26b0f8b81b, type: 2}
+  - {fileID: 11400000, guid: 8983dd8a0730e6543b8792179317c2c8, type: 2}
+  - {fileID: 11400000, guid: 6668aa8fa3a012242aa76d846342ab2f, type: 2}
+  - {fileID: 11400000, guid: b6a157df51cd8b341ab16b113ad59ae7, type: 2}
   semiSolidPrefab: {fileID: 5147022565025816395, guid: a7bf9f6b17e1d0c40bcdc3bcc264bac9, type: 3}
   solidPrefab: {fileID: 8313626586709584472, guid: 7935100241d77c44798ae2bd356b0de4, type: 3}
 --- !u!1 &494917448

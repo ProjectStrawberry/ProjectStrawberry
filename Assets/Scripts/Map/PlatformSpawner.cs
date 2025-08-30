@@ -9,7 +9,7 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] GameObject solidPrefab;
 
 
-    private float spawnInterval = 2f;
+    private float spawnInterval = 4f;
     private WaitForSeconds waitingtime;
 
     Queue<GameObject> semiSolidPool = new Queue<GameObject>();
@@ -28,26 +28,60 @@ public class PlatformSpawner : MonoBehaviour
     {
         for(int i = 0; i < platformPaternList.Count; i++)
         {
-            foreach(var platforminfo in platformPaternList[i].platformDatas)
+            Debug.Log($"{i+1}번 패턴 시작");
+            foreach (var platforminfo in platformPaternList[i].platformDatas)
             {
-                yield return waitingtime;
+                
                 SpawnPlatform(platforminfo);
+                if (platforminfo.platformPlacement == PlatformPlacement.Double)
+                {
+                    continue;
+                }
+                yield return waitingtime;
+            } 
+        }
+        while (true)
+        {
+            PlatformPatternSO platformPattern=ChooseRandomPattern();
+            Debug.Log($"{platformPattern.name} 패턴 시작");
+            foreach (var platforminfo in platformPattern.platformDatas)
+            {
+
+                SpawnPlatform(platforminfo);
+                if (platforminfo.platformPlacement == PlatformPlacement.Double)
+                {
+                    continue;
+                }
+                yield return waitingtime;
             }
         }
+
+        //기본 패턴 끝나고 랜덤 패턴
+        
+
+
     }
+
+    private PlatformPatternSO ChooseRandomPattern()
+    {
+        int randomNumber = Random.Range(0, platformPaternList.Count - 1);
+        return platformPaternList [randomNumber];
+    }
+
+
 
     private void SpawnPlatform(PlatformData platformData)
     {
         GameObject go;
         if(platformData.platformType==PlatformType.SemiSolid)
         {
-            Debug.Log("세미솔리드 발판");
+           
             if(semiSolidPool.Count > 0)
             {
                 go=semiSolidPool.Dequeue();
                 go.transform.position=platformData.platformPosition;
                 go.SetActive(true);
-                Debug.Log($"{go.name}세미솔리드 발판 풀에서 생성");
+
             }
             else
             {
@@ -82,7 +116,6 @@ public class PlatformSpawner : MonoBehaviour
     public void ReturnToSolidPool(GameObject gameObject)
     {
         solidPool.Enqueue(gameObject);
-        Debug.Log("솔리드 풀로 돌아감");
         gameObject.SetActive(false);
     }
 

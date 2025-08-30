@@ -10,6 +10,12 @@ public enum PlatformType
     Solid
 }
 
+public enum PlatformPlacement
+{
+    Single,
+    Double
+}
+
 [CreateAssetMenu(fileName ="PlatformData",menuName ="Platform/PlatformPattern")]
 public class PlatformPatternSO : ScriptableObject
 {
@@ -22,6 +28,7 @@ public class PlatformData
 {
     public Vector3 platformPosition;
     public PlatformType platformType;
+    public PlatformPlacement platformPlacement;
     public float platformWidth;
 
 }

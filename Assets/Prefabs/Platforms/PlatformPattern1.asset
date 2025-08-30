@@ -10,25 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa8e707ae0cd15646b7553bc6150b6b4, type: 3}
-  m_Name: PlatformDataPattern1
+  m_Name: PlatformPattern1
   m_EditorClassIdentifier: 
   patternNumber: 1
   platformDatas:
-  - platformPosition: {x: -3, y: 5, z: 0}
+  - platformPosition: {x: -3.5, y: 5, z: 0}
     platformType: 0
-    platformWidth: 3
-  - platformPosition: {x: 2, y: 5, z: 0}
-    platformType: 0
+    platformPlacement: 0
     platformWidth: 4
-  - platformPosition: {x: -4, y: 5, z: 0}
-    platformType: 1
-    platformWidth: 5
-  - platformPosition: {x: 2, y: 5, z: 0}
+  - platformPosition: {x: 0, y: 5, z: 0}
     platformType: 0
+    platformPlacement: 0
     platformWidth: 5
   - platformPosition: {x: 5, y: 5, z: 0}
     platformType: 0
-    platformWidth: 5
-  - platformPosition: {x: -3, y: 5, z: 0}
-    platformType: 1
-    platformWidth: 5
+    platformPlacement: 1
+    platformWidth: 4
+  - platformPosition: {x: -5, y: 5, z: 0}
+    platformType: 0
+    platformPlacement: 0
+    platformWidth: 3
