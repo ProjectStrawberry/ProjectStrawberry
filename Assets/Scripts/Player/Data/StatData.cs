@@ -9,9 +9,14 @@ public enum StatType
     CutJumpForceMultiplier,
     Attack,
     RangeAttack,
+    AttackDelay,
+    RangeAttackDelay,
     DashDuration,
     DashCoolTime,
-    DashDistance
+    DashDistance,
+    HealAmount, //얼마나 회복
+    HealDelay,  //몇 초 뒤 회복
+    HealSteminaConsumeInterval,  //몇 초 간격으로
 }
 
 [System.Serializable]

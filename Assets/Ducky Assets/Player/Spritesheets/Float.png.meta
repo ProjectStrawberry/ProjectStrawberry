@@ -134,7 +134,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Float_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 24
+        width: 22
+        height: 15
+      alignment: 9
+      pivot: {x: 0.3181818, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbce2a666de042d44b75c20f2c0827a6
+      internalID: 2126114092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Float_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 24
+        width: 22
+        height: 15
+      alignment: 9
+      pivot: {x: 0.3181818, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d7f842d37dc06949a316bb33db5615c
+      internalID: 409802592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Float_2
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 24
+        width: 22
+        height: 21
+      alignment: 9
+      pivot: {x: 0.3181818, y: -0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4363bfb5d35087a4189362554a360f04
+      internalID: 760271696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Float_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 24
+        width: 27
+        height: 23
+      alignment: 9
+      pivot: {x: 0.037037037, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fba30168b1c828d4387241bdf373c3ae
+      internalID: 736567728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Float_4
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 24
+        width: 25
+        height: 23
+      alignment: 9
+      pivot: {x: 0.04, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1dfcd5a657a7d64090e1fba4be00146
+      internalID: 1593246569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Float_5
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 24
+        width: 25
+        height: 23
+      alignment: 9
+      pivot: {x: 0.04, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca8a3e6fdc49e644da9469ff9194f80d
+      internalID: -2136585655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +271,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Float_0: 2126114092
+      Float_1: 409802592
+      Float_2: 760271696
+      Float_3: 736567728
+      Float_4: 1593246569
+      Float_5: -2136585655
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

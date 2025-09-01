@@ -7,9 +7,11 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int isMove = Animator.StringToHash("isMove");
     private static readonly int isJump = Animator.StringToHash("isJump");
     private static readonly int isDoubleJump = Animator.StringToHash("isDoubleJump");
-    private static readonly int attackTrigger = Animator.StringToHash("attackTrigger");
-    private static readonly int combo = Animator.StringToHash("combo");
+    private static readonly int firstAttack = Animator.StringToHash("FirstAttack");
+    private static readonly int secondAttack = Animator.StringToHash("SecondAttack");
+    private static readonly int rangeAttack = Animator.StringToHash("RangeAttack");
     private static readonly int airAttackTrigger = Animator.StringToHash("airAttackTrigger");
+    private static readonly int isHeal = Animator.StringToHash("isHeal");
     private static readonly int isDash = Animator.StringToHash("isDash");
     private static readonly int IsDamage = Animator.StringToHash("IsDamage");
 
@@ -42,21 +44,29 @@ public class AnimationHandler : MonoBehaviour
     public void Attack(int setCombo)
     {
         if (setCombo == 0)
-            animator.Play("FirstAttack", -1, 0f); 
+            animator.Play(firstAttack, -1, 0f); 
         else if (setCombo == 1)
-            animator.Play("SecondAttack", -1, 0f);
-        //animator.SetTrigger(attackTrigger);
-        //animator.SetInteger(combo, setCombo);
+            animator.Play(secondAttack, -1, 0f);
     }
     public void AirAttack()
     {
         animator.SetTrigger(airAttackTrigger);
     }
 
+    public void RangeAttack()
+    {
+        animator.Play(rangeAttack, -1, 0f);
+    }
+
     public void Dash(bool isTrue)
     {
         animator.SetBool(isDash, isTrue);
 
+    }
+
+    public void Heal(bool isTrue)
+    {
+        animator.SetBool(isHeal, isTrue);
     }
 
     public void Damage()
