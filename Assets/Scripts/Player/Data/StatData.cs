@@ -4,11 +4,14 @@ using UnityEngine;
 public enum StatType
 {
     Health,
+    Stemina,
     Speed,
     JumpeForce,
     CutJumpForceMultiplier,
     Attack,
     RangeAttack,
+    ProjectileVelocity,
+    ProjectileDuration,
     AttackDelay,
     RangeAttackDelay,
     DashDuration,
