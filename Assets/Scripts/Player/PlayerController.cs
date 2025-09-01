@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
     protected BoxCollider2D _boxCollider;
-    public LayerMask GroundMask;
-    public LayerMask excludeMask;
+    [SerializeField] private LayerMask GroundMask;
+    [SerializeField] private LayerMask excludeMask;
+    [SerializeField] private LayerMask enemyMask;
 
     [SerializeField] private SpriteRenderer characterRenderer;
 
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
+    protected PlayerCondition playerCondition;
 
 
     protected bool isRangeAttack;
@@ -41,6 +43,10 @@ public class PlayerController : MonoBehaviour
     private float comboTimer = 0f;
 
     private float airAttackCoolTime;
+
+    [Header("Attack Settings")]
+    [SerializeField] private float attackRange = 1.0f;   // 공격 반경
+    [SerializeField] private Vector2 attackOffset = new Vector2(1f, 0f); // 캐릭터 기준 오프셋
 
 
     //private GameManager gameManager;
@@ -124,7 +130,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void Death()
+    public void Dead()
     {
         _rigidbody.velocity = Vector3.zero;
 
@@ -143,18 +149,6 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject, 2f);
     }
     //gameManager.GameOver();
-
-    //public void OnMoveInput(InputAction.CallbackContext context)
-    //{
-    //    if (context.phase == InputActionPhase.Performed)
-    //    {
-    //        movementDirection = context.ReadValue<Vector2>();
-    //    }
-    //    else if (context.phase == InputActionPhase.Canceled)
-    //    {
-    //        movementDirection = Vector2.zero;
-    //    }
-    //}
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -236,7 +230,7 @@ public class PlayerController : MonoBehaviour
             float interval = statHandler.GetStat(StatType.HealSteminaConsumeInterval);
             for (float i = interval; i <= healDelay; i += interval)
             {
-                Invoke("CutStemina", i);
+                Invoke("UseStemina", i);
             }
             Invoke("Heal", healDelay);
         }
@@ -329,7 +323,30 @@ public class PlayerController : MonoBehaviour
 
     protected void Attack(int comboStep)
     {
-        Debug.Log($"콤보 {comboStep}");
+        Debug.Log($"콤보 {comboStep} 공격 발동");
+
+        // 캐릭터 바라보는 방향 (flipX로 좌우 판단)
+        Vector2 attackDir = characterRenderer.flipX ? Vector2.left : Vector2.right;
+
+        // 공격 위치 (캐릭터 위치 + 오프셋 * 방향)
+        Vector2 attackPos = (Vector2)transform.position + new Vector2(attackOffset.x * attackDir.x, attackOffset.y);
+
+        // 사각형 크기 (Inspector에서 조절 가능)
+        Vector2 attackSize = new Vector2(attackRange, attackRange); // 가로 세로 비율
+
+        // 공격 범위 내의 적 탐색
+        Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, attackSize, 0f, enemyMask);
+
+        foreach (Collider2D hit in hits)
+        {
+            IDamagable target = hit.GetComponent<IDamagable>();
+            if (target != null)
+            {
+                int damage = (int)statHandler.GetStat(StatType.Attack);
+                target.GetDamage(damage);
+                Debug.Log($"{hit.name} 에게 {damage} 데미지를 입힘");
+            }
+        }
     }
 
     private void ResetCombo()
@@ -338,9 +355,9 @@ public class PlayerController : MonoBehaviour
         comboTimer = 0f;
     }
 
-    private void CutStemina()
+    private void UseStemina()
     {
-        // 컨디션에서 기력 깎기
+        playerCondition.UseStemina();
         Debug.Log("기력 깎임");
     }
 
@@ -348,7 +365,20 @@ public class PlayerController : MonoBehaviour
     {
         
         animationHandler.Heal(false);
-        // 체력 채우기
+        playerCondition.Heal((int)statHandler.GetStat(StatType.HealAmount));
         Debug.Log($"힐 완료 {Time.time}");
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (characterRenderer == null) return;
+
+        Vector2 attackDir = characterRenderer.flipX ? Vector2.left : Vector2.right;
+        Vector2 attackPos = (Vector2)transform.position + new Vector2(attackOffset.x * attackDir.x, attackOffset.y);
+
+        Vector2 attackSize = new Vector2(attackRange, attackRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(attackPos, attackSize);
     }
 }
