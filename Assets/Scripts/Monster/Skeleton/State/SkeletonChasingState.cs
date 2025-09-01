@@ -7,7 +7,6 @@ public class SkeletonChasingState : SkeletonBaseState
     private float chasingTimer = 0f;
     private float aggroTime = 3f;
     private bool isRight = true;
-    private bool canMove = true;
     
     public SkeletonChasingState(SkeletonStateMachine stateMachine) : base(stateMachine)
     {
@@ -19,7 +18,6 @@ public class SkeletonChasingState : SkeletonBaseState
         Debug.Log("Chasing 상태 돌입");
         chasingTimer = 0;
         StartAnimation(stateMachine.Skeleton.AnimationData.WalkParameterHash);
-        stateMachine.Skeleton.OnCollide += OnCollision;
     }
 
     public override void Exit()
@@ -27,7 +25,6 @@ public class SkeletonChasingState : SkeletonBaseState
         base.Exit();
         chasingTimer = 0;
         StopAnimation(stateMachine.Skeleton.AnimationData.WalkParameterHash);
-        stateMachine.Skeleton.OnCollide -= OnCollision;
     }
 
     public override void Update()
@@ -37,6 +34,13 @@ public class SkeletonChasingState : SkeletonBaseState
         if (stateMachine.Skeleton.targetPlayer == null)
             return;
 
+        var dist = Mathf.Abs(stateMachine.Skeleton.transform.position.x -
+                             stateMachine.Skeleton.targetPlayer.transform.position.x);
+        if (dist <= stateMachine.Skeleton.StatData.RushAttackRange)
+        {
+            stateMachine.ChangeState(stateMachine.AttackState);
+        }
+        
         if (CheckCanWalk())
         {
             WalkToPlayer();
@@ -45,13 +49,6 @@ public class SkeletonChasingState : SkeletonBaseState
         {
             Debug.Log("Skeleton 몬스터가 더는 못 걸어갑니다!");
             WaitPlayer();
-        }
-        
-        var dist = Mathf.Abs(stateMachine.Skeleton.transform.position.x -
-                             stateMachine.Skeleton.targetPlayer.transform.position.x);
-        if (dist <= stateMachine.Skeleton.StatData.RushAttackRange)
-        {
-            stateMachine.ChangeState(stateMachine.AttackState);
         }
     }
 
@@ -109,28 +106,5 @@ public class SkeletonChasingState : SkeletonBaseState
         }
 
         return true;
-    }
-    
-    private void CheckCanMove()
-    {
-        var skeletonPos = stateMachine.Skeleton.transform.position;
-        var targetPos = new Vector2(stateMachine.Skeleton.targetPlayer.transform.position.x, skeletonPos.y);
-
-        var dir = Mathf.Sign(targetPos.x - skeletonPos.x);
-
-        if (dir * stateMachine.Skeleton.transform.localScale.x < 0f)
-        {
-            canMove = true;
-            StopAnimation(stateMachine.Skeleton.AnimationData.IdleParameterHash);
-            StartAnimation(stateMachine.Skeleton.AnimationData.WalkParameterHash);
-        }
-    }
-    
-    private void OnCollision(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Obstacle"))
-        {
-            canMove = false;
-        }
     }
 }

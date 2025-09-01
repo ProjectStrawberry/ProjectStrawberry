@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcfa4a64ba6511e4292f9eabc77c8adc, type: 3}
   m_Name: Skeleton
   m_EditorClassIdentifier: 
-  <PlayerChasingRange>k__BackingField: 5
-  <DefaultAttackRange>k__BackingField: 2
-  <RushAttackRange>k__BackingField: 4
+  <PlayerChasingRange>k__BackingField: 8
+  <DefaultAttackRange>k__BackingField: 3
+  <RushAttackRange>k__BackingField: 5
   damage: 1
   health: 3
   walkSpeed: 2

@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class Skeleton : MonoBehaviour
 {
-    private SkeletonStateMachine stateMachine;
+    public SkeletonStateMachine stateMachine;
     
     [field:SerializeField] public SkeletonAnimationData AnimationData { get; private set; }
     public Animator Animator { get; private set; }
+    public SkeletonAnimationHandler AnimationHandler { get; private set; }
     [field:SerializeField] public SkeletonSO StatData { get; private set; }
     public BaseController targetPlayer;
 
@@ -30,6 +31,7 @@ public class Skeleton : MonoBehaviour
     {
         stateMachine = new SkeletonStateMachine(this);
         Animator = GetComponentInChildren<Animator>();
+        AnimationHandler = GetComponentInChildren<SkeletonAnimationHandler>();
         AnimationData.Initialize();
         attackCollider.enabled = false;
         rigidbody = GetComponent<Rigidbody2D>();

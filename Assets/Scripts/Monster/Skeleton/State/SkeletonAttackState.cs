@@ -11,7 +11,17 @@ public class SkeletonAttackState : SkeletonBaseState
     public override void Enter()
     {
         base.Enter();
-        StartAnimation(stateMachine.Skeleton.AnimationData.AttackParameterHash);
+        Debug.Log("Attack 상태 입장");
+        if (IsInDefaultAttackRange())
+        {
+            Debug.Log("근접 공격 실행");
+            DefaultAttack();
+        }
+        else if (IsInRushAttackRange())
+        {
+            Debug.Log("돌진 공격 실행");
+            DefaultAttack();
+        }
     }
 
     public override void Exit()
@@ -23,17 +33,22 @@ public class SkeletonAttackState : SkeletonBaseState
     public override void Update()
     {
         base.Update();
-        // 애니메이션 동작 확인용
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            stateMachine.ChangeState(stateMachine.WalkState);
-            return;
-        }
+    }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            stateMachine.ChangeState(stateMachine.IdleState);
-            return;
-        }
+    private void DefaultAttack()
+    {
+        Debug.Log("근접 공격 실행2");
+        StartAnimation(stateMachine.Skeleton.AnimationData.AttackParameterHash);
+    }
+
+    private void RushAttack()
+    {
+        Debug.Log("돌진 공격 실행2");
+        StartAnimation(stateMachine.Skeleton.AnimationData.AttackParameterHash);
+    }
+
+    public void StopAttackAnimation()
+    {
+        StopAnimation(stateMachine.Skeleton.AnimationData.AttackParameterHash);
     }
 }

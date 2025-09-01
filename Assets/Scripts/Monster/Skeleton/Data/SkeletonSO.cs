@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Skeleton", menuName = "Enemy/Skeleton")]
 public class SkeletonSO : ScriptableObject
 {
-    [field: SerializeField] public float PlayerChasingRange { get; private set; } = 5f;
-    [field: SerializeField] public float DefaultAttackRange { get; private set; } = 2f;
-    [field: SerializeField] public float RushAttackRange { get; private set; } = 4f;
+    [field: SerializeField] public float PlayerChasingRange { get; private set; } = 8f;
+    [field: SerializeField] public float DefaultAttackRange { get; private set; } = 3f;
+    [field: SerializeField] public float RushAttackRange { get; private set; } = 5f;
     [field: SerializeField] public int damage = 1;
     [field: SerializeField] public int health = 3;
     [field: SerializeField] public float walkSpeed = 2f;
