@@ -225,7 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 369814675}
   - component: {fileID: 369814676}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 696558754}
   - component: {fileID: 696558755}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Spike
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -444,7 +444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 824615672}
   - component: {fileID: 824615673}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -528,7 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 929226494}
   - component: {fileID: 929226495}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: SpikeLaser
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1065,7 +1065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1605388566}
   - component: {fileID: 1605388567}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1211,6 +1211,14 @@ PrefabInstance:
     - target: {fileID: 180331001443548539, guid: 06224a4ced5784d4d84d39aeca478ff5, type: 3}
       propertyPath: m_Name
       value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2751910608239458203, guid: 06224a4ced5784d4d84d39aeca478ff5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2751910608239458203, guid: 06224a4ced5784d4d84d39aeca478ff5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.05
       objectReference: {fileID: 0}
     - target: {fileID: 7646634467969138097, guid: 06224a4ced5784d4d84d39aeca478ff5, type: 3}
       propertyPath: m_LocalPosition.x

@@ -134,6 +134,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 64
   rigidbody: {fileID: 0}
   skeletonSprite: {fileID: 6893211121372988130}
 --- !u!1 &3142282495162237924

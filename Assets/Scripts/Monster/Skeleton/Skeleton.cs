@@ -20,9 +20,11 @@ public class Skeleton : MonoBehaviour
     public Transform groundCheck;
     public float groundCheckDistance = 0.5f;
     public LayerMask groundLayer;
+    public LayerMask obstacleLayer;
     [SerializeField] public Rigidbody2D rigidbody;
     public SpriteRenderer skeletonSprite;
     public event Action<Collision2D> OnCollide;
+    public event Action<Collision2D> OnCollideExit;
 
     private void Awake()
     {
@@ -48,6 +50,11 @@ public class Skeleton : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         OnCollide?.Invoke(other);
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        OnCollideExit?.Invoke(other);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkeletonChasingState : SkeletonBaseState
 {
     private float chasingTimer = 0f;
+    private float aggroTime = 3f;
     private bool isRight = true;
     private bool canMove = true;
     
@@ -16,6 +17,7 @@ public class SkeletonChasingState : SkeletonBaseState
     {
         base.Enter();
         Debug.Log("Chasing 상태 돌입");
+        chasingTimer = 0;
         StartAnimation(stateMachine.Skeleton.AnimationData.WalkParameterHash);
         stateMachine.Skeleton.OnCollide += OnCollision;
     }
@@ -23,6 +25,7 @@ public class SkeletonChasingState : SkeletonBaseState
     public override void Exit()
     {
         base.Exit();
+        chasingTimer = 0;
         StopAnimation(stateMachine.Skeleton.AnimationData.WalkParameterHash);
         stateMachine.Skeleton.OnCollide -= OnCollision;
     }
@@ -34,13 +37,21 @@ public class SkeletonChasingState : SkeletonBaseState
         if (stateMachine.Skeleton.targetPlayer == null)
             return;
 
-        if (canMove)
+        if (CheckCanWalk())
         {
             WalkToPlayer();
         }
         else
         {
+            Debug.Log("Skeleton 몬스터가 더는 못 걸어갑니다!");
             WaitPlayer();
+        }
+        
+        var dist = Mathf.Abs(stateMachine.Skeleton.transform.position.x -
+                             stateMachine.Skeleton.targetPlayer.transform.position.x);
+        if (dist <= stateMachine.Skeleton.StatData.RushAttackRange)
+        {
+            stateMachine.ChangeState(stateMachine.AttackState);
         }
     }
 
@@ -69,10 +80,37 @@ public class SkeletonChasingState : SkeletonBaseState
     {
         StopAnimation(stateMachine.Skeleton.AnimationData.WalkParameterHash);
         StartAnimation(stateMachine.Skeleton.AnimationData.IdleParameterHash);
-        
-        CheckCanMove();
+
+        chasingTimer += Time.deltaTime;
+        if (chasingTimer >= aggroTime)
+        {
+            Debug.Log("Idle 상태로 돌아갑니다");
+            stateMachine.ChangeState(stateMachine.IdleState);
+        }
     }
 
+    private bool CheckCanWalk()
+    {
+        // 발 앞에 장애물이 있는지 없는지 체크
+        RaycastHit2D hit = Physics2D.Raycast(stateMachine.Skeleton.groundCheck.position + Vector3.up * 0.5f, 
+            Vector3.right * Mathf.Sign(stateMachine.Skeleton.transform.localScale.x)
+            , stateMachine.Skeleton.groundCheckDistance, stateMachine.Skeleton.groundLayer);
+        if (hit.collider != null)
+        {
+            return false;
+        }
+        
+        // 발 앞에 발판이 있는지 없는지 체크
+        RaycastHit2D hitDown = Physics2D.Raycast(stateMachine.Skeleton.groundCheck.position, 
+            Vector3.down, stateMachine.Skeleton.groundCheckDistance, stateMachine.Skeleton.obstacleLayer);
+        if (hitDown.collider == null)
+        {
+            return false;
+        }
+
+        return true;
+    }
+    
     private void CheckCanMove()
     {
         var skeletonPos = stateMachine.Skeleton.transform.position;
