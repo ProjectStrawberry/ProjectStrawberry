@@ -1197,10 +1197,16 @@ MonoBehaviour:
   excludeMask:
     serializedVersion: 2
     m_Bits: 0
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
   characterRenderer: {fileID: 7424822119296687419}
   fallMultiplier: 2
   isGrounded: 0
   isJumping: 0
+  attackRange: 2
+  attackOffset: {x: 2, y: 1}
+  attackDamage: 10
 --- !u!4 &6727179134179474039
 Transform:
   m_ObjectHideFlags: 0
