@@ -9,10 +9,11 @@ public class Skeleton : MonoBehaviour
     
     [field:SerializeField] public SkeletonAnimationData AnimationData { get; private set; }
     public Animator Animator { get; private set; }
-    
     [field:SerializeField] public SkeletonSO StatData { get; private set; }
-    
-    [Header("공격 관련 콜라이더")] 
+    public BaseController targetPlayer;
+
+    [Header("공격 관련")] 
+    public Collider2D fieldOfVision;
     public Collider2D attackCollider;
 
     [Header("이동 관련")] 
@@ -30,6 +31,7 @@ public class Skeleton : MonoBehaviour
         AnimationData.Initialize();
         attackCollider.enabled = false;
         rigidbody = GetComponent<Rigidbody2D>();
+        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<BaseController>();
     }
 
     private void Start()
@@ -46,5 +48,13 @@ public class Skeleton : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         OnCollide?.Invoke(other);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            stateMachine.ChangeState(stateMachine.ChasingState);
+        }
     }
 }

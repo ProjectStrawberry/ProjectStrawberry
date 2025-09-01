@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PlayerChasingRange>k__BackingField: 5
   <DefaultAttackRange>k__BackingField: 2
-  <RushAttackRange>k__BackingField: 2
+  <RushAttackRange>k__BackingField: 4
   damage: 1
   health: 3
+  walkSpeed: 2
