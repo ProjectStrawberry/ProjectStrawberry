@@ -61,9 +61,31 @@ public class Skeleton : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !stateMachine.IsCurrentStateAttackState())
         {
             stateMachine.ChangeState(stateMachine.ChasingState);
+        }
+    }
+
+    public void RushAttackMove()
+    {
+        Debug.Log("돌진합니다");
+        StartCoroutine(RushCoroutine());
+        // var dir = stateMachine.Skeleton.transform.localScale.x > 0 ? 1 : -1;
+        //
+        // rigidbody.velocity = new Vector2(dir * StatData.rushSpeed * 5, rigidbody.velocity.y);
+    }
+
+    private IEnumerator RushCoroutine()
+    {
+        var dir = stateMachine.Skeleton.transform.localScale.x > 0 ? 1 : -1;
+        Vector3 startPos = transform.position;
+        Vector3 targetPos = startPos + new Vector3(dir, 0, 0) * StatData.rushDistance;
+        
+        while (Vector3.Distance(transform.position, startPos) < StatData.rushDistance)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, StatData.rushSpeed * Time.deltaTime);
+            yield return null; // 다음 프레임까지 대기
         }
     }
 }

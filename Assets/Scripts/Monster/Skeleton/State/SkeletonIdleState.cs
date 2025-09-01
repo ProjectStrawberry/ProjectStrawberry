@@ -14,6 +14,7 @@ public class SkeletonIdleState : SkeletonBaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Idle 상태 돌입");
         StartAnimation(stateMachine.Skeleton.AnimationData.IdleParameterHash);
         idleTimer = 0f;
     }
@@ -21,6 +22,7 @@ public class SkeletonIdleState : SkeletonBaseState
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("Idle 상태 돌입");
         StopAnimation(stateMachine.Skeleton.AnimationData.IdleParameterHash);
         idleTimer = 0f;
     }

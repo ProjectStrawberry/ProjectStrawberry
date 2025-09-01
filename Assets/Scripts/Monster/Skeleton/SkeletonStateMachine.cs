@@ -22,4 +22,12 @@ public class SkeletonStateMachine : StateMachine
         AttackState = new SkeletonAttackState(this);
         ChasingState = new SkeletonChasingState(this);
     }
+
+    public bool IsCurrentStateAttackState()
+    {
+        if (currentState == AttackState)
+            return true;
+
+        return false;
+    }
 }

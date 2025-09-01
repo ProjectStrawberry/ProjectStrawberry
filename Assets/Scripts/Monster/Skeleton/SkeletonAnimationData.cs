@@ -9,15 +9,18 @@ public class SkeletonAnimationData
     [SerializeField] private string idleParameterName = "Idle";
     [SerializeField] private string walkParameterName = "Walk";
     [SerializeField] private string attackParameterName = "Attack";
+    [SerializeField] private string rushAttackParameterName = "RushAttack";
     
     public int IdleParameterHash { get; private set; }
     public int WalkParameterHash { get; private set; }
     public int AttackParameterHash { get; private set; }
+    public int RushAttackParameterHash { get; private set; }
 
     public void Initialize()
     {
         IdleParameterHash = Animator.StringToHash(idleParameterName);
         WalkParameterHash = Animator.StringToHash(walkParameterName);
         AttackParameterHash = Animator.StringToHash(attackParameterName);
+        RushAttackParameterHash = Animator.StringToHash(rushAttackParameterName);
     }
 }

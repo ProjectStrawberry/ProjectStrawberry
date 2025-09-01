@@ -23,6 +23,7 @@ public class SkeletonChasingState : SkeletonBaseState
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("Chasing 상태 퇴장");
         chasingTimer = 0;
         StopAnimation(stateMachine.Skeleton.AnimationData.WalkParameterHash);
     }
@@ -33,22 +34,25 @@ public class SkeletonChasingState : SkeletonBaseState
 
         if (stateMachine.Skeleton.targetPlayer == null)
             return;
-
+        
+        else
+        {
+            if (CheckCanWalk())
+            {
+                WalkToPlayer();
+            }
+            else
+            {
+                Debug.Log("Skeleton 몬스터가 더는 못 걸어갑니다!");
+                WaitPlayer();
+            }
+        }
+        
         var dist = Mathf.Abs(stateMachine.Skeleton.transform.position.x -
                              stateMachine.Skeleton.targetPlayer.transform.position.x);
         if (dist <= stateMachine.Skeleton.StatData.RushAttackRange)
         {
             stateMachine.ChangeState(stateMachine.AttackState);
-        }
-        
-        if (CheckCanWalk())
-        {
-            WalkToPlayer();
-        }
-        else
-        {
-            Debug.Log("Skeleton 몬스터가 더는 못 걸어갑니다!");
-            WaitPlayer();
         }
     }
 

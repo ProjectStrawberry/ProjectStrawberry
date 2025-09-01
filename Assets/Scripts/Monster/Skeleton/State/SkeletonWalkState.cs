@@ -16,6 +16,7 @@ public class SkeletonWalkState : SkeletonBaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Walk 상태 돌입");
         StartAnimation(stateMachine.Skeleton.AnimationData.WalkParameterHash);
         walkTimer = 0f;
         stateMachine.Skeleton.OnCollide += OnCollision;
@@ -27,6 +28,7 @@ public class SkeletonWalkState : SkeletonBaseState
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("Walk 상태 퇴장");
         StopAnimation(stateMachine.Skeleton.AnimationData.WalkParameterHash);
         walkTimer = 0f;
         stateMachine.Skeleton.OnCollide -= OnCollision;
@@ -43,6 +45,15 @@ public class SkeletonWalkState : SkeletonBaseState
         RaycastHit2D hit = Physics2D.Raycast(stateMachine.Skeleton.groundCheck.position, Vector3.down,
             stateMachine.Skeleton.groundCheckDistance, stateMachine.Skeleton.groundLayer);
         if (hit.collider == null)
+        {
+            Flip();
+        }
+        
+        // 발 앞에 장애물이 있는지 없는지 체크
+        RaycastHit2D hitObstacle = Physics2D.Raycast(stateMachine.Skeleton.groundCheck.position + Vector3.up * 0.5f, 
+            Vector3.right * Mathf.Sign(stateMachine.Skeleton.transform.localScale.x)
+            , stateMachine.Skeleton.groundCheckDistance, stateMachine.Skeleton.groundLayer);
+        if (hitObstacle.collider != null)
         {
             Flip();
         }

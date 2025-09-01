@@ -18,3 +18,5 @@ MonoBehaviour:
   damage: 1
   health: 3
   walkSpeed: 2
+  rushSpeed: 10
+  rushDistance: 5

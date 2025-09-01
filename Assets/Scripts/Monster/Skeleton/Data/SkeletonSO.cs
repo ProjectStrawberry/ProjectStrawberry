@@ -11,4 +11,6 @@ public class SkeletonSO : ScriptableObject
     [field: SerializeField] public int damage = 1;
     [field: SerializeField] public int health = 3;
     [field: SerializeField] public float walkSpeed = 2f;
+    [field: SerializeField] public float rushSpeed = 10f;
+    [field: SerializeField] public float rushDistance = 5f;
 }
