@@ -1,0 +1,71 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AnimationHandler : MonoBehaviour
+{
+    private static readonly int isMove = Animator.StringToHash("isMove");
+    private static readonly int isJump = Animator.StringToHash("isJump");
+    private static readonly int isDoubleJump = Animator.StringToHash("isDoubleJump");
+    private static readonly int attackTrigger = Animator.StringToHash("attackTrigger");
+    private static readonly int combo = Animator.StringToHash("combo");
+    private static readonly int airAttackTrigger = Animator.StringToHash("airAttackTrigger");
+    private static readonly int isDash = Animator.StringToHash("isDash");
+    private static readonly int IsDamage = Animator.StringToHash("IsDamage");
+
+    protected Animator animator;
+    protected SpriteRenderer spriteRenderer; 
+
+    protected virtual void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    public void Move(Vector2 obj)
+    {
+        if(obj.x<0f) spriteRenderer.flipX = true;
+        else if (obj.x>0f)spriteRenderer.flipX = false;
+        animator.SetBool(isMove, Mathf.Abs(obj.x)>0);
+    }
+
+    public void Jump(bool isTrue)
+    {
+        animator.SetBool(isJump, isTrue);
+    }
+
+    public void DoubleJump(bool isTrue)
+    {
+        animator.SetBool(isDoubleJump, isTrue);
+    }
+
+    public void Attack(int setCombo)
+    {
+        if (setCombo == 0)
+            animator.Play("FirstAttack", -1, 0f); 
+        else if (setCombo == 1)
+            animator.Play("SecondAttack", -1, 0f);
+        //animator.SetTrigger(attackTrigger);
+        //animator.SetInteger(combo, setCombo);
+    }
+    public void AirAttack()
+    {
+        animator.SetTrigger(airAttackTrigger);
+    }
+
+    public void Dash(bool isTrue)
+    {
+        animator.SetBool(isDash, isTrue);
+
+    }
+
+    public void Damage()
+    {
+        animator.SetBool(IsDamage, true);
+    }
+
+    public void InvincibilityEnd()
+    {
+        animator.SetBool(IsDamage, false);
+    }
+}
