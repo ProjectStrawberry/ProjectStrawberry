@@ -9,7 +9,9 @@ public class Skeleton : MonoBehaviour
     
     [field:SerializeField] public SkeletonAnimationData AnimationData { get; private set; }
     public Animator Animator { get; private set; }
-
+    
+    [field:SerializeField] public SkeletonSO StatData { get; private set; }
+    
     [Header("공격 관련 콜라이더")] 
     public Collider2D attackCollider;
 

@@ -58,8 +58,20 @@ public class SkeletonWalkState : SkeletonBaseState
     private void Flip()
     {
         isRight = !isRight;
-        // stateMachine.Skeleton.transform.localScale = new Vector3((isRight ? 1 : -1), 1, 1);
         stateMachine.Skeleton.skeletonSprite.flipX = !isRight;
+
+        if (isRight == true)
+        {
+            Vector2 localPos = stateMachine.Skeleton.groundCheck.localPosition;
+            localPos.x = 0.42f;
+            stateMachine.Skeleton.groundCheck.localPosition = localPos;
+        }
+        else
+        {
+            Vector2 localPos = stateMachine.Skeleton.groundCheck.localPosition;
+            localPos.x = -0.42f;
+            stateMachine.Skeleton.groundCheck.localPosition = localPos;
+        }
     }
 
     private void FirstFlip()
@@ -73,7 +85,20 @@ public class SkeletonWalkState : SkeletonBaseState
         {
             isRight = false;
         }
+        
         stateMachine.Skeleton.skeletonSprite.flipX = !isRight;
+        if (isRight == true)
+        {
+            Vector2 localPos = stateMachine.Skeleton.groundCheck.localPosition;
+            localPos.x = 0.42f;
+            stateMachine.Skeleton.groundCheck.localPosition = localPos;
+        }
+        else
+        {
+            Vector2 localPos = stateMachine.Skeleton.groundCheck.localPosition;
+            localPos.x = -0.42f;
+            stateMachine.Skeleton.groundCheck.localPosition = localPos;
+        }
     }
 
     private void OnCollision(Collision2D collision)
