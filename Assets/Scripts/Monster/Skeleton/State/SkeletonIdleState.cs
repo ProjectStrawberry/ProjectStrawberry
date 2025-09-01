@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class SkeletonIdleState : SkeletonBaseState
 {
+    private float idleTimer = 0f;
+    private float changeToWalkStateTime = 2f;
+    
     public SkeletonIdleState(SkeletonStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -12,27 +15,24 @@ public class SkeletonIdleState : SkeletonBaseState
     {
         base.Enter();
         StartAnimation(stateMachine.Skeleton.AnimationData.IdleParameterHash);
+        idleTimer = 0f;
     }
 
     public override void Exit()
     {
         base.Exit();
         StopAnimation(stateMachine.Skeleton.AnimationData.IdleParameterHash);
+        idleTimer = 0f;
     }
 
     public override void Update()
     {
         base.Update();
-        // 애니메이션 동작 확인용
-        if (Input.GetKeyDown(KeyCode.A))
+        
+        idleTimer += Time.deltaTime;
+        if (idleTimer >= changeToWalkStateTime)
         {
             stateMachine.ChangeState(stateMachine.WalkState);
-            return;
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            stateMachine.ChangeState(stateMachine.AttackState);
             return;
         }
     }
