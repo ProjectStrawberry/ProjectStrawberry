@@ -10,7 +10,7 @@ public class Skeleton : MonoBehaviour
     public Animator Animator { get; private set; }
     public SkeletonAnimationHandler AnimationHandler { get; private set; }
     [field:SerializeField] public SkeletonSO StatData { get; private set; }
-    public BaseController targetPlayer;
+    public PlayerController targetPlayer;
 
     [Header("공격 관련")] 
     public Collider2D fieldOfVision;
@@ -36,7 +36,7 @@ public class Skeleton : MonoBehaviour
         AnimationData.Initialize();
         attackCollider.enabled = false;
         rigidbody = GetComponent<Rigidbody2D>();
-        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<BaseController>();
+        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         AttackColliderHandler = GetComponentInChildren<SkeletonAttackColliderHandler>();
     }
 
