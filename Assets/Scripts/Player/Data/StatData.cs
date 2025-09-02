@@ -4,14 +4,22 @@ using UnityEngine;
 public enum StatType
 {
     Health,
+    Stemina,
     Speed,
     JumpeForce,
     CutJumpForceMultiplier,
     Attack,
     RangeAttack,
+    ProjectileVelocity,
+    ProjectileDuration,
+    AttackDelay,
+    RangeAttackDelay,
     DashDuration,
     DashCoolTime,
-    DashDistance
+    DashDistance,
+    HealAmount, //얼마나 회복
+    HealDelay,  //몇 초 뒤 회복
+    HealSteminaConsumeInterval,  //몇 초 간격으로
 }
 
 [System.Serializable]
