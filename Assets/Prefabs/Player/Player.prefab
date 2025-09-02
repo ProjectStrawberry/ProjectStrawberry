@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 3596771718704402976}
   - component: {fileID: 6249804574505822390}
   - component: {fileID: 2911755108704496615}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   excludeMask:
     serializedVersion: 2
     m_Bits: 0
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 1039730113349567166}
   - component: {fileID: 1571081280413015588}
   - component: {fileID: 2318763161879330758}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
