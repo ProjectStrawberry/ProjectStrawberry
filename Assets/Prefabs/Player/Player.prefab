@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1513635795407536047}
   - component: {fileID: 5591734526267001640}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RangeAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 3427423652503154341}
   - component: {fileID: 7082564886449941437}
   - component: {fileID: 1227194570561509302}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,11 +177,11 @@ GameObject:
   - component: {fileID: 666489340769611314}
   - component: {fileID: 897832660926067080}
   - component: {fileID: 6279819889265561534}
-  - component: {fileID: 3321202360759133629}
+  - component: {fileID: 2852501239596749285}
   - component: {fileID: 6943675519612858588}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -303,8 +303,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3321202360759133629}
-        m_TargetAssemblyTypeName: BaseController, Assembly-CSharp
+      - m_Target: {fileID: 2852501239596749285}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
         m_Arguments:
@@ -319,8 +319,8 @@ MonoBehaviour:
     m_ActionName: Player/Movement[/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3321202360759133629}
-        m_TargetAssemblyTypeName: BaseController, Assembly-CSharp
+      - m_Target: {fileID: 2852501239596749285}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnJump
         m_Mode: 0
         m_Arguments:
@@ -335,8 +335,8 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/c]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3321202360759133629}
-        m_TargetAssemblyTypeName: BaseController, Assembly-CSharp
+      - m_Target: {fileID: 2852501239596749285}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnDash
         m_Mode: 0
         m_Arguments:
@@ -351,8 +351,8 @@ MonoBehaviour:
     m_ActionName: Player/Dash[/Keyboard/leftShift]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3321202360759133629}
-        m_TargetAssemblyTypeName: BaseController, Assembly-CSharp
+      - m_Target: {fileID: 2852501239596749285}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnHeal
         m_Mode: 0
         m_Arguments:
@@ -367,8 +367,8 @@ MonoBehaviour:
     m_ActionName: Player/Heal[/Keyboard/v]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3321202360759133629}
-        m_TargetAssemblyTypeName: BaseController, Assembly-CSharp
+      - m_Target: {fileID: 2852501239596749285}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnAttack
         m_Mode: 0
         m_Arguments:
@@ -383,8 +383,8 @@ MonoBehaviour:
     m_ActionName: Player/Attack[/Keyboard/x]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3321202360759133629}
-        m_TargetAssemblyTypeName: BaseController, Assembly-CSharp
+      - m_Target: {fileID: 2852501239596749285}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnFire
         m_Mode: 0
         m_Arguments:
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCondition: {fileID: 6943675519612858588}
-  playerController: {fileID: 3321202360759133629}
+  playerController: {fileID: 0}
 --- !u!114 &6279819889265561534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statData: {fileID: 11400000, guid: c3129823d191aa14197250fe555d3e0e, type: 2}
---- !u!114 &3321202360759133629
+--- !u!114 &2852501239596749285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -450,27 +450,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 4907212766947053897}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73eb77848a6211b41beba3d4d311c07d, type: 3}
+  m_Script: {fileID: 11500000, guid: 78829ce9e092cfe4babfe9f59a973420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GroundMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   excludeMask:
     serializedVersion: 2
     m_Bits: 0
   enemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   characterRenderer: {fileID: 7082564886449941437}
   fallMultiplier: 2
   isGrounded: 0
   isJumping: 0
-  attackRange: 3
-  attackOffset: {x: 1.5, y: 1.5}
-  airAttackRange: 3
-  airAttackOffset: {x: 0, y: -0.5}
-  target: {fileID: 8990026293265134746}
+  attackRange: 1
+  attackOffset: {x: 1, y: 0}
+  airAttackRange: 1
+  airAttackOffset: {x: 1, y: 0}
+  target: {fileID: 0}
 --- !u!114 &6943675519612858588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -496,7 +496,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 608598096309847163}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
