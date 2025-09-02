@@ -38,4 +38,19 @@ public class SkeletonAnimationHandler : MonoBehaviour
         Skeleton.stateMachine.AttackState.StopRushAttackAnimation();
         Skeleton.stateMachine.ChangeState(Skeleton.stateMachine.ChasingState);
     }
+
+    public void OnDie()
+    {
+        Skeleton.stateMachine.ChangeState(Skeleton.stateMachine.IdleState);
+        Skeleton.fieldOfVision.enabled = false;
+        
+        StartCoroutine(DestroySkeleton());
+    }
+
+    private IEnumerator DestroySkeleton()
+    {
+        yield return new WaitForSeconds(2f);
+        
+        Destroy(Skeleton.gameObject);
+    }
 }

@@ -53,6 +53,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public void GetDamage(int damage)
     {
         _currHealth -= 1;
+        Debug.Log("플레이어 현재 체력: " + _currHealth);
         if( _currHealth <= 0 ) Dead();
     }
 }
