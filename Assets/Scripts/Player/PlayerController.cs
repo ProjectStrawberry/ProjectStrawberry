@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     public float fallMultiplier = 2f;
     private Vector2 moveInput;
-    public bool isGrounded;               // ¹Ù´Ú Ã¼Å©
+    public bool isGrounded;               // ë°”ë‹¥ ì²´í¬
     public bool isJumping;
 
     private bool isDash;
@@ -41,18 +41,18 @@ public class PlayerController : MonoBehaviour
     private float attackDelay = 0.0f;
     private float rangeDelay = 0.0f;
     private int comboStep = 0; 
-    private float comboResetTime = 0.5f; // ÄŞº¸¸¦ ÀÌ¾î°¥ ¼ö ÀÖ´Â ½Ã°£
+    private float comboResetTime = 0.5f; // ì½¤ë³´ë¥¼ ì´ì–´ê°ˆ ìˆ˜ ìˆëŠ” ì‹œê°„
     private float comboTimer = 0f;
 
     private float airAttackCoolTime;
 
     [Header("Attack Settings")]
-    [SerializeField] private float attackRange = 1.0f;   // °ø°İ ¹İ°æ
-    [SerializeField] private Vector2 attackOffset = new Vector2(1f, 0f); // Ä³¸¯ÅÍ ±âÁØ ¿ÀÇÁ¼Â
+    [SerializeField] private float attackRange = 1.0f;   // ê³µê²© ë°˜ê²½
+    [SerializeField] private Vector2 attackOffset = new Vector2(1f, 0f); // ìºë¦­í„° ê¸°ì¤€ ì˜¤í”„ì…‹
 
     [Header("Air Attack Settings")]
-    [SerializeField] private float airAttackRange = 1.0f;   // °ø°İ ¹İ°æ
-    [SerializeField] private Vector2 airAttackOffset = new Vector2(1f, 0f); // Ä³¸¯ÅÍ ±âÁØ ¿ÀÇÁ¼Â
+    [SerializeField] private float airAttackRange = 1.0f;   // ê³µê²© ë°˜ê²½
+    [SerializeField] private Vector2 airAttackOffset = new Vector2(1f, 0f); // ìºë¦­í„° ê¸°ì¤€ ì˜¤í”„ì…‹
 
     [SerializeField] private GameObject target;
 
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     protected void Update()
     {
-        // ÄŞº¸ Å¸ÀÌ¸Ó °¨¼Ò
+        // ì½¤ë³´ íƒ€ì´ë¨¸ ê°ì†Œ
         if (comboStep > 0)
         {
             comboTimer -= Time.deltaTime;
@@ -93,11 +93,11 @@ public class PlayerController : MonoBehaviour
     protected void FixedUpdate()
     {
 
-        if (!isDash) // ´ë½¬ Áß¿¡´Â ÀÌµ¿ ¹«½Ã
+        if (!isDash) // ëŒ€ì‰¬ ì¤‘ì—ëŠ” ì´ë™ ë¬´ì‹œ
         {
             float moveSpeed = Movement(moveInput);
 
-            // °ø°İ Áß¿¡´Â ¼Óµµ 1/4·Î °¨¼Ò
+            // ê³µê²© ì¤‘ì—ëŠ” ì†ë„ 1/4ë¡œ ê°ì†Œ
             if (isAttacking)
             {
                 moveSpeed *= statHandler.GetStat(StatType.AttackingSlow);
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        // --- ³«ÇÏ ¼Óµµ º¸Á¤ (³«ÇÏ°¡ ´õ ºü¸£°Ô ÇÏ°í ½Í´Ù¸é) ---
+        // --- ë‚™í•˜ ì†ë„ ë³´ì • (ë‚™í•˜ê°€ ë” ë¹ ë¥´ê²Œ í•˜ê³  ì‹¶ë‹¤ë©´) ---
         //if (_rigidbody.velocity.y < 0)
         //{
         //    _rigidbody.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
     private float Movement(Vector2 direction)
     {
         float targetSpeed = direction.x * statHandler.GetStat(StatType.Speed);
-        //³Ë¹é ±¸Çö ½Ã »ç¿ë==============================================================================
+        //ë„‰ë°± êµ¬í˜„ ì‹œ ì‚¬ìš©==============================================================================
         //if (knockbackDuration > 0.0f)
         //{
         //    direction *= 0.2f;
@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.contacts[0].normal.y > 0.5f) // ¾Æ·¡¿¡¼­ Ãæµ¹ ½Ã
+        if (collision.contacts[0].normal.y > 0.5f) // ì•„ë˜ì—ì„œ ì¶©ëŒ ì‹œ
         {
             if((GroundMask & (1 << collision.gameObject.layer)) != 0)
             {
@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && isGrounded && !isDash) // Á¡ÇÁ ½ÃÀÛ
+        if (context.performed && isGrounded && !isDash) // ì í”„ ì‹œì‘
         {
             float gravity = -Physics2D.gravity.y * _rigidbody.gravityScale;
             float jumpVelocity = Mathf.Sqrt(2 * gravity * statHandler.GetStat(StatType.JumpeForce));
@@ -188,19 +188,19 @@ public class PlayerController : MonoBehaviour
             _rigidbody.velocity = velocity;
 
             animationHandler.Jump(true);
-            isGrounded = false; // ¿¹½Ã¿ë (ÁøÂ¥·Î´Â Raycast µîÀ¸·Î °»½Å)
+            isGrounded = false; // ì˜ˆì‹œìš© (ì§„ì§œë¡œëŠ” Raycast ë“±ìœ¼ë¡œ ê°±ì‹ )
             isJumping = true;
         }
 
-        if (context.canceled) // Á¡ÇÁ ¹öÆ°À» ¶ÃÀ» ¶§
+        if (context.canceled) // ì í”„ ë²„íŠ¼ì„ ë—ì„ ë•Œ
         {
-            if (_rigidbody.velocity.y > 0) // ¾ÆÁ÷ »ó½Â ÁßÀÏ ¶§¸¸ ²÷±â
+            if (_rigidbody.velocity.y > 0) // ì•„ì§ ìƒìŠ¹ ì¤‘ì¼ ë•Œë§Œ ëŠê¸°
             {
                 _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * statHandler.GetStat(StatType.CutJumpForceMultiplier));
             }
         }
 
-        if (context.started && isJumping && !isDash) // ´õºíÁ¡ÇÁ ½ÃÀÛ
+        if (context.started && isJumping && !isDash) // ë”ë¸”ì í”„ ì‹œì‘
         {
             float gravity = -Physics2D.gravity.y * _rigidbody.gravityScale;
             float jumpVelocity = Mathf.Sqrt(2 * gravity * statHandler.GetStat(StatType.JumpeForce));
@@ -211,7 +211,7 @@ public class PlayerController : MonoBehaviour
             _rigidbody.velocity = velocity;
 
             animationHandler.DoubleJump(true);
-            isJumping = false; // ¿¹½Ã¿ë (ÁøÂ¥·Î´Â Raycast µîÀ¸·Î °»½Å)
+            isJumping = false; // ì˜ˆì‹œìš© (ì§„ì§œë¡œëŠ” Raycast ë“±ìœ¼ë¡œ ê°±ì‹ )
         }
     }
 
@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && isGrounded)
         {
-            Debug.Log($"Èú ½ÃÀÛ {Time.time}");
+            Debug.Log($"í ì‹œì‘ {Time.time}");
             animationHandler.Heal(true);
 
             float healDelay = statHandler.GetStat(StatType.HealDelay);
@@ -286,11 +286,11 @@ public class PlayerController : MonoBehaviour
 
         isDash = true;
 
-        // ´ë½¬ °Å¸®
+        // ëŒ€ì‰¬ ê±°ë¦¬
         float dashDistance = statHandler.GetStat(StatType.DashDistance);
         Vector2 dashDirection = characterRenderer.flipX ? Vector2.left : Vector2.right;
 
-        // ½ÃÀÛÁ¡ / ¸ñÇ¥Á¡
+        // ì‹œì‘ì  / ëª©í‘œì 
         Vector2 startPos = _rigidbody.position;
         Vector2 endPos = startPos + dashDirection * dashDistance;
 
@@ -309,7 +309,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        // ¸¶Áö¸· À§Ä¡ º¸Á¤
+        // ë§ˆì§€ë§‰ ìœ„ì¹˜ ë³´ì •
         _rigidbody.MovePosition(endPos);
 
         isDash = false;
@@ -327,7 +327,7 @@ public class PlayerController : MonoBehaviour
             comboTimer = comboResetTime;
             animationHandler.Attack(0);
 
-            StartCoroutine(AttackSlowCoroutine()); // ÀÌµ¿¼Óµµ °¨¼Ò
+            StartCoroutine(AttackSlowCoroutine()); // ì´ë™ì†ë„ ê°ì†Œ
         }
         else if (comboStep == 1 && Time.time - attackDelay > statHandler.GetStat(StatType.AttackDelay))
         {
@@ -337,7 +337,7 @@ public class PlayerController : MonoBehaviour
             comboTimer = comboResetTime;
             animationHandler.Attack(1);
 
-            StartCoroutine(AttackSlowCoroutine()); // ÀÌµ¿¼Óµµ °¨¼Ò
+            StartCoroutine(AttackSlowCoroutine()); // ì´ë™ì†ë„ ê°ì†Œ
         }
     }
     private void AirAttack()
@@ -346,7 +346,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 attackPos = (Vector2)transform.position + new Vector2(attackOffset.x, attackOffset.y);
 
-        Vector2 attackSize = new Vector2(attackRange, attackRange); // °¡·Î ¼¼·Î ºñÀ²
+        Vector2 attackSize = new Vector2(attackRange, attackRange); // ê°€ë¡œ ì„¸ë¡œ ë¹„ìœ¨
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, attackSize, 0f, enemyMask);
 
@@ -358,20 +358,20 @@ public class PlayerController : MonoBehaviour
                 int damage = (int)statHandler.GetStat(StatType.FirstAttack);
 
                 target.GetDamage(damage);
-                Debug.Log($"{hit.name} ¿¡°Ô {damage} µ¥¹ÌÁö¸¦ ÀÔÈû");
+                Debug.Log($"{hit.name} ì—ê²Œ {damage} ë°ë¯¸ì§€ë¥¼ ì…í˜");
             }
         }
     }
 
     protected void Attack(int comboStep)
     {
-        Debug.Log($"ÄŞº¸ {comboStep} °ø°İ ¹ßµ¿");
+        Debug.Log($"ì½¤ë³´ {comboStep} ê³µê²© ë°œë™");
 
         Vector2 attackDir = characterRenderer.flipX ? Vector2.left : Vector2.right;
 
         Vector2 attackPos = (Vector2)transform.position + new Vector2(attackOffset.x * attackDir.x, attackOffset.y);
 
-        Vector2 attackSize = new Vector2(attackRange, attackRange); // °¡·Î ¼¼·Î ºñÀ²
+        Vector2 attackSize = new Vector2(attackRange, attackRange); // ê°€ë¡œ ì„¸ë¡œ ë¹„ìœ¨
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, attackSize, 0f, enemyMask);
 
@@ -385,7 +385,7 @@ public class PlayerController : MonoBehaviour
                 else if (comboStep == 1) damage = (int)statHandler.GetStat(StatType.SecondAttack);
 
                 target.GetDamage(damage);
-                Debug.Log($"{hit.name} ¿¡°Ô {damage} µ¥¹ÌÁö¸¦ ÀÔÈû");
+                Debug.Log($"{hit.name} ì—ê²Œ {damage} ë°ë¯¸ì§€ë¥¼ ì…í˜");
             }
         }
     }
@@ -400,7 +400,7 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = true;
 
-        // °ø°İ µô·¹ÀÌ ½Ã°£ µ¿¾È¸¸ ¼Óµµ °¨¼Ò
+        // ê³µê²© ë”œë ˆì´ ì‹œê°„ ë™ì•ˆë§Œ ì†ë„ ê°ì†Œ
         yield return new WaitForSeconds(statHandler.GetStat(StatType.AttackDelay));
 
         isAttacking = false;
@@ -408,21 +408,21 @@ public class PlayerController : MonoBehaviour
 
     private void UseStemina()
     {
-        // ½ºÅÂ¹Ì³ª »ç¿ë ½ÇÆĞ ½Ã Èú Ãë¼Ò
+        // ìŠ¤íƒœë¯¸ë‚˜ ì‚¬ìš© ì‹¤íŒ¨ ì‹œ í ì·¨ì†Œ
         if (!playerCondition.UseStemina())
         {
-            Debug.Log("½ºÅÂ¹Ì³ª ºÎÁ·! Èú Ãë¼ÒµÊ");
+            Debug.Log("ìŠ¤íƒœë¯¸ë‚˜ ë¶€ì¡±! í ì·¨ì†Œë¨");
             CancelHeal();
             return;
         }
 
-        Debug.Log("±â·Â ±ğÀÓ");
+        Debug.Log("ê¸°ë ¥ ê¹ì„");
     }
 
     private void CancelHeal()
     {
         animationHandler.Heal(false);
-        CancelInvoke(); // ¿¹¾àµÈ Èú/½ºÅÂ¹Ì³ª ¼Ò¸ğ Ãë¼Ò
+        CancelInvoke(); // ì˜ˆì•½ëœ í/ìŠ¤íƒœë¯¸ë‚˜ ì†Œëª¨ ì·¨ì†Œ
     }
 
     private void Heal()
@@ -430,7 +430,7 @@ public class PlayerController : MonoBehaviour
         
         animationHandler.Heal(false);
         playerCondition.Heal((int)statHandler.GetStat(StatType.HealAmount));
-        Debug.Log($"Èú ¿Ï·á {Time.time}");
+        Debug.Log($"í ì™„ë£Œ {Time.time}");
     }
 
     private void OnDrawGizmosSelected()
