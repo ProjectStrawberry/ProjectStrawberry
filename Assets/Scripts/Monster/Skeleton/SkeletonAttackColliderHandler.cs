@@ -30,6 +30,15 @@ public class SkeletonAttackColliderHandler : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("플레이어에게 데미지");
+            if (other.TryGetComponent(out PlayerCondition playerCondition))
+            {
+                Debug.Log("플레이어를 찾았습니다");
+                playerCondition.GetDamage(Skeleton.StatData.damage);
+            }
+        }
+        else
+        {
+            return;
         }
     }
 }

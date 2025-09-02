@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 8167596119335532944}
   - component: {fileID: 662051335319978956}
   - component: {fileID: 3510636976823644356}
-  m_Layer: 0
+  - component: {fileID: 3686452043128248778}
+  m_Layer: 7
   m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,6 +129,7 @@ MonoBehaviour:
     rushAttackParameterName: RushAttack
   <StatData>k__BackingField: {fileID: 11400000, guid: a516d4f36631d7f4c8b9fd2cc82aedb6, type: 2}
   targetPlayer: {fileID: 0}
+  SkeletonCondition: {fileID: 0}
   fieldOfVision: {fileID: 3202199024122715695}
   attackCollider: {fileID: 24847893748902266}
   playerLayer:
@@ -144,6 +146,21 @@ MonoBehaviour:
     m_Bits: 64
   rigidbody: {fileID: 0}
   skeletonSprite: {fileID: 6893211121372988130}
+--- !u!114 &3686452043128248778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180331001443548539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b70fa9d62f4b2f4ea8a851fd40febf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curHealth: 0
+  maxHealth: 0
+  Skeleton: {fileID: 0}
 --- !u!1 &3142282495162237924
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2751910608239458203}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 3142282495162237924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.42, y: -1.05, z: 0}
+  m_LocalPosition: {x: 0.5, y: -1.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -185,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6081705729192462338}
   - component: {fileID: 3202199024122715695}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FieldOfVision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,7 +280,7 @@ GameObject:
   - component: {fileID: 8910681947077720417}
   - component: {fileID: 24847893748902266}
   - component: {fileID: 796328515893357514}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,7 +331,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.5, y: 0}
@@ -342,6 +359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824da2f2220fc8e4cb8ca76ee7c17d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skeleton: {fileID: 0}
+  attackCollider: {fileID: 0}
 --- !u!1 &8931864924441869058
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,7 +373,7 @@ GameObject:
   - component: {fileID: 6893211121372988130}
   - component: {fileID: 1613778995612172752}
   - component: {fileID: 6617605937141890243}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

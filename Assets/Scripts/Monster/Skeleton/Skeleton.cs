@@ -11,6 +11,7 @@ public class Skeleton : MonoBehaviour
     public SkeletonAnimationHandler AnimationHandler { get; private set; }
     [field:SerializeField] public SkeletonSO StatData { get; private set; }
     public PlayerController targetPlayer;
+    public SkeletonCondition SkeletonCondition;
 
     [Header("공격 관련")] 
     public Collider2D fieldOfVision;
@@ -31,6 +32,7 @@ public class Skeleton : MonoBehaviour
     private void Awake()
     {
         stateMachine = new SkeletonStateMachine(this);
+        SkeletonCondition = GetComponent<SkeletonCondition>();
         Animator = GetComponentInChildren<Animator>();
         AnimationHandler = GetComponentInChildren<SkeletonAnimationHandler>();
         AnimationData.Initialize();
