@@ -35,9 +35,12 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         _currStemina += 1;
     }
 
-    public void UseStemina()
+    public bool UseStemina()
     {
+        if (_currStemina <= 0) return false;
+
         _currStemina -= 1;
+        return true;
     }
 
 
