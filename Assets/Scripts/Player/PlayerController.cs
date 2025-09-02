@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     private bool isAttacking = false;
     private float attackDelay = 0.0f;
     private float rangeDelay = 0.0f;
-    private int comboStep = 0; 
+    private int comboStep = 0;
     private float comboResetTime = 0.5f; // 콤보를 이어갈 수 있는 시간
     private float comboTimer = 0f;
 
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.contacts[0].normal.y > 0.5f) // 아래에서 충돌 시
         {
-            if((GroundMask & (1 << collision.gameObject.layer)) != 0)
+            if ((GroundMask & (1 << collision.gameObject.layer)) != 0)
             {
                 isGrounded = true;
                 isJumping = false;
@@ -217,7 +217,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if(context.started && isGrounded && !isDash)
+        if (context.started && isGrounded && !isDash)
         {
             HandleComboAttack();
         }
@@ -232,12 +232,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if(context.started && Time.time-dashCoolTime > statHandler.GetStat(StatType.DashCoolTime))
+        if (context.started && Time.time - dashCoolTime > statHandler.GetStat(StatType.DashCoolTime))
         {
             dashCoolTime = Time.time;
             Invincible();
         }
-        
+
     }
 
     public void OnHeal(InputAction.CallbackContext context)
@@ -381,7 +381,7 @@ public class PlayerController : MonoBehaviour
             if (target != null)
             {
                 int damage = 0;
-                if(comboStep == 0) damage = (int)statHandler.GetStat(StatType.FirstAttack);
+                if (comboStep == 0) damage = (int)statHandler.GetStat(StatType.FirstAttack);
                 else if (comboStep == 1) damage = (int)statHandler.GetStat(StatType.SecondAttack);
 
                 target.GetDamage(damage);
@@ -427,7 +427,7 @@ public class PlayerController : MonoBehaviour
 
     private void Heal()
     {
-        
+
         animationHandler.Heal(false);
         playerCondition.Heal((int)statHandler.GetStat(StatType.HealAmount));
         Debug.Log($"힐 완료 {Time.time}");
