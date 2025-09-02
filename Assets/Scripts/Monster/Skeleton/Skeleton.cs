@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Skeleton : MonoBehaviour
@@ -16,6 +15,8 @@ public class Skeleton : MonoBehaviour
     [Header("공격 관련")] 
     public Collider2D fieldOfVision;
     public Collider2D attackCollider;
+    public LayerMask playerLayer;
+    public SkeletonAttackColliderHandler AttackColliderHandler;
 
     [Header("이동 관련")] 
     public Transform groundCheck;
@@ -36,6 +37,7 @@ public class Skeleton : MonoBehaviour
         attackCollider.enabled = false;
         rigidbody = GetComponent<Rigidbody2D>();
         targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<BaseController>();
+        AttackColliderHandler = GetComponentInChildren<SkeletonAttackColliderHandler>();
     }
 
     private void Start()
@@ -84,7 +86,16 @@ public class Skeleton : MonoBehaviour
         
         while (Vector3.Distance(transform.position, startPos) < StatData.rushDistance)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, StatData.rushSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, 10 * StatData.rushSpeed * Time.deltaTime);
+            
+            RaycastHit2D hitObstacle = Physics2D.Raycast(groundCheck.position + Vector3.up * 0.5f, 
+                Vector3.right * Mathf.Sign(transform.localScale.x)
+                , groundCheckDistance, playerLayer);
+            if (hitObstacle.collider != null)
+            {
+                break;
+            }
+            
             yield return null; // 다음 프레임까지 대기
         }
     }

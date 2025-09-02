@@ -15,11 +15,12 @@ public class SkeletonAnimationHandler : MonoBehaviour
     public void OnAttackAnimationStart()
     {
         Debug.Log("근접 공격 실행 메서드");
+        Skeleton.AttackColliderHandler.TurnOnAttackCollider();
     }
 
     public void OnAttackAnimationEnd()
     {
-        Debug.Log("근접 공격 끝!");
+        Skeleton.AttackColliderHandler.TurnOffAttackCollider();
         Skeleton.stateMachine.AttackState.StopAttackAnimation();
         Skeleton.stateMachine.ChangeState(Skeleton.stateMachine.ChasingState);
     }
@@ -27,12 +28,13 @@ public class SkeletonAnimationHandler : MonoBehaviour
     public void OnRushAttackAnimationStart()
     {
         Debug.Log("돌진 공격 실행 메서드");
+        Skeleton.AttackColliderHandler.TurnOnAttackCollider();
         Skeleton.RushAttackMove();
     }
 
     public void OnRushAttackAnimationEnd()
     {
-        Debug.Log("돌진 공격 끝!");
+        Skeleton.AttackColliderHandler.TurnOffAttackCollider();
         Skeleton.stateMachine.AttackState.StopRushAttackAnimation();
         Skeleton.stateMachine.ChangeState(Skeleton.stateMachine.ChasingState);
     }
