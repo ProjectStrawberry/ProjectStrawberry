@@ -279,7 +279,8 @@ public class PlayerController : MonoBehaviour
         {
             rangeDelay = Time.time;
             animationHandler.RangeAttack();
-            projectileHandler.Attack(target);
+            //projectileHandler.Attack(target);
+            StartCoroutine(TestCoroutine());
         }
     }
 
@@ -461,5 +462,15 @@ public class PlayerController : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(airAttackPos, airAttackSize);
+    }
+
+    private IEnumerator TestCoroutine()
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            projectileHandler.Attack(target);
+            yield return new WaitForSeconds(0.1f);
+        }
+        
     }
 }
