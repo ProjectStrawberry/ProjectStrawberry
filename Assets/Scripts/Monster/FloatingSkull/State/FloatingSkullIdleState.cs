@@ -11,5 +11,12 @@ public class FloatingSkullIdleState : FloatingSkullBaseState
     public override void Enter()
     {
         base.Enter();
+        StartAnimation(stateMachine.FloatingSkull.AnimationData.IdleParameterHash);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        StopAnimation(stateMachine.FloatingSkull.AnimationData.IdleParameterHash);
     }
 }
