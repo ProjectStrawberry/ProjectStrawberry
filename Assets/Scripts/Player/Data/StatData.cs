@@ -23,7 +23,8 @@ public enum StatType
     HealDelay,  //몇 초 뒤 회복
     HealSteminaConsumeInterval,  //몇 초 간격으로
     DamagedInvincibleDuration,
-    DamagedKnockBackDuration
+    DamagedKnockBackDuration,
+    ComboResetTime
 }
 
 [System.Serializable]
