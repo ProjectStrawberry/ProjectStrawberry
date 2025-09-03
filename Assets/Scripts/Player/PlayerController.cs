@@ -41,6 +41,9 @@ public class PlayerController : MonoBehaviour
     private bool isDamaged;
     private bool isUpDown;
 
+    private Vector2 targetVector;
+    private Vector2 adjustVector = new Vector2(0, 1);
+
     private bool isAttacking = false;
     private float attackDelay = 0.0f;
     private float rangeDelay = 0.0f;
@@ -133,7 +136,8 @@ public class PlayerController : MonoBehaviour
         //}
 
         animationHandler.Move(direction);
-        if (!isUpDown) target.transform.position = direction;
+        targetVector = direction + adjustVector;
+        if (direction.x != 0 && !isUpDown) target.transform.localPosition = targetVector;
         return targetSpeed;
     }
 
@@ -292,7 +296,7 @@ public class PlayerController : MonoBehaviour
         if(context.performed)
         {
             isUpDown = true;
-            target.transform.position = Vector2.up;
+            target.transform.localPosition = Vector2.up + adjustVector;
         }
         if (context.canceled)
         {
@@ -304,7 +308,8 @@ public class PlayerController : MonoBehaviour
     {
         if(context.performed && !isGrounded)
         {
-            target.transform.position = Vector3.down;
+            isUpDown = true;
+            target.transform.localPosition = Vector3.down;
         }
         if (context.canceled)
         {
