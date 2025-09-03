@@ -13,6 +13,8 @@ public class CrystalKnightIdleState : CrystalKnightBaseState
         base.Enter();
         StartAnimation(stateMachine.CrystalKnight.AnimationData.IdleParameterHash);
         Debug.Log(stateMachine.CrystalKnight.name + " Idle 상태 입장");
+        
+        ChooseWaitTime();
     }
 
     public override void Exit()
@@ -22,10 +24,24 @@ public class CrystalKnightIdleState : CrystalKnightBaseState
         Debug.Log(stateMachine.CrystalKnight.name + " Idle 상태 퇴장");
     }
 
-    private IEnumerator ExampleCoroutine()
+    private void ChooseWaitTime()
     {
-        yield return new WaitForSeconds(3f);
-
-        Debug.Log("3초 후");
+        var action = stateMachine.GetCurrentAction();
+        Debug.Log("Cycle Index: " + stateMachine.cycleIndex);
+        Debug.Log("Action: " + action);
+        if (action == BossActionType.WaitShort)
+        {
+            stateMachine.CrystalKnight.AttackHandler.WaitForIdleState(BossActionType.WaitShort);
+            stateMachine.PlusCycleIndex();
+        }
+        else if (action == BossActionType.WaitLong)
+        {
+            stateMachine.CrystalKnight.AttackHandler.WaitForIdleState(BossActionType.WaitLong);
+            stateMachine.PlusCycleIndex();
+        }
+        else
+        {
+            Debug.LogError("잘못된 BossActionType입니다: " + action);
+        }
     }
 }
