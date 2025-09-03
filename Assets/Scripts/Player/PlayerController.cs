@@ -65,7 +65,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject target;
 
     [Header("얘가 낼 수 있는 소리들")]
-    [SerializeField] private AudioClip audioClip;
+    [SerializeField] private AudioClip healCompleteClip;
+    [SerializeField] private AudioClip dashClip;
 
     [SerializeField] private ParticleSystem healParticle;
 
@@ -336,6 +337,7 @@ public class PlayerController : MonoBehaviour
 
     public void Dash()
     {
+        if(dashClip != null) SoundManager.PlayClip(dashClip);
         StartCoroutine(DashCoroutine(statHandler.GetStat(StatType.DashDuration)));
     }
 
@@ -394,7 +396,7 @@ public class PlayerController : MonoBehaviour
             attackDelay = Time.time;
             Attack(comboStep);
             comboStep = 1;
-            comboTimer = comboResetTime;
+            comboTimer = statHandler.GetStat(StatType.ComboResetTime);
             animationHandler.Attack(0);
 
             StartCoroutine(AttackSlowCoroutine()); // 이동속도 감소
@@ -404,7 +406,7 @@ public class PlayerController : MonoBehaviour
             attackDelay = Time.time;
             Attack(comboStep);
             comboStep = 0;
-            comboTimer = comboResetTime;
+            comboTimer = statHandler.GetStat(StatType.ComboResetTime);
             animationHandler.Attack(1);
 
             StartCoroutine(AttackSlowCoroutine()); // 이동속도 감소
@@ -497,6 +499,7 @@ public class PlayerController : MonoBehaviour
 
     private void Heal()
     {
+        if(healCompleteClip != null) SoundManager.PlayClip(healCompleteClip);
         isHeal = false;
         healParticle.Play();
         animationHandler.Heal(false);
