@@ -198,8 +198,9 @@ GameObject:
   - component: {fileID: 1925660107909885780}
   - component: {fileID: 4620859439622230180}
   - component: {fileID: 6905624586827170072}
+  - component: {fileID: 5651341776212360681}
   m_Layer: 5
-  m_Name: Settings
+  m_Name: UISettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,6 +282,20 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 5, y: 5}
   m_UseGraphicAlpha: 1
+--- !u!114 &5651341776212360681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909604310011086686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58cd5ebd6ac9784c97f060313614103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bgmSlider: {fileID: 447987555997870941}
+  sfxSlider: {fileID: 4708384947644681552}
 --- !u!1 &1704137512234441574
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +627,7 @@ GameObject:
   - component: {fileID: 3298309532173735397}
   - component: {fileID: 447987555997870941}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: BGMSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -924,7 +939,7 @@ GameObject:
   - component: {fileID: 7600760431151420917}
   - component: {fileID: 4708384947644681552}
   m_Layer: 5
-  m_Name: Slider (1)
+  m_Name: SFXSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

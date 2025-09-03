@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class UIManager : MonoSingleton<UIManager>
     private bool _isCleaning; 
     private Dictionary<string, UIBase> _uiDictionary = new Dictionary<string, UIBase>();
 
+    [SerializeField] Canvas _canvas;
     private void OnEnable()
     {
         SceneManager.sceneUnloaded += OnSceneUnloaded;
@@ -19,7 +21,13 @@ public class UIManager : MonoSingleton<UIManager>
     {
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
-    
+
+
+
+    private void Start() //실험용
+    {
+        OpenUI<UIStartScene>();
+    }
     // ================================
     // UI 관리
     // ================================
@@ -28,7 +36,10 @@ public class UIManager : MonoSingleton<UIManager>
         var ui = GetUI<T>();
         ui?.OpenUI();
     }
-    
+
+
+   
+
     public void CloseUI<T>() where T : UIBase
     {
         if (IsExistUI<T>())
@@ -74,7 +85,7 @@ public class UIManager : MonoSingleton<UIManager>
         }
 
         // 2. 인스턴스 생성
-        GameObject go = Instantiate(prefab);
+        GameObject go = Instantiate(prefab,_canvas.transform,false);
 
         // 3. 컴포넌트 획득
         T ui = go.GetComponent<T>();

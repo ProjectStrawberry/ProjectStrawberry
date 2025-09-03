@@ -64,6 +64,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GameObject target;
 
+    [Header("얘가 낼 수 있는 소리들")]
+    [SerializeField] private AudioClip audioClip;
+
     [SerializeField] private ParticleSystem healParticle;
 
 
@@ -140,7 +143,7 @@ public class PlayerController : MonoBehaviour
         //    direction += knockback;
         //}
 
-        animationHandler.Move(direction);
+        if(isLanding) animationHandler.Move(direction);
         targetVector = direction + adjustVector;
         if (direction.x != 0 && !isUpDown) target.transform.localPosition = targetVector;
         return targetSpeed;
