@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     public bool isGrounded;               // 바닥 체크
     public bool isJumping;
+    public bool isLanding;
 
     private bool isDash;
     private float dashCoolTime;
@@ -117,6 +118,10 @@ public class PlayerController : MonoBehaviour
             _rigidbody.velocity = new Vector2(moveSpeed, _rigidbody.velocity.y);
         }
 
+        if(_rigidbody.velocity.y < 0 && isGrounded && !isLanding)
+        {
+            animationHandler.HoldJumpLastFrame();
+        }
 
         // --- 낙하 속도 보정 (낙하가 더 빠르게 하고 싶다면) ---
         //if (_rigidbody.velocity.y < 0)
@@ -141,16 +146,28 @@ public class PlayerController : MonoBehaviour
         return targetSpeed;
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        isLanding = true;
+        animationHandler.StartSpeed();
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isLanding = false;
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((GroundMask & (1 << collision.gameObject.layer)) != 0)
-            {
-                isGrounded = true;
-                isJumping = false;
-                animationHandler.Jump(false);
-                animationHandler.DoubleJump(false);
-            }
+        {
+            animationHandler.StartSpeed();
+            isGrounded = true;
+            isJumping = false;
+            animationHandler.Jump(false);
+            animationHandler.DoubleJump(false);
+        }
     }
 
     public void ApplyKnockback(Transform other, float power, float duration)
@@ -324,6 +341,11 @@ public class PlayerController : MonoBehaviour
         _boxCollider.excludeLayers = excludeMask;
         animationHandler.Dash(true);
 
+        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
+
+        float originScale = _rigidbody.gravityScale;
+        _rigidbody.gravityScale = 0;
+
         isDash = true;
 
         // 대쉬 거리
@@ -352,8 +374,13 @@ public class PlayerController : MonoBehaviour
         // 마지막 위치 보정
         _rigidbody.MovePosition(endPos);
 
+        _rigidbody.gravityScale = originScale;
         isDash = false;
         animationHandler.Dash(false);
+        if (!isGrounded)
+        {
+            animationHandler.HoldJumpLastFrame();
+        }
         _boxCollider.includeLayers = excludeMask;
     }
 
