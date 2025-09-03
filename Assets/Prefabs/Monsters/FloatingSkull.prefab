@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4809613567206985562}
   - component: {fileID: 1972936758321746100}
   - component: {fileID: 8061596606810023583}
+  - component: {fileID: 8316522976749017508}
   m_Layer: 7
   m_Name: FloatingSkull
   m_TagString: Untagged
@@ -94,6 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <StatData>k__BackingField: {fileID: 11400000, guid: 7dd2fb825a846cd4091476c5e2cc07d4, type: 2}
+  <Condition>k__BackingField: {fileID: 0}
   <AnimationData>k__BackingField:
     idleParameterName: Idle
     attackParameterName: Attack
@@ -102,6 +104,21 @@ MonoBehaviour:
   fieldOfVision: {fileID: 3029573663229890697}
   targetPlayer: {fileID: 0}
   ProjectileHandler: {fileID: 0}
+--- !u!114 &8316522976749017508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099329591637960241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5999d5c391917db4e9be1ec986f3378b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloatingSkull: {fileID: 0}
+  curHealth: 0
+  maxHealth: 0
 --- !u!1 &5056379696079365962
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +130,7 @@ GameObject:
   - component: {fileID: 6457847262266894188}
   - component: {fileID: 2982201288140467860}
   - component: {fileID: 4786660999089316663}
+  - component: {fileID: 8786963119068189242}
   m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
@@ -208,6 +226,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8786963119068189242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5056379696079365962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 843d6807c11a2cc4dbb6c9602949a691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloatingSkull: {fileID: 0}
 --- !u!1 &6985514509853207915
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,7 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6590643287491894214}
   - component: {fileID: 5590482814621362136}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: RangeAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,14 +365,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSpawnPosition: {fileID: 6590643287491894214}
-  bulletIndex: 0
-  bulletSize: 1
+  bulletIndex: 1
+  bulletSize: 0.5
   power: 1
   speed: 10
   duration: 2.5
   spread: 0
   numberofProjectilesPerShot: 1
   multipleProjectilesAngle: 0
-  projectileColor: {r: 1, g: 1, b: 1, a: 1}
+  projectileColor: {r: 0.77695835, g: 0.34376112, b: 0.9716981, a: 1}
   attackSoundClip: {fileID: 0}
   target: {fileID: 0}
