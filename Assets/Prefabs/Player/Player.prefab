@@ -338,11 +338,13 @@ MonoBehaviour:
   fallMultiplier: 2
   isGrounded: 0
   isJumping: 0
+  isLanding: 0
   attackRange: 3
   attackOffset: {x: 1.5, y: 1}
   airAttackRange: 3
   airAttackOffset: {x: 0, y: -0.5}
   target: {fileID: 6368395161317735550}
+  audioClip: {fileID: 8300000, guid: 240a8441bddf08749a67c739f7a89205, type: 3}
   healParticle: {fileID: 5737593819060980840}
 --- !u!114 &5339910251525109407
 MonoBehaviour:

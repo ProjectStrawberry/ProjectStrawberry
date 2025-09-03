@@ -6,4 +6,9 @@ using UnityEngine;
 public class PlayerManager : MonoSingleton<PlayerManager>
 {
     public Player player;
+    public SpawnPointController spawnPointController;
+    public void GetSpawnPointController(SpawnPointController spawnPointController)
+    {
+        this.spawnPointController=spawnPointController;
+    }
 }

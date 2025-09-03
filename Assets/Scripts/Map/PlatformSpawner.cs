@@ -79,13 +79,17 @@ public class PlatformSpawner : MonoBehaviour
             if(semiSolidPool.Count > 0)
             {
                 go=semiSolidPool.Dequeue();
-                go.transform.position=platformData.platformPosition;
+                //go.transform.position=platformData.platformPosition;
+                go.transform.SetParent(this.transform);
+                go.transform.localPosition=platformData.platformPosition;
                 go.SetActive(true);
 
             }
             else
             {
-                go = Instantiate(semiSolidPrefab, platformData.platformPosition, Quaternion.identity);
+                go = Instantiate(semiSolidPrefab);
+                go.transform.SetParent(this.transform);
+                go.transform.localPosition = platformData.platformPosition;
                 
             }
             
