@@ -27,7 +27,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Heal(int amount)
     {
-        _currStemina += amount;
+        _currHealth += amount;
     }
 
     public void RestoreStemina()
