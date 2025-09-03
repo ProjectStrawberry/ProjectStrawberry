@@ -248,7 +248,7 @@ public class PlayerController : MonoBehaviour
         {
             HandleComboAttack();
         }
-        else if (context.started && !isGrounded && Time.time - airAttackCoolTime > 0.75f && !isDash && !isHeal)
+        else if (context.started && !isGrounded && Time.time - airAttackCoolTime > statHandler.GetStat(StatType.AttackDelay) && !isDash && !isHeal)
         {
             airAttackCoolTime = Time.time;
             AirAttack();
