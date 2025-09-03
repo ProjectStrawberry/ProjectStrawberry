@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     private float dashCoolTime;
 
     private bool isHeal;
+    private bool isDamaged;
+    private bool isUpDown;
 
     private bool isAttacking = false;
     private float attackDelay = 0.0f;
@@ -99,10 +101,10 @@ public class PlayerController : MonoBehaviour
     protected void FixedUpdate()
     {
 
-        if (!isDash) // 대쉬 중에는 이동 무시
+        if (!isDash || !isDamaged) // 대쉬 중에는 이동 무시
         {
             float moveSpeed = Movement(moveInput);
-            if (isHeal) moveSpeed = 0;
+            if (isHeal || isDamaged) moveSpeed = 0;
             // 공격 중에는 속도 1/4로 감소
             if (isAttacking)
             {
@@ -131,6 +133,7 @@ public class PlayerController : MonoBehaviour
         //}
 
         animationHandler.Move(direction);
+        if (!isUpDown) target.transform.position = direction;
         return targetSpeed;
     }
 
@@ -241,7 +244,7 @@ public class PlayerController : MonoBehaviour
         if (context.started && Time.time - dashCoolTime > statHandler.GetStat(StatType.DashCoolTime) && !isHeal)
         {
             dashCoolTime = Time.time;
-            Invincible();
+            Dash();
         }
 
     }
@@ -284,7 +287,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Invincible()
+    public void Up(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            isUpDown = true;
+            target.transform.position = Vector2.up;
+        }
+        if (context.canceled)
+        {
+            isUpDown = false;
+        }
+    }
+
+    public void Down(InputAction.CallbackContext context)
+    {
+        if(context.performed && !isGrounded)
+        {
+            target.transform.position = Vector3.down;
+        }
+        if (context.canceled)
+        {
+            isUpDown = false;
+        }
+    }
+
+    public void Dash()
     {
         StartCoroutine(DashCoroutine(statHandler.GetStat(StatType.DashDuration)));
     }
@@ -473,4 +501,24 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+
+    public IEnumerator Damaged()
+    {
+        isDamaged = true;
+        animationHandler.Damaged(true);
+
+        yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedKnockBackDuration));
+
+        isDamaged = false;
+        animationHandler.Damaged(false);
+
+    }
+    public IEnumerator Invincible()
+    {
+        _boxCollider.excludeLayers += excludeMask;
+        
+        yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedInvincibleDuration));
+
+        _boxCollider.excludeLayers -= excludeMask;
+    } 
 }

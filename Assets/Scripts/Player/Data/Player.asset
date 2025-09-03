@@ -52,3 +52,7 @@ MonoBehaviour:
     baseValue: 2.4
   - statType: 18
     baseValue: 0.8
+  - statType: 19
+    baseValue: 0.4
+  - statType: 20
+    baseValue: 0.2

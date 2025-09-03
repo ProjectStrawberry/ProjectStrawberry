@@ -69,13 +69,8 @@ public class AnimationHandler : MonoBehaviour
         animator.SetBool(isHeal, isTrue);
     }
 
-    public void Damaged()
+    public void Damaged(bool isTrue)
     {
-        animator.SetBool(isDamaged, true);
-    }
-
-    public void InvincibilityEnd()
-    {
-        animator.SetBool(isDamaged, false);
+        animator.SetBool(isDamaged, isTrue);
     }
 }
