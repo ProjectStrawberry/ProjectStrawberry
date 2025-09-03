@@ -141,20 +141,17 @@ public class PlayerController : MonoBehaviour
         return targetSpeed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.contacts[0].normal.y > 0.5f) // 아래에서 충돌 시
-        {
-            if ((GroundMask & (1 << collision.gameObject.layer)) != 0)
+        if ((GroundMask & (1 << collision.gameObject.layer)) != 0)
             {
                 isGrounded = true;
                 isJumping = false;
                 animationHandler.Jump(false);
                 animationHandler.DoubleJump(false);
             }
-        }
     }
-
 
     public void ApplyKnockback(Transform other, float power, float duration)
     {
