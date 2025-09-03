@@ -294,6 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58cd5ebd6ac9784c97f060313614103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgmSlider: {fileID: 447987555997870941}
+  sfxSlider: {fileID: 4708384947644681552}
 --- !u!1 &1704137512234441574
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +627,7 @@ GameObject:
   - component: {fileID: 3298309532173735397}
   - component: {fileID: 447987555997870941}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: BGMSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -937,7 +939,7 @@ GameObject:
   - component: {fileID: 7600760431151420917}
   - component: {fileID: 4708384947644681552}
   m_Layer: 5
-  m_Name: Slider (1)
+  m_Name: SFXSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
