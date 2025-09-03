@@ -16,9 +16,12 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int isHeal = Animator.StringToHash("isHeal");
     private static readonly int isDash = Animator.StringToHash("isDash");
     private static readonly int isDamaged = Animator.StringToHash("isDamaged");
+    private static readonly int isFall = Animator.StringToHash("isFall");
 
     protected Animator animator;
-    protected SpriteRenderer spriteRenderer; 
+    protected SpriteRenderer spriteRenderer;
+
+    //public bool isFall;
 
     protected virtual void Awake()
     {
@@ -70,12 +73,15 @@ public class AnimationHandler : MonoBehaviour
     {
         // Jump 애니메이션 마지막 프레임(=1f)에 멈추게 함
         DoubleJump(false);
+        animator.SetBool(isFall, true);
+        animator.SetBool(isMove, false);
         animator.Play(jump, -1, 1f);
         animator.speed = 0f; // 멈춤
     }
 
     public void StartSpeed()
     {
+        animator.SetBool(isFall, false);
         animator.speed = 1f;
     }
 
