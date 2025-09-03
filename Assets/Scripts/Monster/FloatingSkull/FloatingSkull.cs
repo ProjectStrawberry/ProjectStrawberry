@@ -8,11 +8,14 @@ public class FloatingSkull : MonoBehaviour
     public FloatingSkullStateMachine stateMachine;
     
     [field: SerializeField] public FloatingSkullSO StatData { get; private set; }
+    [field:SerializeField] public FloatingSkullCondition Condition { get; private set; }
     public Animator Animator { get; private set; }
+
+    public FloatingSkullAnimationHandler AnimationHandler { get; private set; }
     [field:SerializeField] public FloatingSkullAnimationData AnimationData { get; private set; }
     
     [Header("공격 관련")] 
-    public BoxCollider2D fieldOfVision;
+    public CircleCollider2D fieldOfVision;
     public Player targetPlayer;
     public ProjectileHandler ProjectileHandler;
 
@@ -22,12 +25,14 @@ public class FloatingSkull : MonoBehaviour
         Animator = GetComponentInChildren<Animator>();
         AnimationData.Initialize();
         ProjectileHandler = GetComponentInChildren<ProjectileHandler>();
+        AnimationHandler = GetComponentInChildren<FloatingSkullAnimationHandler>();
+        Condition = GetComponent<FloatingSkullCondition>();
     }
 
     private void Start()
     {
-        fieldOfVision.size = new Vector2(StatData.playerDetectRange + 2, 2);
-        fieldOfVision.offset = new Vector2((StatData.playerDetectRange) / 2, 0);
+        fieldOfVision.radius = StatData.playerDetectRange;
+        // fieldOfVision.offset = new Vector2((StatData.playerDetectRange) / 2, 0);
         
         stateMachine.ChangeState(stateMachine.IdleState);
     }

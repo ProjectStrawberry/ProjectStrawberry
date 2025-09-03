@@ -99,7 +99,7 @@ MonoBehaviour:
     attackParameterName: Attack
     hurtParameterName: Hurt
     dieParameterName: Die
-  fieldOfVision: {fileID: 8320969847848445580}
+  fieldOfVision: {fileID: 3029573663229890697}
   targetPlayer: {fileID: 0}
   ProjectileHandler: {fileID: 0}
 --- !u!1 &5056379696079365962
@@ -217,7 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4248985943587177606}
-  - component: {fileID: 8320969847848445580}
+  - component: {fileID: 3029573663229890697}
   - component: {fileID: 9131436929429277348}
   m_Layer: 8
   m_Name: FieldOfVision
@@ -241,8 +241,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4809613567206985562}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &8320969847848445580
-BoxCollider2D:
+--- !u!58 &3029573663229890697
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -274,18 +274,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!114 &9131436929429277348
 MonoBehaviour:
   m_ObjectHideFlags: 0
