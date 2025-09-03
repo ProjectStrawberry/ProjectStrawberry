@@ -805,6 +805,8 @@ GameObject:
   - component: {fileID: 1704490307}
   - component: {fileID: 1704490308}
   - component: {fileID: 1704490309}
+  - component: {fileID: 1704490310}
+  - component: {fileID: 1704490311}
   m_Layer: 0
   m_Name: CrystalKnight
   m_TagString: Untagged
@@ -883,6 +885,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7124786e079b59f4395e7aa98d579481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Animator>k__BackingField: {fileID: 0}
+  <AnimationData>k__BackingField:
+    idleParameterName: Idle
+    closeAttackParameterName: CloseAttack
+    longProjectileFireParameterName: LongProjectileFire
+    laserFireParameterName: LaserFire
+  <StatData>k__BackingField: {fileID: 11400000, guid: e43de02f43f7e1144b6f7a5cad2fc4e2, type: 2}
+--- !u!114 &1704490310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704490306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d4b388c00f16134ebeeb64fa0257513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CrystalKnight: {fileID: 0}
+  maxHealth: 0
+  currentHealth: 0
+--- !u!114 &1704490311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704490306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379bc094d7bdd994f8e7aa35e6615046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4864517147214521622

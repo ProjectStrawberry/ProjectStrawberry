@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FloatingSkullBaseState : IState
+public class CrystalKnightBaseState : IState
 {
-    protected FloatingSkullStateMachine stateMachine;
-    
-    public FloatingSkullBaseState(FloatingSkullStateMachine stateMachine)
+    protected CrystalKnightStateMachine stateMachine;
+
+    public CrystalKnightBaseState(CrystalKnightStateMachine stateMachine)
     {
         this.stateMachine = stateMachine;
     }
@@ -38,11 +38,11 @@ public class FloatingSkullBaseState : IState
     
     protected void StartAnimation(int animatorHash)
     {
-        stateMachine.FloatingSkull.Animator.SetBool(animatorHash, true);
+        stateMachine.CrystalKnight.Animator.SetBool(animatorHash, true);
     }
 
     protected void StopAnimation(int animatorHash)
     {
-        stateMachine.FloatingSkull.Animator.SetBool(animatorHash, false);
+        stateMachine.CrystalKnight.Animator.SetBool(animatorHash, false);
     }
 }
