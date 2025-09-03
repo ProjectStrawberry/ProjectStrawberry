@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIGameOver : MonoBehaviour
+public class UIGameOver : UIBase
 {
 
     [SerializeField] Button restartButton;
