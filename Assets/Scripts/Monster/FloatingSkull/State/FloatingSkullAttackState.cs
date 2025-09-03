@@ -26,6 +26,9 @@ public class FloatingSkullAttackState : FloatingSkullBaseState
     {
         base.Update();
 
+        // FloatingSkull이 Attack 상태일 때는 플레이어를 계속 쳐다봐야 한다.
+        FacingToPlayer();
+        
         fireTimer += Time.deltaTime;
         if (fireTimer >= stateMachine.FloatingSkull.StatData.projectileFireRate)
         {
@@ -40,6 +43,15 @@ public class FloatingSkullAttackState : FloatingSkullBaseState
         }
     }
 
+    private void FacingToPlayer()
+    {
+        // 게임 매니저 같은 곳에서 플레이어를 계속 추격해야 할듯
+        var dir = Mathf.Sign(PlayerManager.Instance.player.gameObject.transform.position.x
+                             - stateMachine.FloatingSkull.transform.position.x);
+        
+        stateMachine.FloatingSkull.transform.localScale = new Vector3(dir, 1, 1);
+    }
+    
     private void FireProjectile()
     {
         Debug.Log("투사체 발사" + stateMachine.FloatingSkull.name);
