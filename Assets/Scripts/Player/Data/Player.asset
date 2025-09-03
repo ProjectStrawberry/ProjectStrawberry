@@ -49,6 +49,10 @@ MonoBehaviour:
   - statType: 16
     baseValue: 1
   - statType: 17
-    baseValue: 1.5
+    baseValue: 2.4
   - statType: 18
-    baseValue: 0.5
+    baseValue: 0.8
+  - statType: 19
+    baseValue: 0.4
+  - statType: 20
+    baseValue: 0.2

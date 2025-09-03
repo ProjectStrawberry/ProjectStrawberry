@@ -30,4 +30,12 @@ public class SkeletonStateMachine : StateMachine
 
         return false;
     }
+    
+    public void StartHurtAnimation()
+    {
+        if (currentState == null)
+            return;
+        
+        Skeleton.Animator.Play("Skeleton_Hurt", 0, 0f);
+    }
 }

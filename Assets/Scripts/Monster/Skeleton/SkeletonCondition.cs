@@ -27,10 +27,14 @@ public class SkeletonCondition : MonoBehaviour, IDamagable
         {
             Dead();
         }
+        else
+        {
+            Skeleton.stateMachine.StartHurtAnimation();
+        }
     }
 
     public void Dead()
     {
-        
+        Skeleton.Animator.SetTrigger(Skeleton.AnimationData.DieParameterHash);
     }
 }

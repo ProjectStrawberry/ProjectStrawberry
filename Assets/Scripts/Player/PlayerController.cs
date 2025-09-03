@@ -37,6 +37,13 @@ public class PlayerController : MonoBehaviour
     private bool isDash;
     private float dashCoolTime;
 
+    private bool isHeal;
+    private bool isDamaged;
+    private bool isUpDown;
+
+    private Vector2 targetVector;
+    private Vector2 adjustVector = new Vector2(0, 1);
+
     private bool isAttacking = false;
     private float attackDelay = 0.0f;
     private float rangeDelay = 0.0f;
@@ -55,6 +62,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector2 airAttackOffset = new Vector2(1f, 0f); // 캐릭터 기준 오프셋
 
     [SerializeField] private GameObject target;
+
+    [SerializeField] private ParticleSystem healParticle;
 
 
 
@@ -75,6 +84,8 @@ public class PlayerController : MonoBehaviour
         playerCondition = GetComponent<PlayerCondition>();
         projectileHandler = GetComponentInChildren<ProjectileHandler>();
 
+        _boxCollider.excludeLayers = enemyMask;
+
     }
 
     protected void Update()
@@ -93,10 +104,10 @@ public class PlayerController : MonoBehaviour
     protected void FixedUpdate()
     {
 
-        if (!isDash) // 대쉬 중에는 이동 무시
+        if (!isDash || !isDamaged) // 대쉬 중에는 이동 무시
         {
             float moveSpeed = Movement(moveInput);
-
+            if (isHeal || isDamaged) moveSpeed = 0;
             // 공격 중에는 속도 1/4로 감소
             if (isAttacking)
             {
@@ -125,23 +136,22 @@ public class PlayerController : MonoBehaviour
         //}
 
         animationHandler.Move(direction);
+        targetVector = direction + adjustVector;
+        if (direction.x != 0 && !isUpDown) target.transform.localPosition = targetVector;
         return targetSpeed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.contacts[0].normal.y > 0.5f) // 아래에서 충돌 시
-        {
-            if ((GroundMask & (1 << collision.gameObject.layer)) != 0)
+        if ((GroundMask & (1 << collision.gameObject.layer)) != 0)
             {
                 isGrounded = true;
                 isJumping = false;
                 animationHandler.Jump(false);
                 animationHandler.DoubleJump(false);
             }
-        }
     }
-
 
     public void ApplyKnockback(Transform other, float power, float duration)
     {
@@ -177,7 +187,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && isGrounded && !isDash) // 점프 시작
+        if (context.performed && isJumping && !isDash && !isHeal) // 더블점프 시작
+        {
+            float gravity = -Physics2D.gravity.y * _rigidbody.gravityScale;
+            float jumpVelocity = Mathf.Sqrt(2 * gravity * statHandler.GetStat(StatType.JumpeForce));
+
+            Vector2 velocity = _rigidbody.velocity;
+            velocity.y = jumpVelocity;
+            Debug.Log(velocity);
+            _rigidbody.velocity = velocity;
+
+            animationHandler.DoubleJump(true);
+            isJumping = false; // 예시용 (진짜로는 Raycast 등으로 갱신)
+        }
+
+        if (context.performed && isGrounded && !isDash && !isHeal) // 점프 시작
         {
             float gravity = -Physics2D.gravity.y * _rigidbody.gravityScale;
             float jumpVelocity = Mathf.Sqrt(2 * gravity * statHandler.GetStat(StatType.JumpeForce));
@@ -199,29 +223,15 @@ public class PlayerController : MonoBehaviour
                 _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * statHandler.GetStat(StatType.CutJumpForceMultiplier));
             }
         }
-
-        if (context.started && isJumping && !isDash) // 더블점프 시작
-        {
-            float gravity = -Physics2D.gravity.y * _rigidbody.gravityScale;
-            float jumpVelocity = Mathf.Sqrt(2 * gravity * statHandler.GetStat(StatType.JumpeForce));
-
-            Vector2 velocity = _rigidbody.velocity;
-            velocity.y = jumpVelocity;
-            Debug.Log(velocity);
-            _rigidbody.velocity = velocity;
-
-            animationHandler.DoubleJump(true);
-            isJumping = false; // 예시용 (진짜로는 Raycast 등으로 갱신)
-        }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && isGrounded && !isDash)
+        if (context.started && isGrounded && !isDash && !isHeal)
         {
             HandleComboAttack();
         }
-        else if (context.started && !isGrounded && Time.time - airAttackCoolTime > 0.75f && !isDash)
+        else if (context.started && !isGrounded && Time.time - airAttackCoolTime > 0.75f && !isDash && !isHeal)
         {
             airAttackCoolTime = Time.time;
             AirAttack();
@@ -232,20 +242,22 @@ public class PlayerController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && Time.time - dashCoolTime > statHandler.GetStat(StatType.DashCoolTime))
+        if (context.started && Time.time - dashCoolTime > statHandler.GetStat(StatType.DashCoolTime) && !isHeal)
         {
             dashCoolTime = Time.time;
-            Invincible();
+            Dash();
         }
 
     }
 
     public void OnHeal(InputAction.CallbackContext context)
     {
-        if (context.started && isGrounded)
+        if (context.started && isGrounded && !isDash)
         {
             Debug.Log($"힐 시작 {Time.time}");
             animationHandler.Heal(true);
+
+            isHeal = true;
 
             float healDelay = statHandler.GetStat(StatType.HealDelay);
             float interval = statHandler.GetStat(StatType.HealSteminaConsumeInterval);
@@ -260,21 +272,49 @@ public class PlayerController : MonoBehaviour
 
         if (context.canceled)
         {
+            isHeal = false;
             CancelHeal();
         }
     }
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.started && Time.time - rangeDelay > statHandler.GetStat(StatType.RangeAttackDelay) && !isDash)
+        if (context.started && Time.time - rangeDelay > statHandler.GetStat(StatType.RangeAttackDelay) && !isDash && !isHeal)
         {
             rangeDelay = Time.time;
             animationHandler.RangeAttack();
-            projectileHandler.Attack(target);
+            //projectileHandler.Attack(target);
+            StartCoroutine(TestCoroutine());
         }
     }
 
-    public void Invincible()
+    public void Up(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            isUpDown = true;
+            target.transform.localPosition = Vector2.up + adjustVector;
+        }
+        if (context.canceled)
+        {
+            isUpDown = false;
+        }
+    }
+
+    public void Down(InputAction.CallbackContext context)
+    {
+        if(context.performed && !isGrounded)
+        {
+            isUpDown = true;
+            target.transform.localPosition = Vector3.down;
+        }
+        if (context.canceled)
+        {
+            isUpDown = false;
+        }
+    }
+
+    public void Dash()
     {
         StartCoroutine(DashCoroutine(statHandler.GetStat(StatType.DashDuration)));
     }
@@ -427,7 +467,8 @@ public class PlayerController : MonoBehaviour
 
     private void Heal()
     {
-
+        isHeal = false;
+        healParticle.Play();
         animationHandler.Heal(false);
         playerCondition.Heal((int)statHandler.GetStat(StatType.HealAmount));
         Debug.Log($"힐 완료 {Time.time}");
@@ -452,4 +493,34 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(airAttackPos, airAttackSize);
     }
+
+    private IEnumerator TestCoroutine()
+    {
+        for(int i = 0; i < 10; i++)
+        {
+            projectileHandler.Attack(target);
+            yield return new WaitForSeconds(0.1f);
+        }
+        
+    }
+
+    public IEnumerator Damaged()
+    {
+        isDamaged = true;
+        animationHandler.Damaged(true);
+
+        yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedKnockBackDuration));
+
+        isDamaged = false;
+        animationHandler.Damaged(false);
+
+    }
+    public IEnumerator Invincible()
+    {
+        _boxCollider.excludeLayers += excludeMask;
+        
+        yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedInvincibleDuration));
+
+        _boxCollider.excludeLayers -= excludeMask;
+    } 
 }
