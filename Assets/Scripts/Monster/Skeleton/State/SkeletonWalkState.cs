@@ -16,6 +16,7 @@ public class SkeletonWalkState : SkeletonBaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Walk 상태 돌입");
         StartAnimation(stateMachine.Skeleton.AnimationData.WalkParameterHash);
         walkTimer = 0f;
         stateMachine.Skeleton.OnCollide += OnCollision;
@@ -27,6 +28,7 @@ public class SkeletonWalkState : SkeletonBaseState
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("Walk 상태 퇴장");
         StopAnimation(stateMachine.Skeleton.AnimationData.WalkParameterHash);
         walkTimer = 0f;
         stateMachine.Skeleton.OnCollide -= OnCollision;
@@ -46,6 +48,15 @@ public class SkeletonWalkState : SkeletonBaseState
         {
             Flip();
         }
+        
+        // 발 앞에 장애물이 있는지 없는지 체크
+        RaycastHit2D hitObstacle = Physics2D.Raycast(stateMachine.Skeleton.groundCheck.position + Vector3.up * 0.5f, 
+            Vector3.right * Mathf.Sign(stateMachine.Skeleton.transform.localScale.x)
+            , stateMachine.Skeleton.groundCheckDistance, stateMachine.Skeleton.groundLayer);
+        if (hitObstacle.collider != null)
+        {
+            Flip();
+        }
 
         walkTimer += Time.deltaTime;
         if (walkTimer >= changeToIdleTime)
@@ -58,8 +69,7 @@ public class SkeletonWalkState : SkeletonBaseState
     private void Flip()
     {
         isRight = !isRight;
-        // stateMachine.Skeleton.transform.localScale = new Vector3((isRight ? 1 : -1), 1, 1);
-        stateMachine.Skeleton.skeletonSprite.flipX = !isRight;
+        stateMachine.Skeleton.transform.localScale = new Vector3(isRight ? 2 : -2, 2, 1);
     }
 
     private void FirstFlip()
@@ -73,7 +83,7 @@ public class SkeletonWalkState : SkeletonBaseState
         {
             isRight = false;
         }
-        stateMachine.Skeleton.skeletonSprite.flipX = !isRight;
+        stateMachine.Skeleton.transform.localScale = new Vector3(isRight ? 2 : -2, 2, 1);
     }
 
     private void OnCollision(Collision2D collision)

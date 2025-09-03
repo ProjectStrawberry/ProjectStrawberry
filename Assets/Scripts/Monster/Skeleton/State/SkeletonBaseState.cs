@@ -45,4 +45,34 @@ public class SkeletonBaseState : IState
     {
         stateMachine.Skeleton.Animator.SetBool(animatorHash, false);
     }
+
+    protected bool IsInDefaultAttackRange()
+    {
+        var dist = Mathf.Abs(stateMachine.Skeleton.transform.position.x -
+                             stateMachine.Skeleton.targetPlayer.transform.position.x);
+
+        if (dist <= stateMachine.Skeleton.StatData.DefaultAttackRange)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    protected bool IsInRushAttackRange()
+    {
+        var dist = Mathf.Abs(stateMachine.Skeleton.transform.position.x -
+                             stateMachine.Skeleton.targetPlayer.transform.position.x);
+
+        if (dist <= stateMachine.Skeleton.StatData.RushAttackRange && dist > stateMachine.Skeleton.StatData.DefaultAttackRange)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

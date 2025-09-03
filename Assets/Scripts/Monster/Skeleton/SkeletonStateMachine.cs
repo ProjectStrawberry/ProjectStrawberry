@@ -11,6 +11,7 @@ public class SkeletonStateMachine : StateMachine
     public SkeletonIdleState IdleState { get; private set; }
     public SkeletonWalkState WalkState { get; private set; }
     public SkeletonAttackState AttackState { get; private set; }
+    public SkeletonChasingState ChasingState { get; private set; }
     
     public SkeletonStateMachine(Skeleton skeleton)
     {
@@ -19,5 +20,22 @@ public class SkeletonStateMachine : StateMachine
         IdleState = new SkeletonIdleState(this);
         WalkState = new SkeletonWalkState(this);
         AttackState = new SkeletonAttackState(this);
+        ChasingState = new SkeletonChasingState(this);
+    }
+
+    public bool IsCurrentStateAttackState()
+    {
+        if (currentState == AttackState)
+            return true;
+
+        return false;
+    }
+    
+    public void StartHurtAnimation()
+    {
+        if (currentState == null)
+            return;
+        
+        Skeleton.Animator.Play("Skeleton_Hurt", 0, 0f);
     }
 }

@@ -27,7 +27,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Heal(int amount)
     {
-        _currStemina += amount;
+        _currHealth += amount;
     }
 
     public void RestoreStemina()
@@ -35,21 +35,26 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         _currStemina += 1;
     }
 
-    public void UseStemina()
+    public bool UseStemina()
     {
+        if (_currStemina <= 0) return false;
+
         _currStemina -= 1;
+        return true;
     }
 
 
     public void Dead()
     {
         playerController.Dead();
-
     }
 
     public void GetDamage(int damage)
     {
         _currHealth -= 1;
+        StartCoroutine(playerController.Damaged());
+        StartCoroutine(playerController.Invincible());
+        Debug.Log("플레이어 현재 체력: " + _currHealth);
         if( _currHealth <= 0 ) Dead();
     }
 }
