@@ -1109,6 +1109,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloatingSkull
       objectReference: {fileID: 0}
+    - target: {fileID: 2982201288140467860, guid: 2cafa690502064b41a8bb00e3ba544eb, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982201288140467860, guid: 2cafa690502064b41a8bb00e3ba544eb, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2982201288140467860, guid: 2cafa690502064b41a8bb00e3ba544eb, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4809613567206985562, guid: 2cafa690502064b41a8bb00e3ba544eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9

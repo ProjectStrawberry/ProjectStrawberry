@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   health: 2
-  playerDetectRange: 7
+  playerDetectRange: 10
   projectileFireRate: 2.5
