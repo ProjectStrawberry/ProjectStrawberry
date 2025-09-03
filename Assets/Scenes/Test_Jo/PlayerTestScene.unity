@@ -818,11 +818,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!4 &1248450435 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4039445491012911178, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
-  m_PrefabInstance: {fileID: 861346947895571540}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1269659674
 GameObject:
   m_ObjectHideFlags: 3
@@ -1019,10 +1014,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2308511492121701825, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
-      propertyPath: projectileSpawnPosition
-      value: 
-      objectReference: {fileID: 1248450435}
     - target: {fileID: 3205574222752280842, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.49
@@ -1062,18 +1053,6 @@ PrefabInstance:
     - target: {fileID: 3205574222752280842, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6785683613500711969, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6785683613500711969, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6785683613500711969, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
-      propertyPath: m_Color.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

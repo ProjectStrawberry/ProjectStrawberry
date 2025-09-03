@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 41003163717994046}
   - component: {fileID: 127879680327299109}
   - component: {fileID: 5339910251525109407}
+  - component: {fileID: 7945128788555881676}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -236,6 +237,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9c385409-7d6a-4b65-aae9-7e5a5310d068
     m_ActionName: Player/RangeAttack[/Keyboard/z]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 127879680327299109}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Up
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 993a75a3-e978-4323-a804-e40a012d7587
+    m_ActionName: Player/Up[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 127879680327299109}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: Down
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d308eb5a-909e-423e-a467-c597752b773f
+    m_ActionName: Player/Down[/Keyboard/downArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -327,6 +360,51 @@ MonoBehaviour:
   _currHealth: 9
   _maxStemina: 99
   _currStemina: 99
+--- !u!61 &7945128788555881676
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327210880986023357}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9, y: 0.1}
+  m_EdgeRadius: 0
 --- !u!1 &1410676653758985325
 GameObject:
   m_ObjectHideFlags: 0
@@ -5338,7 +5416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae82c9d1d20d1f449543a761fdcfcf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpawnPosition: {fileID: 3205574222752280842}
+  projectileSpawnPosition: {fileID: 4039445491012911178}
   bulletIndex: 0
   bulletSize: 1
   power: 1

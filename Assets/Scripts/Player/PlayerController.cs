@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;
     public bool isGrounded;               // 바닥 체크
     public bool isJumping;
+    public bool isLanding;
 
     private bool isDash;
     private float dashCoolTime;
@@ -40,6 +41,9 @@ public class PlayerController : MonoBehaviour
     private bool isHeal;
     private bool isDamaged;
     private bool isUpDown;
+
+    private Vector2 targetVector;
+    private Vector2 adjustVector = new Vector2(0, 1);
 
     private bool isAttacking = false;
     private float attackDelay = 0.0f;
@@ -114,6 +118,10 @@ public class PlayerController : MonoBehaviour
             _rigidbody.velocity = new Vector2(moveSpeed, _rigidbody.velocity.y);
         }
 
+        if(_rigidbody.velocity.y < 0 && isGrounded && !isLanding)
+        {
+            animationHandler.HoldJumpLastFrame();
+        }
 
         // --- 낙하 속도 보정 (낙하가 더 빠르게 하고 싶다면) ---
         //if (_rigidbody.velocity.y < 0)
@@ -133,24 +141,34 @@ public class PlayerController : MonoBehaviour
         //}
 
         animationHandler.Move(direction);
-        if (!isUpDown) target.transform.position = direction;
+        targetVector = direction + adjustVector;
+        if (direction.x != 0 && !isUpDown) target.transform.localPosition = targetVector;
         return targetSpeed;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.contacts[0].normal.y > 0.5f) // 아래에서 충돌 시
-        {
-            if ((GroundMask & (1 << collision.gameObject.layer)) != 0)
-            {
-                isGrounded = true;
-                isJumping = false;
-                animationHandler.Jump(false);
-                animationHandler.DoubleJump(false);
-            }
-        }
+        isLanding = true;
+        animationHandler.StartSpeed();
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isLanding = false;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if ((GroundMask & (1 << collision.gameObject.layer)) != 0)
+        {
+            animationHandler.StartSpeed();
+            isGrounded = true;
+            isJumping = false;
+            animationHandler.Jump(false);
+            animationHandler.DoubleJump(false);
+        }
+    }
 
     public void ApplyKnockback(Transform other, float power, float duration)
     {
@@ -230,7 +248,7 @@ public class PlayerController : MonoBehaviour
         {
             HandleComboAttack();
         }
-        else if (context.started && !isGrounded && Time.time - airAttackCoolTime > 0.75f && !isDash && !isHeal)
+        else if (context.started && !isGrounded && Time.time - airAttackCoolTime > statHandler.GetStat(StatType.AttackDelay) && !isDash && !isHeal)
         {
             airAttackCoolTime = Time.time;
             AirAttack();
@@ -292,7 +310,7 @@ public class PlayerController : MonoBehaviour
         if(context.performed)
         {
             isUpDown = true;
-            target.transform.position = Vector2.up;
+            target.transform.localPosition = Vector2.up + adjustVector;
         }
         if (context.canceled)
         {
@@ -304,7 +322,8 @@ public class PlayerController : MonoBehaviour
     {
         if(context.performed && !isGrounded)
         {
-            target.transform.position = Vector3.down;
+            isUpDown = true;
+            target.transform.localPosition = Vector3.down;
         }
         if (context.canceled)
         {
@@ -321,6 +340,11 @@ public class PlayerController : MonoBehaviour
     {
         _boxCollider.excludeLayers = excludeMask;
         animationHandler.Dash(true);
+
+        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, 0f);
+
+        float originScale = _rigidbody.gravityScale;
+        _rigidbody.gravityScale = 0;
 
         isDash = true;
 
@@ -350,8 +374,13 @@ public class PlayerController : MonoBehaviour
         // 마지막 위치 보정
         _rigidbody.MovePosition(endPos);
 
+        _rigidbody.gravityScale = originScale;
         isDash = false;
         animationHandler.Dash(false);
+        if (!isGrounded)
+        {
+            animationHandler.HoldJumpLastFrame();
+        }
         _boxCollider.includeLayers = excludeMask;
     }
 
