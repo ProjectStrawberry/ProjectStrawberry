@@ -31,16 +31,17 @@ public class PlayerController : MonoBehaviour
 
     public float fallMultiplier = 2f;
     private Vector2 moveInput;
-    public bool isGrounded;               // 바닥 체크
-    public bool isJumping;
-    public bool isLanding;
-
+    private bool isGrounded;               // 바닥 체크
+    private bool isJumping;
+    private bool isLanding;
     private bool isDash;
-    private float dashCoolTime;
-
     private bool isHeal;
     private bool isDamaged;
     private bool isUpDown;
+
+    public bool canDoubleJump = false;
+
+    private float dashCoolTime;
 
     private Vector2 targetVector;
     private Vector2 adjustVector = new Vector2(0, 1);
@@ -49,7 +50,6 @@ public class PlayerController : MonoBehaviour
     private float attackDelay = 0.0f;
     private float rangeDelay = 0.0f;
     private int comboStep = 0;
-    private float comboResetTime = 0.5f; // 콤보를 이어갈 수 있는 시간
     private float comboTimer = 0f;
 
     private float airAttackCoolTime;
@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && isJumping && !isDash && !isHeal) // 더블점프 시작
+        if (context.performed && isJumping && !isDash && !isHeal && canDoubleJump) // 더블점프 시작
         {
             float gravity = -Physics2D.gravity.y * _rigidbody.gravityScale;
             float jumpVelocity = Mathf.Sqrt(2 * gravity * statHandler.GetStat(StatType.JumpeForce));
