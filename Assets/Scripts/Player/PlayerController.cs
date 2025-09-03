@@ -31,9 +31,9 @@ public class PlayerController : MonoBehaviour
 
     public float fallMultiplier = 2f;
     private Vector2 moveInput;
-    private bool isGrounded;               // ¹Ù´Ú Ã¼Å©
-    private bool isJumping;
-    private bool isLanding;
+    public bool isGrounded;               // ¹Ù´Ú Ã¼Å©
+    public bool isJumping;
+    public bool isLanding;
     private bool isDash;
     private bool isHeal;
     private bool isDamaged;
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
         //    direction += knockback;
         //}
 
-        if(isLanding) animationHandler.Move(direction);
+        animationHandler.Move(direction);
         targetVector = direction + adjustVector;
         if (direction.x != 0 && !isUpDown) target.transform.localPosition = targetVector;
         return targetSpeed;
