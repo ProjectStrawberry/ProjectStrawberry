@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -70,6 +71,13 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private ParticleSystem healParticle;
 
+    public CinemachineVirtualCamera vcam;
+    public float vcamOriginSize;
+    Coroutine heailingZoomIn;
+    private float zoomMultiplier = 0.2f;
+
+    public PlatformEffector2D platformEffector;
+    public bool readyDownJump;
 
 
 
@@ -154,11 +162,13 @@ public class PlayerController : MonoBehaviour
     {
         isLanding = true;
         animationHandler.StartSpeed();
+        platformEffector = collision.GetComponent<PlatformEffector2D>();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         isLanding = false;
+        platformEffector = null;
     }
 
 
@@ -244,6 +254,14 @@ public class PlayerController : MonoBehaviour
                 _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * statHandler.GetStat(StatType.CutJumpForceMultiplier));
             }
         }
+
+        if(context.started && readyDownJump)
+        {
+            if(platformEffector != null)
+            {
+                StartCoroutine(DownJump());
+            }
+        }
     }
 
     public void OnAttack(InputAction.CallbackContext context)
@@ -277,6 +295,9 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log($"힐 시작 {Time.time}");
             animationHandler.Heal(true);
+
+            vcamOriginSize = vcam.m_Lens.OrthographicSize;
+            heailingZoomIn = StartCoroutine(HealingZoomInCoroutine());
 
             isHeal = true;
 
@@ -329,9 +350,20 @@ public class PlayerController : MonoBehaviour
             isUpDown = true;
             target.transform.localPosition = Vector3.down;
         }
+        if(context.performed && isLanding)
+        {
+            isGrounded = false;
+            readyDownJump = true;
+            
+        }
         if (context.canceled)
         {
             isUpDown = false;
+        }
+        if (context.canceled && isLanding)
+        {
+            isGrounded = true;
+            readyDownJump = false;
         }
     }
 
@@ -493,18 +525,32 @@ public class PlayerController : MonoBehaviour
 
     private void CancelHeal()
     {
+        StopCoroutine(heailingZoomIn);
+        vcam.m_Lens.OrthographicSize = vcamOriginSize;
         animationHandler.Heal(false);
         CancelInvoke(); // 예약된 힐/스태미나 소모 취소
     }
 
     private void Heal()
     {
+        StopCoroutine(heailingZoomIn);
+        vcam.m_Lens.OrthographicSize = vcamOriginSize;
         if(healCompleteClip != null) SoundManager.PlayClip(healCompleteClip);
         isHeal = false;
         healParticle.Play();
         animationHandler.Heal(false);
         playerCondition.Heal((int)statHandler.GetStat(StatType.HealAmount));
         Debug.Log($"힐 완료 {Time.time}");
+    }
+
+    private IEnumerator HealingZoomInCoroutine()
+    {
+        while (true)
+        {
+            vcam.m_Lens.OrthographicSize -= Time.deltaTime*zoomMultiplier;
+            yield return null;
+        }
+        
     }
 
     private void OnDrawGizmosSelected()
@@ -540,12 +586,12 @@ public class PlayerController : MonoBehaviour
     public IEnumerator Damaged()
     {
         isDamaged = true;
-        animationHandler.Damaged(true);
+        animationHandler.playDamaged();
 
         yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedKnockBackDuration));
 
         isDamaged = false;
-        animationHandler.Damaged(false);
+        animationHandler.stopDamaged();
 
     }
     public IEnumerator Invincible()
@@ -556,4 +602,14 @@ public class PlayerController : MonoBehaviour
 
         _boxCollider.excludeLayers -= excludeMask;
     } 
+
+    public IEnumerator DownJump()
+    {
+        platformEffector.surfaceArc = 0;
+        PlatformEffector2D originEffector = platformEffector;
+
+        yield return new WaitForSeconds(0.4f);
+
+        originEffector.surfaceArc = 180;
+    }
 }
