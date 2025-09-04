@@ -33,6 +33,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Heal(int amount)
     {
+        Debug.Log(amount);
         _currHealth += amount;
         OnHealthChange?.Invoke(_currHealth);
     }
@@ -56,6 +57,7 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public void Dead()
     {
         playerController.Dead();
+        GameManager.Instance.GameOver();
     }
 
     public void GetDamage(int damage)

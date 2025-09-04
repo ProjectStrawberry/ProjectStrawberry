@@ -33,6 +33,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void GameOver()
     {
+        Time.timeScale = 0;
         UIManager.Instance.OpenUI<UIGameOver>();
     }
 

@@ -471,7 +471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1628675124, guid: de18d2553e41cec4cb9873f177cec0e6, type: 3}
+  m_Sprite: {fileID: -977348190, guid: f013ff5743f57aa48be705536e361918, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -512,7 +512,6 @@ GameObject:
   - component: {fileID: 765935693982516669}
   - component: {fileID: 351489106245988184}
   - component: {fileID: 6604283304038540616}
-  - component: {fileID: -661147849769108441}
   - component: {fileID: -8799588312068136486}
   m_Layer: 5
   m_Name: UIGameOver
@@ -572,8 +571,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1534970943, guid: 4100ab6a6633d7e41a8e9aa2055beab1, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 645a44d946a81604e9e9b68dac6606ed, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -582,20 +581,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-661147849769108441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7631813985562241062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12f9140daae66794aa2658e28bd43dc1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  restartButton: {fileID: 0}
-  mainmenuButton: {fileID: 0}
 --- !u!114 &-8799588312068136486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,8 +593,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc9db4ecd4a9fa49811fe356ad912ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  restartButton: {fileID: 0}
-  mainmenuButton: {fileID: 0}
+  restartButton: {fileID: 6331602422491808466}
+  mainmenuButton: {fileID: 1068591905518186028}
 --- !u!1 &7991018373443469564
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +609,7 @@ GameObject:
   - component: {fileID: 1068591905518186028}
   - component: {fileID: 8626356010882824815}
   m_Layer: 5
-  m_Name: ReStartButton (2)
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

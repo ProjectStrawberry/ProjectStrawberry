@@ -8,14 +8,22 @@ public class UIGameOver : UIBase
 
     [SerializeField] Button restartButton;
     [SerializeField] Button mainmenuButton;
+
+    private void Start()
+    {
+        restartButton.onClick.AddListener(PressRestartButton);
+        mainmenuButton.onClick.AddListener(PressMainMenuButton);
+    }
     void PressRestartButton()
     {
-        //저장된 지점으로 가기
+        GameManager.Instance.ReStart();
+        CloseUI();
     }
 
     void PressMainMenuButton()
     {
-
+        UIManager.Instance.OpenUI<UIStartScene>();
+        CloseUI();
     }
 }
 
