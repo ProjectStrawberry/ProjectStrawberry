@@ -8,9 +8,10 @@ public class UISettings : UIBase
 
     [SerializeField] Slider bgmSlider;
     [SerializeField] Slider sfxSlider;
+    [SerializeField] Button backButton;
     void Start()
     {
-        
+        backButton.onClick.AddListener(PressBackButton);
     }
 
     // Update is called once per frame

@@ -11,6 +11,8 @@ public abstract class UIBase : MonoBehaviour
     public virtual void OpenUI()
     {
         gameObject.SetActive(true);
+        Canvas canvas = GetComponentInParent<Canvas>();
+        gameObject.transform.SetAsLastSibling();
         OnOpen();
     }
 

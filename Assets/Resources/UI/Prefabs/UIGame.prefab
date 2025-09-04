@@ -164,10 +164,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthbarRect: {fileID: 7112955064751028284}
   staminabarRect: {fileID: 1396268469002820433}
-  healthBar: {fileID: 5479219165609866257}
-  staminaBar: {fileID: 3928301502612039790}
   healthIcon: {fileID: 9083911088463100454, guid: e938e01dbf23f124a9c85eceb21aa0d7, type: 3}
   staminaIcon: {fileID: 8508188137552358130, guid: feb00623c0b21ec439911b643dc025f7, type: 3}
+  stopButton: {fileID: 2472929013530393441}
 --- !u!1 &3880943600123356046
 GameObject:
   m_ObjectHideFlags: 0

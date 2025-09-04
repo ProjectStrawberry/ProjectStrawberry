@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UITemporaryStop : MonoBehaviour
+public class UITemporaryStop : UIBase
 {
     // Start is called before the first frame update
 
@@ -13,14 +13,21 @@ public class UITemporaryStop : MonoBehaviour
 
     void Start()
     {
+        
         resumeButton.onClick.AddListener(PressResumeButton);
         optionsButton.onClick.AddListener(PressOptionsButton);
         backToMainButton.onClick.AddListener(PressBackToMainButton);
     }
-    
+
+    private void OnEnable()
+    {
+        GameManager.Instance.StopGameTemporarily();
+    }
+   
     void PressResumeButton()
     {
-        //대충 다시 resume
+
+        GameManager.Instance.ResumeGame();
     }
 
     void PressOptionsButton()

@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIGame : UIBase
 {
     [SerializeField] RectTransform healthbarRect;
     [SerializeField] RectTransform staminabarRect;
-    [SerializeField] GameObject healthBar;
-    [SerializeField] GameObject staminaBar;
     [SerializeField] GameObject healthIcon;
     [SerializeField] GameObject staminaIcon;
+    [SerializeField] Button stopButton;
 
     PlayerCondition playerCondition;
     List<GameObject> healthList;
@@ -36,6 +36,8 @@ public class UIGame : UIBase
         playerCondition.SubscribeOnStaminaChange(ChangeStaminaNumber);
         currentdifficulty=GameManager.Instance.currentDifficulty;
         ChangeUIDifficulty(currentdifficulty);
+        stopButton.onClick.AddListener(PressStopButton);
+
     }
 
     
@@ -83,5 +85,11 @@ public class UIGame : UIBase
         {
             staminaList[i].gameObject.SetActive(true);
         }
+    }
+
+    void PressStopButton()
+    {
+        UIManager.Instance.OpenUI<UITemporaryStop>();
+
     }
 }

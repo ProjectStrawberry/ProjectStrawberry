@@ -12,7 +12,7 @@ public class UIStartScene : UIBase
     [SerializeField] Button exitButton;
 
    
-    string messageText = "Quit to Main Menu?";
+    string messageText = "Quit the Game?";
     void Start()
     {
         startButton.onClick.AddListener(PressStartButton);
