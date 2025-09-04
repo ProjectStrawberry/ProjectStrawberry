@@ -40,8 +40,10 @@ public class GameManager : MonoSingleton<GameManager>
     public void ReStart()
     {
         Player player=PlayerManager.Instance.player;
+        player.playerCondition.ResetHealthAndStamina();
         player.transform.position = PlayerManager.Instance.spawnPointController.CurrentSpawnPosition;
         UIManager.Instance.CloseUI<UIGameOver>();
+        Time.timeScale = 1;
 
     }
 

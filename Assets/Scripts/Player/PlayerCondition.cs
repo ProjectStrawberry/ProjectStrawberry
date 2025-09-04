@@ -81,4 +81,12 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     {
         OnStaminaChange += action;
     }
+
+    public void ResetHealthAndStamina()
+    {
+        _maxHealth = (int)statHandler.GetStat(StatType.Health);
+        _maxStemina = (int)statHandler.GetStat(StatType.Stemina);
+        _currHealth = _maxHealth;
+        _currStemina = _maxStemina;
+    }
 }
