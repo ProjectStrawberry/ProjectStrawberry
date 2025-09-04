@@ -14,10 +14,10 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     [SerializeField] private bool isBgmMuted;
     [SerializeField] private static bool isSfxMuted;
-    [SerializeField] private Slider bgmSlider;
-    [SerializeField] private Slider sfxSlider;
-    [SerializeField] private Toggle bgmToggle;
-    [SerializeField] private Toggle sfxToggle;
+    private Slider bgmSlider;
+    private Slider sfxSlider;
+    //[SerializeField] private Toggle bgmToggle;
+    //[SerializeField] private Toggle sfxToggle;
 
     private const string _BGMSlide = "BGMSlide";
     private const string _SFXSlide = "SFXSlide";
@@ -88,8 +88,8 @@ public class SoundManager : MonoSingleton<SoundManager>
 
         bgmSlider.value = musicVolume;
         sfxSlider.value = soundEffectVolume;
-        bgmToggle.isOn = isBgmMuted;
-        sfxToggle.isOn = isSfxMuted;
+        //bgmToggle.isOn = isBgmMuted;
+        //sfxToggle.isOn = isSfxMuted;
 
     }
 
@@ -100,15 +100,15 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        bgmSlider = GameObject.Find(_BGMSlide).GetComponent<Slider>();
-        sfxSlider = GameObject.Find(_SFXSlide).GetComponent<Slider>();
-        bgmToggle = GameObject.Find(_BGMMute).GetComponent<Toggle>();
-        sfxToggle = GameObject.Find(_SFXMute).GetComponent<Toggle>();
+        //bgmSlider = GameObject.Find(_BGMSlide).GetComponent<Slider>();
+        //sfxSlider = GameObject.Find(_SFXSlide).GetComponent<Slider>();
+        //bgmToggle = GameObject.Find(_BGMMute).GetComponent<Toggle>();
+        //sfxToggle = GameObject.Find(_SFXMute).GetComponent<Toggle>();
 
         bgmSlider.onValueChanged.AddListener(BgmSliderChanged);
         sfxSlider.onValueChanged.AddListener(SfxSliderChanged);
-        bgmToggle.onValueChanged.AddListener(BgmToggleChanged);
-        sfxToggle.onValueChanged.AddListener(SfxToggleChanged);
+        //bgmToggle.onValueChanged.AddListener(BgmToggleChanged);
+        //sfxToggle.onValueChanged.AddListener(SfxToggleChanged);
 
         PrefCheck();
     }
@@ -160,5 +160,11 @@ public class SoundManager : MonoSingleton<SoundManager>
         GameObject obj = Instantiate(Instance.soundSourcePrefab);
         SoundSource soundSource = obj.GetComponent<SoundSource>();
         soundSource.Play(clip, SoundManager.soundEffectVolume, SoundManager.isSfxMuted, SoundManager.soundEffectPitchVariance);
+    }
+
+    public void GetSettingsUI(UISettings settings)
+    {
+        this.bgmSlider = settings.bgmSlider;
+        this.sfxSlider = settings.sfxSlider;
     }
 }

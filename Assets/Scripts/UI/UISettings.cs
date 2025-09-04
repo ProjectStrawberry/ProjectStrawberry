@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class UISettings : UIBase
 {
 
-    [SerializeField] Slider bgmSlider;
-    [SerializeField] Slider sfxSlider;
+    public Slider bgmSlider;
+    public Slider sfxSlider;
+    [SerializeField] Button backButton;
     void Start()
     {
-        
+        backButton.onClick.AddListener(PressBackButton);
+        SoundManager.Instance.GetSettingsUI(this);
     }
 
     // Update is called once per frame
@@ -18,4 +20,5 @@ public class UISettings : UIBase
     {
         this.gameObject.SetActive(false);
     }
+    
 }

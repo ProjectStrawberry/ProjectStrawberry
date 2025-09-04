@@ -17,6 +17,7 @@ public class SpawnPointSaver : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             controller.GetSpawnpoint(spawnPoint);
+            Debug.Log("스폰포인트 설정");
         }
     }
 

@@ -1,14 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Difficulty
+{
+    Normal,
+    Hard
+}
+
 public class GameManager : MonoSingleton<GameManager>
 {
-    
+    public Difficulty currentDifficulty=Difficulty.Normal;
 
+    private Action<Difficulty> OnDifficultyChange;
     public void StartGame()
     {
-
+        
+        UIManager.Instance.OpenUI<UIGame>();
     }
 
 
@@ -24,6 +33,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void GameOver()
     {
+        Time.timeScale = 0;
         UIManager.Instance.OpenUI<UIGameOver>();
     }
 
@@ -35,4 +45,15 @@ public class GameManager : MonoSingleton<GameManager>
 
     }
 
+
+    public void ChangeDifficulty(Difficulty difficulty)
+    {
+        currentDifficulty = difficulty;
+        OnDifficultyChange?.Invoke(currentDifficulty);
+    }
+
+    public void SubscribeOnDifficultyChange(Action<Difficulty> action)
+    {
+        OnDifficultyChange += action;
+    }
 }
