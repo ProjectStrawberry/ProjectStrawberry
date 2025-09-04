@@ -9,10 +9,10 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] GameObject solidPrefab;
 
 
-    private float spawnInterval = 1f;
+    private float spawnInterval = 2f;
     private WaitForSeconds waitingtime;
 
-    private float platformSizeMultiplyRateWidth = 3f;
+    private float platformSizeMultiplyRateWidth = 6f;
     private float platformSizeMultiplyRateHeight = 1f;
 
 
@@ -55,6 +55,11 @@ public class PlatformSpawner : MonoBehaviour
             foreach (var platforminfo in platformPattern.platformDatas)
             {
 
+                if (platforminfo.platformPlacement == PlatformPlacement.Skip)
+                {
+                    yield return waitingtime;
+                    continue;
+                }
                 SpawnPlatform(platforminfo);
                 if (platforminfo.platformPlacement == PlatformPlacement.Double)
                 {
@@ -88,7 +93,7 @@ public class PlatformSpawner : MonoBehaviour
             {
                 go=semiSolidPool.Dequeue();
                 //go.transform.position=platformData.platformPosition;
-                go.transform.SetParent(this.transform);
+                go.transform.SetParent(this.transform, false);
                 go.transform.localPosition=platformData.platformPosition;
                 go.SetActive(true);
 
@@ -96,7 +101,7 @@ public class PlatformSpawner : MonoBehaviour
             else
             {
                 go = Instantiate(semiSolidPrefab);
-                go.transform.SetParent(this.transform);
+                go.transform.SetParent(this.transform, false);
                 go.transform.localPosition = platformData.platformPosition;
                 
             }
@@ -108,31 +113,31 @@ public class PlatformSpawner : MonoBehaviour
             {
                 go=solidPool.Dequeue();
                 //go.transform.position = platformData.platformPosition;
-                go.transform.SetParent(this.transform);
+                go.transform.SetParent(this.transform,false);
                 go.transform.localPosition = platformData.platformPosition;
                 go.SetActive(true);
             }
             else
             {
                 go = Instantiate(solidPrefab);
-                go.transform.SetParent(this.transform);
+                go.transform.SetParent(this.transform,false);
                 go.transform.localPosition = platformData.platformPosition;
             }
                
         }
         var spriteRenderer = go.GetComponent<SpriteRenderer>();
         spriteRenderer.size = new Vector2(platformData.platformWidth*platformSizeMultiplyRateWidth, platformData.platformHeight*platformSizeMultiplyRateHeight);
-        Vector3 goPosition = go.transform.position;
+        Vector3 goPosition = go.transform.localPosition;
 
         //밀어줘야하는 양 계산
         float pushPivotX=spriteRenderer.size.x*0.5f;
         float pushPivotY = spriteRenderer.size.y*0.5f;
 
-        goPosition.x = go.transform.position.x*platformSizeMultiplyRateWidth + pushPivotX;
-        goPosition.y = go.transform.position.y * platformSizeMultiplyRateWidth + pushPivotY;
+        goPosition.x =platformData.platformPosition.x*platformSizeMultiplyRateWidth + pushPivotX;
+        goPosition.y = platformData.platformPosition.y * platformSizeMultiplyRateWidth + pushPivotY;
 
 
-        go.transform.position=goPosition; //추가
+        go.transform.localPosition=goPosition; //추가
         var collider = go.GetComponent<BoxCollider2D>();
         collider.size = spriteRenderer.size;
     }
