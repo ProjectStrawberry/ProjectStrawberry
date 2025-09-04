@@ -11,10 +11,17 @@ public class CrystalKnightIdleState : CrystalKnightBaseState
     public override void Enter()
     {
         base.Enter();
-        StartAnimation(stateMachine.CrystalKnight.AnimationData.IdleParameterHash);
         Debug.Log(stateMachine.CrystalKnight.name + " Idle 상태 입장");
-        
-        ChooseWaitTime();
+
+        if (!stateMachine.isDead)
+        {
+            StartAnimation(stateMachine.CrystalKnight.AnimationData.IdleParameterHash);
+            ChooseWaitTime();
+        }
+        else
+        {
+            stateMachine.ChangeState(stateMachine.DeathState);
+        }
     }
 
     public override void Exit()

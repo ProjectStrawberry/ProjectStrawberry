@@ -12,8 +12,15 @@ public class CrystalKnightAttackState : CrystalKnightBaseState
     {
         base.Enter();
         Debug.Log(stateMachine.CrystalKnight.name + " Attack 상태 입장");
-        
-        ChooseBossAction();
+
+        if (!stateMachine.isDead)
+        {
+            ChooseBossAction();
+        }
+        else
+        {
+            stateMachine.ChangeState(stateMachine.DeathState);
+        }
     }
 
     public override void Exit()

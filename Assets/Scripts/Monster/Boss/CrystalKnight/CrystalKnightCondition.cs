@@ -27,6 +27,12 @@ public class CrystalKnightCondition : MonoBehaviour, IDamagable
         if (!_isInvincible)
         {
             currentHealth -= damage;
+
+            if (currentHealth <= 0)
+            {
+                Dead();
+            }
+            
             Debug.Log(CrystalKnight.name + "가 데미지 " + damage + "을 받음!");
             onTakeDamage?.Invoke();
 
@@ -57,6 +63,7 @@ public class CrystalKnightCondition : MonoBehaviour, IDamagable
 
     public void Dead()
     {
+        CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.DeathState);
         // UIManager의 클리어 메서드
     }
 }

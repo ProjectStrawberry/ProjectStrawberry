@@ -11,12 +11,14 @@ public class CrystalKngihtAnimationData
     [SerializeField] private string longProjectileFireParameterName = "LongProjectileFire";
     [SerializeField] private string laserFireParameterName = "LaserFire";
     [SerializeField] private string rushAttackParameterName = "RushAttack";
+    [SerializeField] private string deadParameterName = "Dead";
     
     public int IdleParameterHash { get; private set; }
     public int CloseAttackParameterHash { get; private set; }
     public int LongProjectileFireParameterHash { get; private set; }
     public int LaserFireParameterHash { get; private set; }
     public int RushAttackParameterHash { get; private set; }
+    public int DeadParameterHash { get; private set; }
 
     public void Initialize()
     {
@@ -25,5 +27,6 @@ public class CrystalKngihtAnimationData
         LongProjectileFireParameterHash = Animator.StringToHash(longProjectileFireParameterName);
         LaserFireParameterHash = Animator.StringToHash(laserFireParameterName);
         RushAttackParameterHash = Animator.StringToHash(rushAttackParameterName);
+        DeadParameterHash = Animator.StringToHash(deadParameterName);
     }
 }
