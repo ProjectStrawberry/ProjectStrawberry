@@ -12,8 +12,8 @@ public class UIGame : UIBase
     [SerializeField] Button stopButton;
 
     PlayerCondition playerCondition;
-    List<GameObject> healthList;
-    List<GameObject> staminaList;
+    List<GameObject> healthList= new List<GameObject>();
+    List<GameObject> staminaList= new List<GameObject>();
     Difficulty currentdifficulty;
 
     int maxHealth;
@@ -23,20 +23,26 @@ public class UIGame : UIBase
         GameManager.Instance.SubscribeOnDifficultyChange(ChangeUIDifficulty);
         playerCondition = PlayerManager.Instance.player.playerCondition;
         maxHealth = playerCondition._maxHealth;
+        Debug.Log(playerCondition._maxHealth);
         maxStamina=playerCondition._maxStemina;
         for(int i=0; i<maxHealth; i++)
         {
-            Instantiate(healthIcon, healthbarRect);
+            
+            GameObject go= Instantiate(healthIcon, healthbarRect,false);
+            healthList.Add(go);
+            
         }
         for (int i = 0; i <maxStamina; i++)
         {
-            Instantiate(staminaIcon,staminabarRect);
+            GameObject go= Instantiate(staminaIcon,staminabarRect,false);
+            staminaList.Add(go);
         }
         playerCondition.SubscribeOnHealthChange(ChangeHealthNumber);
         playerCondition.SubscribeOnStaminaChange(ChangeStaminaNumber);
         currentdifficulty=GameManager.Instance.currentDifficulty;
         ChangeUIDifficulty(currentdifficulty);
         stopButton.onClick.AddListener(PressStopButton);
+        
 
     }
 
@@ -55,6 +61,8 @@ public class UIGame : UIBase
             staminabarRect.sizeDelta=staminaRect;
             maxHealth = playerCondition._maxHealth;
             maxStamina = playerCondition._maxStemina;
+            ChangeHealthNumber(playerCondition._currHealth);
+            ChangeStaminaNumber(playerCondition._currStemina);
         }
         else
         {
@@ -67,23 +75,36 @@ public class UIGame : UIBase
             staminabarRect.sizeDelta = staminaRect;
             maxHealth = playerCondition._maxHealth;
             maxStamina = playerCondition._maxStemina;
+            ChangeHealthNumber(playerCondition._currHealth);
+            ChangeStaminaNumber(playerCondition._currStemina);
         }
     }
 
     void ChangeHealthNumber(int currentHealth)
     {
         //현재체력
+        Debug.Log(currentHealth);
+        foreach(GameObject go in healthList)
+        {
+            go.SetActive(false);
+        }
         for(int i = 0;i < currentHealth;i++)
         {
-            healthList[i].gameObject.SetActive(true);
+            Debug.Log(i);
+            healthList[i].SetActive(true);
         }
+        
     }
 
     void ChangeStaminaNumber(int currentStamina)
     {
+        foreach (GameObject go in staminaList)
+        {
+            go.SetActive(false);
+        }
         for (int i = 0; i < currentStamina; i++)
         {
-            staminaList[i].gameObject.SetActive(true);
+            staminaList[i].SetActive(true);
         }
     }
 

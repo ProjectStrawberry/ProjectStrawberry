@@ -3901,6 +3901,22 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5339910251525109407, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: _maxHealth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5339910251525109407, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: _currHealth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5339910251525109407, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: _maxStemina
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5339910251525109407, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: _currStemina
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7945128788555881676, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
       propertyPath: m_Size.x
       value: 1.4
