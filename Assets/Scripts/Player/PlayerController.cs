@@ -76,6 +76,9 @@ public class PlayerController : MonoBehaviour
     Coroutine heailingZoomIn;
     private float zoomMultiplier = 0.2f;
 
+    public PlatformEffector2D platformEffector;
+    public bool readyDownJump;
+
 
 
     //private GameManager gameManager;
@@ -159,11 +162,13 @@ public class PlayerController : MonoBehaviour
     {
         isLanding = true;
         animationHandler.StartSpeed();
+        platformEffector = collision.GetComponent<PlatformEffector2D>();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         isLanding = false;
+        platformEffector = null;
     }
 
 
@@ -247,6 +252,14 @@ public class PlayerController : MonoBehaviour
             if (_rigidbody.velocity.y > 0) // ¾ÆÁ÷ »ó½Â ÁßÀÏ ¶§¸¸ ²÷±â
             {
                 _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _rigidbody.velocity.y * statHandler.GetStat(StatType.CutJumpForceMultiplier));
+            }
+        }
+
+        if(context.started && readyDownJump)
+        {
+            if(platformEffector != null)
+            {
+                StartCoroutine(DownJump());
             }
         }
     }
@@ -337,9 +350,20 @@ public class PlayerController : MonoBehaviour
             isUpDown = true;
             target.transform.localPosition = Vector3.down;
         }
+        if(context.performed && isLanding)
+        {
+            isGrounded = false;
+            readyDownJump = true;
+            
+        }
         if (context.canceled)
         {
             isUpDown = false;
+        }
+        if (context.canceled && isLanding)
+        {
+            isGrounded = true;
+            readyDownJump = false;
         }
     }
 
@@ -578,4 +602,14 @@ public class PlayerController : MonoBehaviour
 
         _boxCollider.excludeLayers -= excludeMask;
     } 
+
+    public IEnumerator DownJump()
+    {
+        platformEffector.surfaceArc = 0;
+        PlatformEffector2D originEffector = platformEffector;
+
+        yield return new WaitForSeconds(0.4f);
+
+        originEffector.surfaceArc = 180;
+    }
 }
