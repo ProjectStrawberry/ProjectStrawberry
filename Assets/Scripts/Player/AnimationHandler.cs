@@ -15,6 +15,7 @@ public class AnimationHandler : MonoBehaviour
     private static readonly int airAttackTrigger = Animator.StringToHash("airAttackTrigger");
     private static readonly int isHeal = Animator.StringToHash("isHeal");
     private static readonly int isDash = Animator.StringToHash("isDash");
+    private static readonly int Damaged = Animator.StringToHash("Damaged");
     private static readonly int isDamaged = Animator.StringToHash("isDamaged");
     private static readonly int isFall = Animator.StringToHash("isFall");
 
@@ -90,8 +91,13 @@ public class AnimationHandler : MonoBehaviour
         animator.SetBool(isHeal, isTrue);
     }
 
-    public void Damaged(bool isTrue)
+    public void playDamaged()
     {
-        animator.SetBool(isDamaged, isTrue);
+        animator.Play(Damaged, -1, 0f);
+        animator.SetBool(isDamaged, true);
+    }
+    public void stopDamaged()
+    {
+        animator.SetBool(isDamaged, false);
     }
 }

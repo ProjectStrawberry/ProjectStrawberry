@@ -586,12 +586,12 @@ public class PlayerController : MonoBehaviour
     public IEnumerator Damaged()
     {
         isDamaged = true;
-        animationHandler.Damaged(true);
+        animationHandler.playDamaged();
 
         yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedKnockBackDuration));
 
         isDamaged = false;
-        animationHandler.Damaged(false);
+        animationHandler.stopDamaged();
 
     }
     public IEnumerator Invincible()
