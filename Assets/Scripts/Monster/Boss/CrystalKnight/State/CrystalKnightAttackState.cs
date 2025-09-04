@@ -68,7 +68,7 @@ public class CrystalKnightAttackState : CrystalKnightBaseState
         if (action != BossActionType.Close)
             return;
 
-        var rand = Random.Range(0f, 2f);
+        var rand = Random.Range(0, 2);
         if (rand == 0)
         {
             stateMachine.PlusCycleIndex();

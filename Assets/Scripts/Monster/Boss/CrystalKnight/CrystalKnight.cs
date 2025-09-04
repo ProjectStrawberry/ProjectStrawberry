@@ -11,6 +11,9 @@ public class CrystalKnight : MonoBehaviour
     public CrystalKnightCondition Condition { get; private set; }
     public CrystalKnightStateMachine StateMachine;
     [field:SerializeField] public CrystalKnightAttackHandler AttackHandler { get; private set; }
+    [field:SerializeField] public CrystalKnightAnimationHandler AnimationHandler { get; private set; }
+    [field:SerializeField] public CrystalKnightAttackHitBoxHandler AttackHitBoxHandler { get; private set; }
+    [field:SerializeField] public Rigidbody2D Rigidbody { get; private set; }
 
     private void Awake()
     {
@@ -18,6 +21,9 @@ public class CrystalKnight : MonoBehaviour
         AnimationData.Initialize();
         StateMachine = new CrystalKnightStateMachine(this);
         AttackHandler = GetComponent<CrystalKnightAttackHandler>();
+        AnimationHandler = GetComponentInChildren<CrystalKnightAnimationHandler>();
+        AttackHitBoxHandler = GetComponentInChildren<CrystalKnightAttackHitBoxHandler>();
+        Rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
