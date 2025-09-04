@@ -127,6 +127,8 @@ MonoBehaviour:
     walkParameterName: Walk
     attackParameterName: Attack
     rushAttackParameterName: RushAttack
+    hurtParameterName: Hurt
+    dieParameterName: Die
   <StatData>k__BackingField: {fileID: 11400000, guid: a516d4f36631d7f4c8b9fd2cc82aedb6, type: 2}
   targetPlayer: {fileID: 0}
   SkeletonCondition: {fileID: 0}
