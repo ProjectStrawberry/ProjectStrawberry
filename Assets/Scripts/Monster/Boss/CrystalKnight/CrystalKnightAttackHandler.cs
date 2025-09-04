@@ -48,19 +48,14 @@ public class CrystalKnightAttackHandler : MonoBehaviour
         Debug.Log(CrystalKnight.name + "의 돌진 공격!");
         
         // 실제 공격
-        
-        // 이후 Idle 상태로 돌아가 정해진 시간만큼 대기한다.
-        CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.IdleState);
+        CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.RushAttackParameterHash, true);
     }
 
     public void ComboAttack()
     {
         Debug.Log(CrystalKnight.name + "의 연속 공격!");
         
-        var dir = Mathf.Sign(PlayerManager.Instance.player.gameObject.transform.position.x
-                             - CrystalKnight.transform.position.x);
-        
-        CrystalKnight.transform.localScale = new Vector3(-dir, 1, 1);
+        FaceToPlayer();
         
         // 실제 공격
         CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.CloseAttackParameterHash, true);
@@ -78,5 +73,13 @@ public class CrystalKnightAttackHandler : MonoBehaviour
         Debug.Log(CrystalKnight.name + "의 레이저 생성!");
         
         CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.IdleState);
+    }
+
+    private void FaceToPlayer()
+    {
+        var dir = Mathf.Sign(PlayerManager.Instance.player.gameObject.transform.position.x
+                             - CrystalKnight.transform.position.x);
+        
+        CrystalKnight.transform.localScale = new Vector3(-dir, 1, 1);
     }
 }
