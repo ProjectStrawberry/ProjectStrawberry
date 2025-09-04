@@ -12,6 +12,8 @@ public class PlatformSpawner : MonoBehaviour
     private float spawnInterval = 4f;
     private WaitForSeconds waitingtime;
 
+    private float platformSizeMultiplyRate = 2f;
+
     Queue<GameObject> semiSolidPool = new Queue<GameObject>();
     Queue<GameObject> solidPool= new Queue<GameObject>();
 
@@ -99,17 +101,30 @@ public class PlatformSpawner : MonoBehaviour
             if(solidPool.Count > 0)
             {
                 go=solidPool.Dequeue();
-                go.transform.position = platformData.platformPosition;
+                //go.transform.position = platformData.platformPosition;
+                go.transform.SetParent(this.transform);
+                go.transform.localPosition = platformData.platformPosition;
                 go.SetActive(true);
             }
             else
             {
-                go = Instantiate(solidPrefab, platformData.platformPosition, Quaternion.identity);
+                go = Instantiate(solidPrefab);
+                go.transform.SetParent(this.transform);
+                go.transform.localPosition = platformData.platformPosition;
             }
                
         }
         var spriteRenderer = go.GetComponent<SpriteRenderer>();
-        spriteRenderer.size = new Vector2(platformData.platformWidth, platformHeight);
+        spriteRenderer.size = new Vector2(platformData.platformWidth*platformSizeMultiplyRate, platformHeight);
+        Vector3 goPosition = go.transform.position;
+
+        //밀어줘야하는 양 계산
+        float pushPivotX=spriteRenderer.size.x*0.5f;
+        float pushPivotY = spriteRenderer.size.y*0.5f;
+
+        goPosition.x = go.transform.position.x*platformSizeMultiplyRate + pushPivotX;
+
+        go.transform.position=goPosition; //추가
         var collider = go.GetComponent<BoxCollider2D>();
         collider.size = spriteRenderer.size;
     }
