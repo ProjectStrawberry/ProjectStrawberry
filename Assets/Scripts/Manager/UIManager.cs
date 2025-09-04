@@ -26,7 +26,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     private void Start() //실험용
     {
-        OpenUI<UIStartScene>();
+        OpenUI<UIGame>();
     }
     // ================================
     // UI 관리
