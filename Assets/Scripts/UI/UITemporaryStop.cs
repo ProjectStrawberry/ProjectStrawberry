@@ -28,6 +28,7 @@ public class UITemporaryStop : UIBase
     {
 
         GameManager.Instance.ResumeGame();
+        CloseUI();
     }
 
     void PressOptionsButton()
@@ -38,5 +39,6 @@ public class UITemporaryStop : UIBase
     void PressBackToMainButton()
     {
         UIManager.Instance.OpenUI<UIStartScene>();
+        CloseUI();
     }
 }

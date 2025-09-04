@@ -16,7 +16,8 @@ public class GameManager : MonoSingleton<GameManager>
     private Action<Difficulty> OnDifficultyChange;
     public void StartGame()
     {
-
+        
+        UIManager.Instance.OpenUI<UIGame>();
     }
 
 

@@ -571,8 +571,9 @@ GameObject:
   - component: {fileID: 3294606947150519475}
   - component: {fileID: 25063876980413067}
   - component: {fileID: 8616281997584097750}
+  - component: {fileID: -398260913463290197}
   m_Layer: 5
-  m_Name: DifficultyPanel
+  m_Name: UIDifficulty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -640,6 +641,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-398260913463290197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3811289110964396070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b08830323b7b84046b9913a71f8b0f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalButton: {fileID: 3099393485978702266}
+  hardButton: {fileID: 288826734973587398}
+  backButton: {fileID: 3468877906367777368}
 --- !u!1 &6265939288931337216
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,15 +20,12 @@ public class UIStartScene : UIBase
         exitButton.onClick.AddListener(PressExitButton);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     void PressStartButton()
     {
-        
+        UIManager.Instance.OpenUI<UIDifficulty>();
+        CloseUI();
     }
 
     void PressOptionsButton()
