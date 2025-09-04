@@ -2907,6 +2907,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &997046455 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3205574222752280842, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+  m_PrefabInstance: {fileID: 1297016526}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1012058196
 GameObject:
   m_ObjectHideFlags: 3
@@ -3319,7 +3324,7 @@ Transform:
   m_GameObject: {fileID: 1243612206}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -8.9, z: -10}
+  m_LocalPosition: {x: -5.7, y: 5.33, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3360,7 +3365,7 @@ MonoBehaviour:
   m_Priority: 11
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 997046455}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 10
@@ -3406,7 +3411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3205574222752280842, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.8
+      value: 17.82
       objectReference: {fileID: 0}
     - target: {fileID: 3205574222752280842, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -93410,7 +93415,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 11
+    OrthographicSize: 10
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -100287,7 +100292,7 @@ Transform:
   m_GameObject: {fileID: 1814238715}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6, y: 3.28999, z: -10}
+  m_LocalPosition: {x: 5.7777777, y: 3.2899895, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
