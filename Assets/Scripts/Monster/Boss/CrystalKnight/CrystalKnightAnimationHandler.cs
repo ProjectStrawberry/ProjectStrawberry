@@ -8,10 +8,16 @@ using Random = UnityEngine.Random;
 public class CrystalKnightAnimationHandler : MonoBehaviour
 {
     public CrystalKnight CrystalKnight;
+    public SpriteRenderer Sprite;
+    private Color originColor;
+    private Color blinkColor;
 
     private bool isDashing = false;
     private bool isRushing = false;
+    private bool isInvincible = false;
     private int isComboAttackFirst = 0;
+    private float curTime = 0f;
+    private float blinkTimer = 0f;
 
     [Header("공격 관련 수치들")] 
     [SerializeField] private Vector2 bossRoomMin;
@@ -36,6 +42,38 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
     private void Awake()
     {
         CrystalKnight = GetComponentInParent<CrystalKnight>();
+        Sprite = GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        CrystalKnight.GetComponent<CrystalKnightCondition>().onTakeDamage += BlinkSprite;
+        
+        originColor = Sprite.color;
+        blinkColor = new Color(originColor.r, originColor.g, originColor.b, 0.3f); // 반투명
+    }
+
+    private void Update()
+    {
+        if (isInvincible)
+        {
+            curTime += Time.deltaTime;
+            blinkTimer += Time.deltaTime;
+
+            // 일정 간격마다 색상 토글
+            if (blinkTimer >= CrystalKnight.Condition.invincibleTime / 4f)
+            {
+                blinkTimer = 0f;
+                Sprite.color = Sprite.color == originColor ? blinkColor : originColor;
+            }
+
+            // 무적 시간 끝나면 종료
+            if (curTime >= CrystalKnight.Condition.invincibleTime)
+            {
+                isInvincible = false;
+                Sprite.color = originColor; // 원래 색상으로 복구
+            }
+        }
     }
 
     public void StartComboAttack()
@@ -254,4 +292,13 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
         CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.LongProjectileFireParameterHash, false);
         CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.IdleState);
     }
+
+    public void BlinkSprite()
+    {
+        isInvincible = true;
+        curTime = 0f;
+        blinkTimer = 0f;
+        Sprite.color = blinkColor;
+    }
+    
 }
