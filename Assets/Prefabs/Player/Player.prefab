@@ -114,7 +114,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1224895441533993429
 MonoBehaviour:
@@ -339,12 +339,14 @@ MonoBehaviour:
   isGrounded: 0
   isJumping: 0
   isLanding: 0
+  canDoubleJump: 0
   attackRange: 3
   attackOffset: {x: 1.5, y: 1}
   airAttackRange: 3
   airAttackOffset: {x: 0, y: -0.5}
   target: {fileID: 6368395161317735550}
-  audioClip: {fileID: 8300000, guid: 240a8441bddf08749a67c739f7a89205, type: 3}
+  healCompleteClip: {fileID: 0}
+  dashClip: {fileID: 0}
   healParticle: {fileID: 5737593819060980840}
 --- !u!114 &5339910251525109407
 MonoBehaviour:
@@ -5279,6 +5281,7 @@ GameObject:
   - component: {fileID: 4367740941107881532}
   - component: {fileID: 6785683613500711969}
   - component: {fileID: 757939711899443916}
+  - component: {fileID: 3116700359293452728}
   m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
@@ -5374,6 +5377,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3116700359293452728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441505747048441672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479288e3451ce9946a78e02d648170a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footStep: {fileID: 8300000, guid: 240a8441bddf08749a67c739f7a89205, type: 3}
+  attack_1: {fileID: 0}
+  attack_2: {fileID: 0}
+  rangeAttack: {fileID: 0}
+  jump: {fileID: 0}
+  doubleJump: {fileID: 0}
+  damaged: {fileID: 0}
 --- !u!1 &8862771071314822919
 GameObject:
   m_ObjectHideFlags: 0

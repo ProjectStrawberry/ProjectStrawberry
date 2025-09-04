@@ -33,7 +33,7 @@ public class FloatingSkullBaseState : IState
 
     public virtual void PhysicsUpdate()
     {
-        throw new System.NotImplementedException();
+        
     }
     
     protected void StartAnimation(int animatorHash)
