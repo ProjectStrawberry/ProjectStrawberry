@@ -22,6 +22,8 @@ public class VirtualCameraController : MonoBehaviour
         {
             vcam.Priority = activeProiority;
             vcam.Follow = collision.gameObject.transform;
+            PlayerManager.Instance.player.playerController.vcam = vcam;
+
         }
     }
 
@@ -33,4 +35,6 @@ public class VirtualCameraController : MonoBehaviour
             vcam.Follow = null;
         }
     }
+
+    
 }
