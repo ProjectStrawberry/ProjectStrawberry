@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -70,6 +71,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private ParticleSystem healParticle;
 
+    public CinemachineVirtualCamera vcam;
+    public float vcamOriginSize;
+    Coroutine heailingZoomIn;
+    private float zoomMultiplier = 0.2f;
 
 
 
@@ -277,6 +282,9 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log($"힐 시작 {Time.time}");
             animationHandler.Heal(true);
+
+            vcamOriginSize = vcam.m_Lens.OrthographicSize;
+            heailingZoomIn = StartCoroutine(HealingZoomInCoroutine());
 
             isHeal = true;
 
@@ -493,18 +501,32 @@ public class PlayerController : MonoBehaviour
 
     private void CancelHeal()
     {
+        StopCoroutine(heailingZoomIn);
+        vcam.m_Lens.OrthographicSize = vcamOriginSize;
         animationHandler.Heal(false);
         CancelInvoke(); // 예약된 힐/스태미나 소모 취소
     }
 
     private void Heal()
     {
+        StopCoroutine(heailingZoomIn);
+        vcam.m_Lens.OrthographicSize = vcamOriginSize;
         if(healCompleteClip != null) SoundManager.PlayClip(healCompleteClip);
         isHeal = false;
         healParticle.Play();
         animationHandler.Heal(false);
         playerCondition.Heal((int)statHandler.GetStat(StatType.HealAmount));
         Debug.Log($"힐 완료 {Time.time}");
+    }
+
+    private IEnumerator HealingZoomInCoroutine()
+    {
+        while (true)
+        {
+            vcam.m_Lens.OrthographicSize -= Time.deltaTime*zoomMultiplier;
+            yield return null;
+        }
+        
     }
 
     private void OnDrawGizmosSelected()
