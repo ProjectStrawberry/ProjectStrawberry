@@ -20,8 +20,13 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
     [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private LayerMask stopLayer;
     [SerializeField] private float rushSpeed = 28f;
+    
+    [Header("공격 투사체 관련")]
     public GameObject thunderLaser;
     public GameObject beforeThunderLaser;
+    public GameObject iceBall;
+    [SerializeField] public List<ProjectileHandler> projectileHandlers = new List<ProjectileHandler>();
+    [SerializeField] public List<GameObject> targets = new List<GameObject>();
 
     private void Awake()
     {
@@ -184,5 +189,13 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
         // 이후 Idle 상태로 돌아가 정해진 시간만큼 대기한다.
         CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.LaserFireParameterHash, false);
         CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.IdleState);
+    }
+
+    public void StartLongProjectileFire()
+    {
+        for (int i = 0; i < projectileHandlers.Count; i++)
+        {
+            projectileHandlers[i].Attack(targets[i]);
+        }
     }
 }
