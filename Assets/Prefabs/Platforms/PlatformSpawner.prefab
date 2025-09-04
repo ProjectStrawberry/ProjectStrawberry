@@ -47,10 +47,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformPaternList:
-  - {fileID: 11400000, guid: fa28e9578853f774fa131e26b0f8b81b, type: 2}
-  - {fileID: 11400000, guid: 8983dd8a0730e6543b8792179317c2c8, type: 2}
-  - {fileID: 11400000, guid: 6668aa8fa3a012242aa76d846342ab2f, type: 2}
-  - {fileID: 11400000, guid: b6a157df51cd8b341ab16b113ad59ae7, type: 2}
+  - {fileID: 11400000, guid: 0fe605b05181312469a4bd94ccfc343d, type: 2}
+  - {fileID: 11400000, guid: 8d266cfb3452ef8418ddf335dbb004be, type: 2}
+  - {fileID: 11400000, guid: 4cab66a5bbeab4a4086fdfe9dca53314, type: 2}
+  - {fileID: 11400000, guid: 1300836bc074b074c85fb8f5883a5ce7, type: 2}
+  - {fileID: 11400000, guid: d89ed357dc61c0f41ab58da5b103556b, type: 2}
+  - {fileID: 11400000, guid: 82a2552ed1fe9014c80aeb89e2b5a307, type: 2}
+  - {fileID: 11400000, guid: 76ad65c7a3e3a9645976f3e155e2ab15, type: 2}
   semiSolidPrefab: {fileID: 5147022565025816395, guid: a7bf9f6b17e1d0c40bcdc3bcc264bac9, type: 3}
   solidPrefab: {fileID: 8313626586709584472, guid: 7935100241d77c44798ae2bd356b0de4, type: 3}
 --- !u!1 &671272012299180738

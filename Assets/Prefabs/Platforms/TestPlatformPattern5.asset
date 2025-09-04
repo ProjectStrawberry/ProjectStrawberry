@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa8e707ae0cd15646b7553bc6150b6b4, type: 3}
+  m_Name: TestPlatformPattern5
+  m_EditorClassIdentifier: 
+  patternNumber: 0
+  platformDatas:
+  - platformPosition: {x: 0, y: 5, z: 0}
+    platformType: 0
+    platformPlacement: 1
+    platformWidth: 2
+    platformHeight: 1
+  - platformPosition: {x: 2, y: 5, z: 0}
+    platformType: 1
+    platformPlacement: 1
+    platformWidth: 1
+    platformHeight: 3
+  - platformPosition: {x: 3, y: 5, z: 0}
+    platformType: 0
+    platformPlacement: 0
+    platformWidth: 2
+    platformHeight: 1
+  - platformPosition: {x: 4, y: 5, z: 0}
+    platformType: 1
+    platformPlacement: 2
+    platformWidth: 1
+    platformHeight: 1
+  - platformPosition: {x: 4, y: 5, z: 0}
+    platformType: 1
+    platformPlacement: 2
+    platformWidth: 1
+    platformHeight: 1
+  - platformPosition: {x: 4, y: 5, z: 0}
+    platformType: 1
+    platformPlacement: 2
+    platformWidth: 1
+    platformHeight: 1
+  - platformPosition: {x: 0, y: 5, z: 0}
+    platformType: 1
+    platformPlacement: 1
+    platformWidth: 1
+    platformHeight: 1
+  - platformPosition: {x: 1, y: 5, z: 0}
+    platformType: 0
+    platformPlacement: 1
+    platformWidth: 3
+    platformHeight: 1
+  - platformPosition: {x: 4, y: 5, z: 0}
+    platformType: 1
+    platformPlacement: 0
+    platformWidth: 1
+    platformHeight: 1
+  - platformPosition: {x: 4, y: 5, z: 0}
+    platformType: 1
+    platformPlacement: 2
+    platformWidth: 1
+    platformHeight: 1

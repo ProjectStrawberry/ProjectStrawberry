@@ -18,11 +18,14 @@ MonoBehaviour:
     platformType: 0
     platformPlacement: 0
     platformWidth: 7
+    platformHeight: 0
   - platformPosition: {x: 4, y: 5, z: 0}
     platformType: 0
     platformPlacement: 0
     platformWidth: 7
+    platformHeight: 0
   - platformPosition: {x: -4, y: 5, z: 0}
     platformType: 0
     platformPlacement: 0
     platformWidth: 7
+    platformHeight: 0

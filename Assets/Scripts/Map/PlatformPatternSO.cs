@@ -7,13 +7,15 @@ public enum PlatformType
 {
     
     SemiSolid,
-    Solid
+    Solid,
+
 }
 
 public enum PlatformPlacement
 {
     Single,
-    Double
+    Double,
+    Skip
 }
 
 [CreateAssetMenu(fileName ="PlatformData",menuName ="Platform/PlatformPattern")]
@@ -30,5 +32,6 @@ public class PlatformData
     public PlatformType platformType;
     public PlatformPlacement platformPlacement;
     public float platformWidth;
+    public float platformHeight;
 
 }

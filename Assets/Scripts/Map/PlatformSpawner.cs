@@ -9,16 +9,18 @@ public class PlatformSpawner : MonoBehaviour
     [SerializeField] GameObject solidPrefab;
 
 
-    private float spawnInterval = 4f;
+    private float spawnInterval = 1f;
     private WaitForSeconds waitingtime;
 
-    private float platformSizeMultiplyRate = 2f;
+    private float platformSizeMultiplyRateWidth = 3f;
+    private float platformSizeMultiplyRateHeight = 1f;
+
 
     Queue<GameObject> semiSolidPool = new Queue<GameObject>();
     Queue<GameObject> solidPool= new Queue<GameObject>();
 
 
-    private float platformHeight = 1f;
+ 
     private void Start()
     {
         waitingtime = new WaitForSeconds(spawnInterval);
@@ -33,7 +35,11 @@ public class PlatformSpawner : MonoBehaviour
             Debug.Log($"{i+1}번 패턴 시작");
             foreach (var platforminfo in platformPaternList[i].platformDatas)
             {
-                
+                if(platforminfo.platformPlacement==PlatformPlacement.Skip)
+                {
+                    yield return waitingtime;
+                    continue;
+                }
                 SpawnPlatform(platforminfo);
                 if (platforminfo.platformPlacement == PlatformPlacement.Double)
                 {
@@ -115,14 +121,16 @@ public class PlatformSpawner : MonoBehaviour
                
         }
         var spriteRenderer = go.GetComponent<SpriteRenderer>();
-        spriteRenderer.size = new Vector2(platformData.platformWidth*platformSizeMultiplyRate, platformHeight);
+        spriteRenderer.size = new Vector2(platformData.platformWidth*platformSizeMultiplyRateWidth, platformData.platformHeight*platformSizeMultiplyRateHeight);
         Vector3 goPosition = go.transform.position;
 
         //밀어줘야하는 양 계산
         float pushPivotX=spriteRenderer.size.x*0.5f;
         float pushPivotY = spriteRenderer.size.y*0.5f;
 
-        goPosition.x = go.transform.position.x*platformSizeMultiplyRate + pushPivotX;
+        goPosition.x = go.transform.position.x*platformSizeMultiplyRateWidth + pushPivotX;
+        goPosition.y = go.transform.position.y * platformSizeMultiplyRateWidth + pushPivotY;
+
 
         go.transform.position=goPosition; //추가
         var collider = go.GetComponent<BoxCollider2D>();

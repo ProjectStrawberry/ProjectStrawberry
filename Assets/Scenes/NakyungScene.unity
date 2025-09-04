@@ -1077,17 +1077,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlatformSpawner
       objectReference: {fileID: 0}
-    - target: {fileID: 1085529098796745013, guid: afe39563dc8073e4cb205cbd42497951, type: 3}
-      propertyPath: platformPaternList.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 0fe605b05181312469a4bd94ccfc343d, type: 2}
     - target: {fileID: 5381884801696597452, guid: afe39563dc8073e4cb205cbd42497951, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: 5381884801696597452, guid: afe39563dc8073e4cb205cbd42497951, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.7
       objectReference: {fileID: 0}
     - target: {fileID: 5381884801696597452, guid: afe39563dc8073e4cb205cbd42497951, type: 3}
       propertyPath: m_LocalPosition.z
