@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerSoundEvent : MonoBehaviour
 {
-    [SerializeField] private AudioClip footStep;
+    [SerializeField] private AudioClip footStep_1;
+    [SerializeField] private AudioClip footStep_2;
     [SerializeField] private AudioClip attack_1;
     [SerializeField] private AudioClip attack_2;
     [SerializeField] private AudioClip rangeAttack;
@@ -12,7 +13,12 @@ public class PlayerSoundEvent : MonoBehaviour
     [SerializeField] private AudioClip doubleJump;
     [SerializeField] private AudioClip damaged;
 
-    public void FootStep()
+    public void FootStep_1()
+    {
+        SoundManager.PlayClip(footStep);
+    }
+
+    public void FootStep_2()
     {
         SoundManager.PlayClip(footStep);
     }
