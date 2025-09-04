@@ -72,7 +72,7 @@ public class CrystalKnightAttackHandler : MonoBehaviour
     {
         Debug.Log(CrystalKnight.name + "의 레이저 생성!");
         
-        CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.IdleState);
+        CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.LaserFireParameterHash, true);
     }
 
     private void FaceToPlayer()

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CrystalKnightAnimationHandler : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
     private bool isDashing = false;
     private bool isRushing = false;
     private int isComboAttackFirst = 0;
-    
-    [Header("공격 관련 수치들")]
+
+    [Header("공격 관련 수치들")] 
+    [SerializeField] private Vector2 bossRoomMin;
+    [SerializeField] private Vector2 bossRoomMax;
     [SerializeField] private float ComboAttackDashSpeed = 28f;
     [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private LayerMask stopLayer;
     [SerializeField] private float rushSpeed = 28f;
+    public GameObject thunderLaser;
+    public GameObject beforeThunderLaser;
 
     private void Awake()
     {
@@ -152,6 +157,32 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
         
         // 이후 Idle 상태로 돌아가 정해진 시간만큼 대기한다.
         CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.RushAttackParameterHash, false);
+        CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.IdleState);
+    }
+
+    public void StartLaserFire()
+    {
+        var randTime = (float)Random.Range(3, 11) / 10f;
+        Debug.Log("랜덤 재생 시간: " + randTime);
+        
+        for (int i = 0; i < 3; i++)
+        {
+            var randPos = new Vector2(Random.Range(bossRoomMin.x, bossRoomMax.x), 0);
+
+            var beforeThunder = Instantiate(beforeThunderLaser, randPos, Quaternion.identity);
+            beforeThunder.GetComponent<BeforeThunderLaser>().Init(randTime, thunderLaser, CrystalKnight.StatData.damage);
+        }
+
+        StartCoroutine(EndLaserFire(randTime));
+    }
+
+    private IEnumerator EndLaserFire(float time)
+    {
+        Debug.Log("레이저 생성 이후 대기 시간: " + (time));
+        yield return new WaitForSeconds(time);
+        
+        // 이후 Idle 상태로 돌아가 정해진 시간만큼 대기한다.
+        CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.LaserFireParameterHash, false);
         CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.IdleState);
     }
 }
