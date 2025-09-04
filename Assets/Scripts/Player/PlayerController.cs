@@ -160,15 +160,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        isLanding = true;
+        if ((GroundMask & (1 << collision.gameObject.layer)) != 0) isLanding = true;
         animationHandler.StartSpeed();
-        platformEffector = collision.GetComponent<PlatformEffector2D>();
+        //platformEffector = collision.GetComponent<PlatformEffector2D>();
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isLanding = false;
-        platformEffector = null;
+        if ((GroundMask & (1 << collision.gameObject.layer)) != 0) isLanding = false;
     }
 
 
@@ -176,11 +176,16 @@ public class PlayerController : MonoBehaviour
     {
         if ((GroundMask & (1 << collision.gameObject.layer)) != 0)
         {
-            animationHandler.StartSpeed();
-            isGrounded = true;
-            isJumping = false;
-            animationHandler.Jump(false);
-            animationHandler.DoubleJump(false);
+            platformEffector = collision.GetComponent<PlatformEffector2D>();
+            Debug.Log(_rigidbody.velocity.y);
+            if (_rigidbody.velocity.y <= 2.7f)
+            {
+                animationHandler.StartSpeed();
+                isGrounded = true;
+                isJumping = false;
+                animationHandler.Jump(false);
+                animationHandler.DoubleJump(false);
+            }
         }
     }
 
@@ -218,32 +223,30 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && isJumping && !isDash && !isHeal && canDoubleJump) // 더블점프 시작
+        if (context.performed && isJumping && !isDash && !isHeal && canDoubleJump && !readyDownJump) // 더블점프 시작
         {
             float gravity = -Physics2D.gravity.y * _rigidbody.gravityScale;
             float jumpVelocity = Mathf.Sqrt(2 * gravity * statHandler.GetStat(StatType.JumpeForce));
 
             Vector2 velocity = _rigidbody.velocity;
             velocity.y = jumpVelocity;
-            Debug.Log(velocity);
             _rigidbody.velocity = velocity;
 
             animationHandler.DoubleJump(true);
-            isJumping = false; // 예시용 (진짜로는 Raycast 등으로 갱신)
+            isJumping = false; //
         }
 
-        if (context.performed && isGrounded && !isDash && !isHeal) // 점프 시작
+        if (context.performed && isGrounded && !isDash && !isHeal && !readyDownJump) // 점프 시작
         {
             float gravity = -Physics2D.gravity.y * _rigidbody.gravityScale;
             float jumpVelocity = Mathf.Sqrt(2 * gravity * statHandler.GetStat(StatType.JumpeForce));
 
             Vector2 velocity = _rigidbody.velocity;
             velocity.y = jumpVelocity;
-            Debug.Log(velocity);
             _rigidbody.velocity = velocity;
 
             animationHandler.Jump(true);
-            isGrounded = false; // 예시용 (진짜로는 Raycast 등으로 갱신)
+            isGrounded = false; //
             isJumping = true;
         }
 
@@ -293,7 +296,6 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && isGrounded && !isDash)
         {
-            Debug.Log($"힐 시작 {Time.time}");
             animationHandler.Heal(true);
 
             vcamOriginSize = vcam.m_Lens.OrthographicSize;
@@ -359,11 +361,12 @@ public class PlayerController : MonoBehaviour
         if (context.canceled)
         {
             isUpDown = false;
+            readyDownJump = false;
         }
         if (context.canceled && isLanding)
         {
             isGrounded = true;
-            readyDownJump = false;
+            
         }
     }
 
