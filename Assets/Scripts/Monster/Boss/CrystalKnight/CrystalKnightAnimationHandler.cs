@@ -20,11 +20,16 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
     [SerializeField] private float dashDuration = 0.5f;
     [SerializeField] private LayerMask stopLayer;
     [SerializeField] private float rushSpeed = 28f;
+    [SerializeField] private float longProjectileTime = 6f;
+    [SerializeField] private float projectileFireRate = 0.2f;
+    [SerializeField] public List<Vector2> randPosList = new List<Vector2>();
+    [SerializeField] private float moveDuration = 1.5f;
     
     [Header("공격 투사체 관련")]
     public GameObject thunderLaser;
     public GameObject beforeThunderLaser;
     public GameObject iceBall;
+    public GameObject targetMiddle;
     [SerializeField] public List<ProjectileHandler> projectileHandlers = new List<ProjectileHandler>();
     [SerializeField] public List<GameObject> targets = new List<GameObject>();
 
@@ -191,11 +196,62 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
         CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.IdleState);
     }
 
+    public IEnumerator MovetoRandomPos()
+    {
+        int randIndex = Random.Range(0, randPosList.Count);
+        var startPos = CrystalKnight.transform.position;
+        var targetPos = randPosList[randIndex];
+        float curTime = 0f;
+
+        while (curTime <= moveDuration)
+        {
+            curTime += Time.deltaTime;
+            float t = curTime / moveDuration;
+            
+            CrystalKnight.transform.position = Vector2.Lerp(startPos, targetPos, t);
+            
+            yield return null;
+        }
+
+        CrystalKnight.transform.position = targetPos;
+        CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.LongProjectileFireParameterHash, true);
+    }
+    
     public void StartLongProjectileFire()
     {
-        for (int i = 0; i < projectileHandlers.Count; i++)
+        StartCoroutine(LongProjectileFireCoroutine());
+    }
+
+    private IEnumerator LongProjectileFireCoroutine()
+    {
+        float curTime = 0f;
+        float fireTime = 0f;
+        float rotationSpeed = 360f / longProjectileTime;
+
+        while (curTime <= longProjectileTime)
         {
-            projectileHandlers[i].Attack(targets[i]);
+            targetMiddle.transform.Rotate(Vector3.forward, -rotationSpeed * Time.deltaTime);
+
+            fireTime += Time.deltaTime;
+            if (fireTime >= projectileFireRate)
+            {
+                fireTime = 0f;
+                for (int i = 0; i < projectileHandlers.Count; i++)
+                {
+                    if (i < targets.Count)
+                        projectileHandlers[i].Attack(targets[i]);
+                }
+            }
+            
+            curTime += Time.deltaTime;
+            yield return null;
         }
+    }
+
+    public void EndLongProjectileFire()
+    {
+        // 이후 Idle 상태로 돌아가 정해진 시간만큼 대기한다.
+        CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.LongProjectileFireParameterHash, false);
+        CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.IdleState);
     }
 }
