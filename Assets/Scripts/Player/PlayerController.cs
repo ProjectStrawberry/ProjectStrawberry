@@ -86,15 +86,6 @@ public class PlayerController : MonoBehaviour
 
     private int attackCountForStemina;
 
-
-
-    //private GameManager gameManager;
-
-    //public void Init(GameManager gameManager)
-    //{
-    //    this.gameManager = gameManager;
-    //}
-
     protected void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
@@ -172,7 +163,6 @@ public class PlayerController : MonoBehaviour
         if ((GroundMask & (1 << collision.gameObject.layer)) != 0)
         {
             platformEffector = collision.GetComponent<PlatformEffector2D>();
-            Debug.Log(_rigidbody.velocity.y);
             if (_rigidbody.velocity.y <= 2.7f)
             {
                 animationHandler.StartSpeed();
@@ -438,15 +428,14 @@ public class PlayerController : MonoBehaviour
                 int damage = (int)statHandler.GetStat(StatType.FirstAttack);
 
                 target.GetDamage(damage);
-                Debug.Log($"{hit.name} 에게 {damage} 데미지를 입힘");
+                attackCountForStemina += 1;
+                CheckAttackCountForStemina();
             }
         }
     }
 
     protected void Attack(int comboStep)
     {
-        Debug.Log($"콤보 {comboStep} 공격 발동");
-
         Vector2 attackDir = characterRenderer.flipX ? Vector2.left : Vector2.right;
 
         Vector2 attackPos = (Vector2)transform.position + new Vector2(attackOffset.x * attackDir.x, attackOffset.y);
@@ -465,9 +454,7 @@ public class PlayerController : MonoBehaviour
                 else if (comboStep == 1) damage = (int)statHandler.GetStat(StatType.SecondAttack);
 
                 target.GetDamage(damage);
-                Debug.Log($"{hit.name} 에게 {damage} 데미지를 입힘");
                 attackCountForStemina += 1;
-                Debug.Log($"{hit.name} 에게 {damage} 데미지를 입힘");
                 CheckAttackCountForStemina();
             }
         }
@@ -503,12 +490,9 @@ public class PlayerController : MonoBehaviour
         // 스태미나 사용 실패 시 힐 취소
         if (!playerCondition.UseStemina())
         {
-            Debug.Log("스태미나 부족! 힐 취소됨");
             CancelHeal();
             return;
         }
-
-        Debug.Log("기력 깎임");
     }
 
     private void CancelHeal()
@@ -529,7 +513,6 @@ public class PlayerController : MonoBehaviour
         healParticle.Play();
         animationHandler.Heal(false);
         playerCondition.Heal((int)statHandler.GetStat(StatType.HealAmount));
-        Debug.Log($"힐 완료 {Time.time}");
     }
 
     private IEnumerator HealingZoomInCoroutine()
