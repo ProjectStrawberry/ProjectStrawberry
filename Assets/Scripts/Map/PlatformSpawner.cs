@@ -19,7 +19,7 @@ public class PlatformSpawner : MonoBehaviour
     Queue<GameObject> semiSolidPool = new Queue<GameObject>();
     Queue<GameObject> solidPool= new Queue<GameObject>();
 
-
+    Coroutine currentCoroutine;
  
     private void Start()
     {
@@ -31,8 +31,18 @@ public class PlatformSpawner : MonoBehaviour
 
     public void StartSpawning()
     {
-        StartCoroutine(SetSpawnData());
+        currentCoroutine= StartCoroutine(SetSpawnData());
     }
+
+    public void StopSpawning()
+    {
+        if(currentCoroutine!=null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+    }
+
+    
     IEnumerator SetSpawnData()
     {
         for(int i = 0; i < platformPaternList.Count; i++)

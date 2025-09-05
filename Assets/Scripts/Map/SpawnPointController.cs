@@ -12,8 +12,8 @@ public class SpawnPointController : MonoBehaviour
     Queue<GameObject> skeletonPrefabList = new Queue<GameObject>();
     Queue<GameObject> floatingPrefabList = new Queue<GameObject>();
     GameObject crystal;
-   
 
+    Coroutine currentClearTileCoroutine;
 
     [SerializeField] GameObject skeletonPrefab;
     [SerializeField] GameObject floatingSKullPrefab;
@@ -47,10 +47,10 @@ public class SpawnPointController : MonoBehaviour
 
     public void SpawnMonsters(int spawnpointNum)
     {
-        if(spawnpointNum == 4)
+        if(spawnpointNum == 4&&lastActivatedPoint.IsAlreadyActivated==false) 
         {
             platformSpawner.StartSpawning();
-            StartCoroutine(ClearTileCoroutine());
+            currentClearTileCoroutine= StartCoroutine(ClearTileCoroutine());
         }
         StageLevel stageLevel = stageInfo.stages[spawnpointNum-1];
 
@@ -115,6 +115,7 @@ public class SpawnPointController : MonoBehaviour
                     {
                         GameObject go = Instantiate(crystalKnightPrefab, monster.spawnPoints[i], Quaternion.identity);
                         go.SetActive(true);
+                        crystal = go;
                     }
                         
                         
@@ -142,7 +143,11 @@ public class SpawnPointController : MonoBehaviour
             floatingSkull.gameObject.SetActive(false);
             floatingPrefabList.Enqueue(floatingSkull.gameObject);
         }
-       
+        if(crystal != null)
+        {
+            crystal.gameObject.SetActive(false);
+        }
+        ResetTileSpawningAndClearTIles();
         if(lastActivatedPoint!=null)
         {
             RespawnMonsters();
@@ -152,8 +157,9 @@ public class SpawnPointController : MonoBehaviour
 
     void RespawnMonsters()
     {
-        SpawnMonsters(lastActivatedPoint.savePointNum);
         lastActivatedPoint.IsAlreadyActivated = true;
+        SpawnMonsters(lastActivatedPoint.savePointNum);
+        
     }
     public void ResetSpawnPointSavers()
     {
@@ -163,6 +169,15 @@ public class SpawnPointController : MonoBehaviour
         }
     }
 
+
+    void ResetTileSpawningAndClearTIles()
+    {
+        platformSpawner.StopSpawning();
+        if(currentClearTileCoroutine != null)
+        {
+            StopCoroutine(currentClearTileCoroutine);
+        }
+    }
     private IEnumerator ClearTileCoroutine()
     {
         yield return new WaitForSeconds(0.7f);
