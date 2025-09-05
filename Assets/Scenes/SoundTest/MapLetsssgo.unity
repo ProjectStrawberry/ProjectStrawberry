@@ -98963,9 +98963,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicVolume: 0
   isBgmMuted: 0
-  titleBgm: {fileID: 0}
-  stageBgm: {fileID: 0}
-  bossBgm: {fileID: 0}
+  titleBgm: {fileID: 8300000, guid: 78d8b6bf441385e4d984351a666e3f99, type: 3}
+  stageBgm: {fileID: 8300000, guid: 051dfecf06716d34e975f3583125a143, type: 3}
+  bossBgm: {fileID: 8300000, guid: ec8299a74e5bebe4f89bd7007f16a9e9, type: 3}
+  buttonClip: {fileID: 8300000, guid: 3c108485e0718d740b5d52f2465d069e, type: 3}
+  clearClip: {fileID: 8300000, guid: bd0446cf06d1ef847b54c05458ce3969, type: 3}
   soundSourcePrefab: {fileID: 975567718282296320, guid: 27c68309fc978884a8834ada917659d7, type: 3}
 --- !u!4 &1955461444
 Transform:
