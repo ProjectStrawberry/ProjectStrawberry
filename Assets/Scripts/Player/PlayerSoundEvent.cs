@@ -15,12 +15,12 @@ public class PlayerSoundEvent : MonoBehaviour
 
     public void FootStep_1()
     {
-        SoundManager.PlayClip(footStep);
+        SoundManager.PlayClip(footStep_1);
     }
 
     public void FootStep_2()
     {
-        SoundManager.PlayClip(footStep);
+        SoundManager.PlayClip(footStep_2);
     }
 
     public void Attack_1()

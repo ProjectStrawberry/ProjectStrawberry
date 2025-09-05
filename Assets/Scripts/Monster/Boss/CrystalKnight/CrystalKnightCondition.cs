@@ -11,7 +11,7 @@ public class CrystalKnightCondition : MonoBehaviour, IDamagable
     [SerializeField] private int currentHealth;
     [SerializeField] public float invincibleTime = 0.5f;
 
-    private bool _isInvincible = false;
+    public bool _isInvincible = false;
     private Coroutine _invincibleCoroutine;
     public event Action onTakeDamage;
 

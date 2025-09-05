@@ -54,42 +54,22 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
         blinkColor = new Color(originColor.r, originColor.g, originColor.b, 0.3f); // 반투명
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (isInvincible)
         {
-            Debug.Log("123");
             curTime += Time.deltaTime;
-            blinkTimer += Time.deltaTime;
             Debug.Log(curTime);
-            Debug.Log(blinkTimer);
-            
-            // 일정 간격마다 색상 토글
-            if (blinkTimer >= CrystalKnight.Condition.invincibleTime / 4f)
-            {
-                Debug.Log("345");
-                //Sprite.color = isBlink ? blinkColor : originColor;
-                Sprite.color = isBlink ? blinkColor : originColor;
-                isBlink = !isBlink;
-                blinkTimer = 0f;
-            }
+            Sprite.color = blinkColor;
 
             // 무적 시간 끝나면 종료
             if (curTime >= CrystalKnight.Condition.invincibleTime)
             {
-                Debug.Log("567");
                 isInvincible = false;
-                isBlink = false;
                 Sprite.color = originColor; // 원래 색상으로 복구
             }
         }
         
-        // 디버그용 색깔 바꾸기
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Sprite.color = Color.blue;
-            Debug.Log("Color set to Blue: " + Sprite.color);
-        }
     }
 
     public void StartComboAttack()
