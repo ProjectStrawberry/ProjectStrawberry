@@ -7,9 +7,9 @@ public class SpawnPointSaver : MonoBehaviour
     SpawnPointController controller;
     [SerializeField] Vector3 spawnPoint;
     [SerializeField] Transform spawnPosition;
-    [SerializeField] int savePointNum;
+    [SerializeField] public int savePointNum;
 
-    public bool IsAlreadyActivated { get; private set; }=false;
+    public bool IsAlreadyActivated { get; set; }=false;
     private void Start()
     {
         controller = GetComponentInParent<SpawnPointController>();
@@ -19,11 +19,11 @@ public class SpawnPointSaver : MonoBehaviour
     {
         if(collision.CompareTag("Player"))
         {
-            controller.GetSpawnpoint(spawnPoint);
-            Debug.Log("스폰포인트 설정");
+            controller.GetSpawnpoint(spawnPoint,this);
+           
             if(IsAlreadyActivated==false)
             {
-                Debug.Log("몬스터 소환 직전");
+                
                 controller.SpawnMonsters(savePointNum);
                 
             }

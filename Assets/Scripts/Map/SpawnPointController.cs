@@ -8,6 +8,13 @@ public class SpawnPointController : MonoBehaviour
 
     [SerializeField] StageSO stageInfo;
     List<SpawnPointSaver> spawnPointSavers = new List<SpawnPointSaver>();
+
+    Queue<GameObject> skeletonPrefabList = new Queue<GameObject>();
+    Queue<GameObject> floatingPrefabList = new Queue<GameObject>();
+    GameObject crystal;
+   
+
+
     [SerializeField] GameObject skeletonPrefab;
     [SerializeField] GameObject floatingSKullPrefab;
     [SerializeField] GameObject crystalKnight;
@@ -18,7 +25,9 @@ public class SpawnPointController : MonoBehaviour
     PlatformSpawner platformSpawner;
     public Vector3 CurrentSpawnPosition {  get; private set; }
 
-    //½ºÆùÇØ¾ßÇÒ »óÈ²ÀÌ ¿À¸é currentspawnpositionÀ¸·Î ½ºÆùµÇ¸é µÊ
+    SpawnPointSaver lastActivatedPoint;
+
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ currentspawnpositionï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +39,10 @@ public class SpawnPointController : MonoBehaviour
 
     // Update is called once per frame
 
-    public void GetSpawnpoint(Vector3 vector3)
+    public void GetSpawnpoint(Vector3 vector3,SpawnPointSaver spawnPointSaver)
     {
         CurrentSpawnPosition = vector3;
+        lastActivatedPoint = spawnPointSaver;
     }
 
     public void SpawnMonsters(int spawnpointNum)
@@ -51,27 +61,100 @@ public class SpawnPointController : MonoBehaviour
             {
                 for(int i=0; i<monster.spawnPoints.Length; i++)
                 {
-                    Instantiate(skeletonPrefab,monster.spawnPoints[i],Quaternion.identity);
+                    if(skeletonPrefabList.Count>0)
+                    {
+                        GameObject go=skeletonPrefabList.Dequeue();
+                        go.SetActive(true);
+                        go.transform.position=monster.spawnPoints[i];
+                       
+                        
+                    }
+                    else
+                    {
+                        GameObject go= Instantiate(skeletonPrefab, monster.spawnPoints[i], Quaternion.identity);
+                        go.SetActive(true) ;
+                        
+                    }
+                        
                 }
                 
             }
             else if(monster.type == MonsterType.FloatingSkull)
             {
+
                 for (int i = 0; i < monster.spawnPoints.Length; i++)
                 {
-                    Instantiate(floatingSKullPrefab, monster.spawnPoints[i], Quaternion.identity);
+                    if (floatingPrefabList.Count > 0)
+                    {
+                        GameObject go = floatingPrefabList.Dequeue();
+                        go.SetActive(true);
+                        go.transform.position = monster.spawnPoints[i];
+                        
+                        
+                    }
+                    else
+                    {
+                        GameObject go= Instantiate(floatingSKullPrefab, monster.spawnPoints[i], Quaternion.identity);
+                        go.SetActive(true);
+                        
+                    }
+                        
                 }
             }
             else
             {
                 for (int i = 0; i < monster.spawnPoints.Length; i++)
                 {
-                    Instantiate(crystalKnight, monster.spawnPoints[i], Quaternion.identity);
+                    if(crystal!=null)
+                    {
+                        crystal.SetActive(true);
+                        crystal.transform.position = monster.spawnPoints[i];
+
+                    }
+                    else
+                    {
+                        GameObject go = Instantiate(crystalKnightPrefab, monster.spawnPoints[i], Quaternion.identity);
+                        go.SetActive(true);
+                    }
+                        
+                        
+                    
+                       
                 }
             }
         }
     }
 
+
+    public void ReturnMonstersToPool()
+    {
+        Skeleton[] currentactiveSkelletons = FindObjectsOfType<Skeleton>();
+        FloatingSkull[] currentfloatingSkulls = FindObjectsOfType<FloatingSkull>();
+        foreach (Skeleton skeleton in currentactiveSkelletons)
+        {
+            skeleton.gameObject.SetActive(false);
+            skeletonPrefabList.Enqueue(skeleton.gameObject);
+            
+            
+        }
+        foreach(FloatingSkull floatingSkull in currentfloatingSkulls)
+        {
+            floatingSkull.gameObject.SetActive(false);
+            floatingPrefabList.Enqueue(floatingSkull.gameObject);
+        }
+       
+        if(lastActivatedPoint!=null)
+        {
+            RespawnMonsters();
+        }
+        
+    }
+
+    void RespawnMonsters()
+    {
+        SpawnMonsters(lastActivatedPoint.savePointNum);
+        lastActivatedPoint.IsAlreadyActivated = true;
+    }
     public void ResetSpawnPointSavers()
     {
         foreach (var savepoint in spawnPointSavers)
