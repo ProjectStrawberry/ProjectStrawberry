@@ -83,7 +83,8 @@ public class SpawnPointController : MonoBehaviour
     private IEnumerator ClearTileCoroutine()
     {
         yield return new WaitForSeconds(0.7f);
-        
+
+        SoundManager.Instance.ChangeBackGroundMusice(SoundManager.Instance.bossBgm);
         Instantiate(clearTile, new Vector3(17.8f, -30.9f, 0f), Quaternion.identity);
     }
 }

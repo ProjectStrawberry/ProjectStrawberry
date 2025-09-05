@@ -6,7 +6,7 @@ public class SoundSource : MonoBehaviour
 {
     private AudioSource _audiosource;
 
-    public void Play(AudioClip clip, float soundEffectVolume, bool isMuted, float soundEffectPitchVariance)
+    public void Play(AudioClip clip, float soundEffectVolume, float soundEffectPitchVariance)
     {
         if (_audiosource == null)
             _audiosource = GetComponent<AudioSource>();
@@ -14,7 +14,7 @@ public class SoundSource : MonoBehaviour
         CancelInvoke();
         _audiosource.clip = clip;
         _audiosource.volume = soundEffectVolume;
-        _audiosource.mute = isMuted;
+        //_audiosource.mute = isMuted;
         _audiosource.Play();
         _audiosource.pitch = 1f + Random.Range(-soundEffectPitchVariance, soundEffectPitchVariance);
 

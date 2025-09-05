@@ -13,8 +13,8 @@ public class SoundManager : MonoSingleton<SoundManager>
     [SerializeField][Range(0f, 1f)] private static float soundEffectPitchVariance;
     [SerializeField][Range(0f, 1f)] private float musicVolume;
 
-    [SerializeField] private bool isBgmMuted;
-    [SerializeField] private static bool isSfxMuted;
+    //[SerializeField] private bool isBgmMuted;
+    //[SerializeField] private static bool isSfxMuted;
     private Slider bgmSlider;
     private Slider sfxSlider;
     //[SerializeField] private Toggle bgmToggle;
@@ -22,8 +22,8 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     private const string _BGMSlide = "BGMSlide";
     private const string _SFXSlide = "SFXSlide";
-    private const string _BGMMute = "BGMMute";
-    private const string _SFXMute = "SFXMute";
+    //private const string _BGMMute = "BGMMute";
+    //private const string _SFXMute = "SFXMute";
 
 
 
@@ -43,7 +43,7 @@ public class SoundManager : MonoSingleton<SoundManager>
 
         musicAudioSource = GetComponent<AudioSource>();
         PrefCheck();
-        musicAudioSource.mute = isBgmMuted;
+        //musicAudioSource.mute = isBgmMuted;
         musicAudioSource.volume = musicVolume;
         musicAudioSource.loop = true;
 
@@ -73,26 +73,23 @@ public class SoundManager : MonoSingleton<SoundManager>
             soundEffectVolume = 1.0f;
         }
 
-        if (PlayerPrefs.HasKey("isBgmMuted"))
-        {
-            isBgmMuted = PlayerPrefs.GetInt("isBgmMuted") == 1 ? true : false;
-        }
-        else
-        {
-            isBgmMuted = false;
-        }
+        //if (PlayerPrefs.HasKey("isBgmMuted"))
+        //{
+        //    isBgmMuted = PlayerPrefs.GetInt("isBgmMuted") == 1 ? true : false;
+        //}
+        //else
+        //{
+        //    isBgmMuted = false;
+        //}
 
-        if (PlayerPrefs.HasKey("isSfxMuted"))
-        {
-            isSfxMuted = PlayerPrefs.GetInt("isSfxMuted") == 1 ? true : false;
-        }
-        else
-        {
-            isSfxMuted = false;
-        }
-
-        bgmSlider.value = musicVolume;
-        sfxSlider.value = soundEffectVolume;
+        //if (PlayerPrefs.HasKey("isSfxMuted"))
+        //{
+        //    isSfxMuted = PlayerPrefs.GetInt("isSfxMuted") == 1 ? true : false;
+        //}
+        //else
+        //{
+        //    isSfxMuted = false;
+        //}
         //bgmToggle.isOn = isBgmMuted;
         //sfxToggle.isOn = isSfxMuted;
 
@@ -110,8 +107,7 @@ public class SoundManager : MonoSingleton<SoundManager>
         //bgmToggle = GameObject.Find(_BGMMute).GetComponent<Toggle>();
         //sfxToggle = GameObject.Find(_SFXMute).GetComponent<Toggle>();
 
-        bgmSlider.onValueChanged.AddListener(BgmSliderChanged);
-        sfxSlider.onValueChanged.AddListener(SfxSliderChanged);
+        
         //bgmToggle.onValueChanged.AddListener(BgmToggleChanged);
         //sfxToggle.onValueChanged.AddListener(SfxToggleChanged);
 
@@ -133,21 +129,21 @@ public class SoundManager : MonoSingleton<SoundManager>
         PlayerPrefs.Save();
     }
 
-    public void BgmToggleChanged(bool changedData)
-    {
-        isBgmMuted = changedData;
-        musicAudioSource.mute = isBgmMuted;
-        PlayerPrefs.SetInt("isBgmMuted", changedData ? 1 : 0);
-        PlayerPrefs.Save();
-    }
+    //public void BgmToggleChanged(bool changedData)
+    //{
+    //    isBgmMuted = changedData;
+    //    musicAudioSource.mute = isBgmMuted;
+    //    PlayerPrefs.SetInt("isBgmMuted", changedData ? 1 : 0);
+    //    PlayerPrefs.Save();
+    //}
 
-    public void SfxToggleChanged(bool changedData)
-    {
-        isSfxMuted = changedData;
-        //sfxAudioSource.mute = isSfxMuted;
-        PlayerPrefs.SetInt("isSfxMuted", changedData ? 1 : 0);
-        PlayerPrefs.Save();
-    }
+    //public void SfxToggleChanged(bool changedData)
+    //{
+    //    isSfxMuted = changedData;
+    //    //sfxAudioSource.mute = isSfxMuted;
+    //    PlayerPrefs.SetInt("isSfxMuted", changedData ? 1 : 0);
+    //    PlayerPrefs.Save();
+    //}
 
     private void Start()
     {
@@ -164,14 +160,14 @@ public class SoundManager : MonoSingleton<SoundManager>
     {
         GameObject obj = Instantiate(Instance.soundSourcePrefab);
         SoundSource soundSource = obj.GetComponent<SoundSource>();
-        soundSource.Play(clip, SoundManager.soundEffectVolume, SoundManager.isSfxMuted, SoundManager.soundEffectPitchVariance);
+        soundSource.Play(clip, SoundManager.soundEffectVolume, SoundManager.soundEffectPitchVariance);
     }
 
     public static GameObject PlayClip(AudioClip clip, bool isTrue)
     {
         GameObject obj = Instantiate(Instance.soundSourcePrefab);
         SoundSource soundSource = obj.GetComponent<SoundSource>();
-        soundSource.Play(clip, SoundManager.soundEffectVolume, SoundManager.isSfxMuted, SoundManager.soundEffectPitchVariance);
+        soundSource.Play(clip, SoundManager.soundEffectVolume, SoundManager.soundEffectPitchVariance);
         if (isTrue) return obj;
         else return null;
     }
@@ -180,5 +176,9 @@ public class SoundManager : MonoSingleton<SoundManager>
     {
         this.bgmSlider = settings.bgmSlider;
         this.sfxSlider = settings.sfxSlider;
+        this.bgmSlider.value = musicVolume;
+        this.sfxSlider.value = soundEffectVolume;
+        this.bgmSlider.onValueChanged.AddListener(BgmSliderChanged);
+        this.sfxSlider.onValueChanged.AddListener(SfxSliderChanged);
     }
 }
