@@ -185,24 +185,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void Dead()
-    {
-        _rigidbody.velocity = Vector3.zero;
-
-        foreach (SpriteRenderer renderer in transform.GetComponentsInChildren<SpriteRenderer>())
-        {
-            Color color = renderer.color;
-            color.a = 0.3f;
-            renderer.color = color;
-        }
-
-        foreach (Behaviour component in transform.GetComponentsInChildren<Behaviour>())
-        {
-            component.enabled = false;
-        }
-
-    }
-    //gameManager.GameOver();
 
     public void OnMove(InputAction.CallbackContext context)
     {

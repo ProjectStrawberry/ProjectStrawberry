@@ -55,7 +55,6 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Dead()
     {
-        playerController.Dead();
         GameManager.Instance.GameOver();
     }
 
