@@ -37,7 +37,6 @@ public class CrystalKnightAttackHandler : MonoBehaviour
 
     private IEnumerator WaitCoroutine(float time)
     {
-        Debug.Log(CrystalKnight.name + "가 " + time + "초 동안 대기합니다.");
         yield return new WaitForSeconds(time);
         
         CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.AttackState);
@@ -45,16 +44,12 @@ public class CrystalKnightAttackHandler : MonoBehaviour
     
     public void RushAttack()
     {
-        Debug.Log(CrystalKnight.name + "의 돌진 공격!");
-        
         // 실제 공격
         CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.RushAttackParameterHash, true);
     }
 
     public void ComboAttack()
     {
-        Debug.Log(CrystalKnight.name + "의 연속 공격!");
-        
         FaceToPlayer();
         
         // 실제 공격
@@ -63,15 +58,11 @@ public class CrystalKnightAttackHandler : MonoBehaviour
     
     public void LongProjectileFire()
     {
-        Debug.Log(CrystalKnight.name + "의 구형 투사체 발사!");
-
         StartCoroutine(CrystalKnight.AnimationHandler.MovetoRandomPos());
     }
     
     public void LaserFire()
     {
-        Debug.Log(CrystalKnight.name + "의 레이저 생성!");
-        
         CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.LaserFireParameterHash, true);
     }
 

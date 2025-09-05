@@ -54,8 +54,8 @@ public class FloatingSkullAttackState : FloatingSkullBaseState
     
     private void FireProjectile()
     {
-        Debug.Log("투사체 발사" + stateMachine.FloatingSkull.name);
         // 게임 매니저 같은 곳에서 플레이어를 계속 추격해야 할듯
+        SoundManager.PlayClip(stateMachine.FloatingSkull.projectileFireSFX, true);
         stateMachine.FloatingSkull.ProjectileHandler.Attack(PlayerManager.Instance.player.gameObject);
     }
 

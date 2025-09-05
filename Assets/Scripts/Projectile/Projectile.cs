@@ -65,7 +65,6 @@ public class Projectile : MonoBehaviour, IPoolable
                 int damage = projectileHandler.Power;
 
                 target.GetDamage(damage);
-                Debug.Log($"{hit.name} 에게 {damage} 데미지를 입힘");
             }
 
             DestroyProjectile();

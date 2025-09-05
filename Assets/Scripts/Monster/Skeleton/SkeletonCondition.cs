@@ -26,7 +26,7 @@ public class SkeletonCondition : MonoBehaviour, IDamagable
         if (isDead) return;
         
         curHealth -= damage;
-        Debug.Log(Skeleton.name + " 데미지를 입음: " + damage);
+        SoundManager.PlayClip(Skeleton.damagedSfx, true);
         
         if (curHealth <= 0)
         {
@@ -42,6 +42,7 @@ public class SkeletonCondition : MonoBehaviour, IDamagable
     {
         isDead = true;
         Skeleton.fieldOfVision.enabled = false;
+        SoundManager.PlayClip(Skeleton.deadSfx, true);
 
         int layer = LayerMask.NameToLayer("EnemyCorpse");
         ChangeLayerRecursively(Skeleton.gameObject, layer);

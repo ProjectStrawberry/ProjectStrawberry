@@ -23,10 +23,8 @@ public class CrystalKnightAttackHitBoxHandler : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("플레이어에게 데미지");
             if (other.TryGetComponent(out IDamagable playerCondition))
             {
-                Debug.Log("플레이어를 찾았습니다");
                 playerCondition.GetDamage(crystalKnight.StatData.damage);
             }
         }

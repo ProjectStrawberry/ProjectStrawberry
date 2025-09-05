@@ -165,4 +165,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fa6f098643b06646ba9fc40bec95732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thunderSFX: {fileID: 8300000, guid: 134c77827f2ab904c975531e24358e79, type: 3}
   damage: 0

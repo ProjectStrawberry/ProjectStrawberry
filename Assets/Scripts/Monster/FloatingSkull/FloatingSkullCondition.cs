@@ -27,7 +27,7 @@ public class FloatingSkullCondition : MonoBehaviour, IDamagable
         if (isDead) return;
         
         curHealth -= damage;
-        Debug.Log(FloatingSkull.name + " 데미지를 입음: " + damage);
+        SoundManager.PlayClip(FloatingSkull.damagedSFX, true);
         
         if (curHealth <= 0)
         {
@@ -44,6 +44,8 @@ public class FloatingSkullCondition : MonoBehaviour, IDamagable
         FloatingSkull.Animator.SetTrigger(FloatingSkull.AnimationData.DieParameterHash);
         FloatingSkull.stateMachine.ChangeState(FloatingSkull.stateMachine.IdleState);
         FloatingSkull.fieldOfVision.enabled = false;
+        
+        SoundManager.PlayClip(FloatingSkull.deadSFX, true);
 
         isDead = true;
 

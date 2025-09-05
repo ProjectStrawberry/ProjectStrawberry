@@ -27,6 +27,7 @@ public class SkeletonAnimationHandler : MonoBehaviour
     public void OnRushAttackAnimationStart()
     {
         Skeleton.AttackColliderHandler.TurnOnAttackCollider();
+        SoundManager.PlayClip(Skeleton.closeAttackSfx, true);
         Skeleton.RushAttackMove();
     }
 

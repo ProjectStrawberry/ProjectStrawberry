@@ -27,13 +27,13 @@ public class CrystalKnightCondition : MonoBehaviour, IDamagable
         if (!_isInvincible)
         {
             currentHealth -= damage;
+            SoundManager.PlayClip(CrystalKnight.damagedSFX, true);
 
             if (currentHealth <= 0)
             {
                 Dead();
             }
             
-            Debug.Log(CrystalKnight.name + "가 데미지 " + damage + "을 받음!");
             onTakeDamage?.Invoke();
 
             if (_invincibleCoroutine == null)
