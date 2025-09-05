@@ -315,10 +315,11 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && Time.time - rangeDelay > statHandler.GetStat(StatType.RangeAttackDelay) && !isDash && !isHeal)
         {
+            playerCondition.UseStemina();
             rangeDelay = Time.time;
             animationHandler.RangeAttack();
-            //projectileHandler.Attack(target);
-            StartCoroutine(TestCoroutine());
+            projectileHandler.Attack(target);
+            //StartCoroutine(TestCoroutine());
         }
     }
 
