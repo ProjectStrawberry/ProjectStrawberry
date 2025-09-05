@@ -10,17 +10,17 @@ public class PlayerController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
     protected BoxCollider2D _boxCollider;
+
+    [Header("레이어 마스크 설정")]
     [SerializeField] private LayerMask GroundMask;
     [SerializeField] private LayerMask excludeMask;
     [SerializeField] private LayerMask enemyMask;
 
+    [Header("캐릭터 스프라이트")]
     [SerializeField] private SpriteRenderer characterRenderer;
 
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
-
-    private Vector2 knockback = Vector2.zero;
-    private float knockbackDuration = 0.0f;
 
     protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
@@ -30,16 +30,16 @@ public class PlayerController : MonoBehaviour
 
     protected bool isRangeAttack;
 
-    public float fallMultiplier = 2f;
     private Vector2 moveInput;
-    public bool isGrounded;               // 바닥 체크
-    public bool isJumping;
-    public bool isLanding;
+    private bool isGrounded;               // 바닥 체크
+    private bool isJumping;
+    private bool isLanding;
     private bool isDash;
     private bool isHeal;
     private bool isDamaged;
     private bool isUpDown;
 
+    [HideInInspector]
     public bool canDoubleJump = false;
 
     private float dashCoolTime;
@@ -55,29 +55,34 @@ public class PlayerController : MonoBehaviour
 
     private float airAttackCoolTime;
 
-    [Header("Attack Settings")]
+    [Header("근접 공격 범위")]
     [SerializeField] private float attackRange = 1.0f;   // 공격 반경
     [SerializeField] private Vector2 attackOffset = new Vector2(1f, 0f); // 캐릭터 기준 오프셋
 
-    [Header("Air Attack Settings")]
+    [Header("공중 공격 범위")]
     [SerializeField] private float airAttackRange = 1.0f;   // 공격 반경
     [SerializeField] private Vector2 airAttackOffset = new Vector2(1f, 0f); // 캐릭터 기준 오프셋
 
     [SerializeField] private GameObject target;
 
-    [Header("얘가 낼 수 있는 소리들")]
+    [Header("힐, 대시 소리")]
+    [SerializeField] private AudioClip healChanneling;
     [SerializeField] private AudioClip healCompleteClip;
     [SerializeField] private AudioClip dashClip;
 
+    private GameObject healClip;
+
+    [Header("힐 파티클")]
     [SerializeField] private ParticleSystem healParticle;
 
+    [HideInInspector]
     public CinemachineVirtualCamera vcam;
-    public float vcamOriginSize;
-    Coroutine heailingZoomIn;
+    private float vcamOriginSize;
+    private Coroutine heailingZoomIn;
     private float zoomMultiplier = 0.2f;
 
-    public PlatformEffector2D platformEffector;
-    public bool readyDownJump;
+    private PlatformEffector2D platformEffector;
+    private bool readyDownJump;
 
 
 
@@ -135,22 +140,11 @@ public class PlayerController : MonoBehaviour
             animationHandler.HoldJumpLastFrame();
         }
 
-        // --- 낙하 속도 보정 (낙하가 더 빠르게 하고 싶다면) ---
-        //if (_rigidbody.velocity.y < 0)
-        //{
-        //    _rigidbody.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-        //}
     }
 
     private float Movement(Vector2 direction)
     {
         float targetSpeed = direction.x * statHandler.GetStat(StatType.Speed);
-        //넉백 구현 시 사용==============================================================================
-        //if (knockbackDuration > 0.0f)
-        //{
-        //    direction *= 0.2f;
-        //    direction += knockback;
-        //}
 
         animationHandler.Move(direction);
         targetVector = direction + adjustVector;
@@ -160,15 +154,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        isLanding = true;
+        if ((GroundMask & (1 << collision.gameObject.layer)) != 0) isLanding = true;
         animationHandler.StartSpeed();
-        platformEffector = collision.GetComponent<PlatformEffector2D>();
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isLanding = false;
-        platformEffector = null;
+        if ((GroundMask & (1 << collision.gameObject.layer)) != 0) isLanding = false;
     }
 
 
@@ -176,18 +169,17 @@ public class PlayerController : MonoBehaviour
     {
         if ((GroundMask & (1 << collision.gameObject.layer)) != 0)
         {
-            animationHandler.StartSpeed();
-            isGrounded = true;
-            isJumping = false;
-            animationHandler.Jump(false);
-            animationHandler.DoubleJump(false);
+            platformEffector = collision.GetComponent<PlatformEffector2D>();
+            Debug.Log(_rigidbody.velocity.y);
+            if (_rigidbody.velocity.y <= 2.7f)
+            {
+                animationHandler.StartSpeed();
+                isGrounded = true;
+                isJumping = false;
+                animationHandler.Jump(false);
+                animationHandler.DoubleJump(false);
+            }
         }
-    }
-
-    public void ApplyKnockback(Transform other, float power, float duration)
-    {
-        knockbackDuration = duration;
-        knockback = -(other.position - transform.position).normalized * power;
     }
 
 
@@ -207,7 +199,6 @@ public class PlayerController : MonoBehaviour
             component.enabled = false;
         }
 
-        Destroy(gameObject, 2f);
     }
     //gameManager.GameOver();
 
@@ -218,32 +209,30 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.performed && isJumping && !isDash && !isHeal && canDoubleJump) // 더블점프 시작
+        if (context.performed && isJumping && !isDash && !isHeal && canDoubleJump && !readyDownJump) // 더블점프 시작
         {
             float gravity = -Physics2D.gravity.y * _rigidbody.gravityScale;
             float jumpVelocity = Mathf.Sqrt(2 * gravity * statHandler.GetStat(StatType.JumpeForce));
 
             Vector2 velocity = _rigidbody.velocity;
             velocity.y = jumpVelocity;
-            Debug.Log(velocity);
             _rigidbody.velocity = velocity;
 
             animationHandler.DoubleJump(true);
-            isJumping = false; // 예시용 (진짜로는 Raycast 등으로 갱신)
+            isJumping = false; //
         }
 
-        if (context.performed && isGrounded && !isDash && !isHeal) // 점프 시작
+        if (context.performed && isGrounded && !isDash && !isHeal && !readyDownJump) // 점프 시작
         {
             float gravity = -Physics2D.gravity.y * _rigidbody.gravityScale;
             float jumpVelocity = Mathf.Sqrt(2 * gravity * statHandler.GetStat(StatType.JumpeForce));
 
             Vector2 velocity = _rigidbody.velocity;
             velocity.y = jumpVelocity;
-            Debug.Log(velocity);
             _rigidbody.velocity = velocity;
 
             animationHandler.Jump(true);
-            isGrounded = false; // 예시용 (진짜로는 Raycast 등으로 갱신)
+            isGrounded = false; //
             isJumping = true;
         }
 
@@ -293,11 +282,12 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && isGrounded && !isDash)
         {
-            Debug.Log($"힐 시작 {Time.time}");
             animationHandler.Heal(true);
 
             vcamOriginSize = vcam.m_Lens.OrthographicSize;
             heailingZoomIn = StartCoroutine(HealingZoomInCoroutine());
+
+            healClip = SoundManager.PlayClip(healChanneling, true);
 
             isHeal = true;
 
@@ -359,11 +349,12 @@ public class PlayerController : MonoBehaviour
         if (context.canceled)
         {
             isUpDown = false;
+            readyDownJump = false;
         }
         if (context.canceled && isLanding)
         {
             isGrounded = true;
-            readyDownJump = false;
+            
         }
     }
 
@@ -525,6 +516,7 @@ public class PlayerController : MonoBehaviour
 
     private void CancelHeal()
     {
+        Destroy(healClip);
         StopCoroutine(heailingZoomIn);
         vcam.m_Lens.OrthographicSize = vcamOriginSize;
         animationHandler.Heal(false);
@@ -588,7 +580,7 @@ public class PlayerController : MonoBehaviour
         isDamaged = true;
         animationHandler.playDamaged();
 
-        yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedKnockBackDuration));
+        yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedAnimatingDuration));
 
         isDamaged = false;
         animationHandler.stopDamaged();
@@ -612,4 +604,5 @@ public class PlayerController : MonoBehaviour
 
         originEffector.surfaceArc = 180;
     }
+   
 }

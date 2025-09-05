@@ -64,8 +64,8 @@ public class CrystalKnightAttackHandler : MonoBehaviour
     public void LongProjectileFire()
     {
         Debug.Log(CrystalKnight.name + "의 구형 투사체 발사!");
-        
-        CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.IdleState);
+
+        StartCoroutine(CrystalKnight.AnimationHandler.MovetoRandomPos());
     }
     
     public void LaserFire()

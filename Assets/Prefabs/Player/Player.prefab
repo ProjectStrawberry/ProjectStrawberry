@@ -87,7 +87,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.5, y: 1.95}
   m_EdgeRadius: 0
 --- !u!50 &819302470141954817
 Rigidbody2D:
@@ -113,7 +113,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1224895441533993429
@@ -345,9 +345,14 @@ MonoBehaviour:
   airAttackRange: 3
   airAttackOffset: {x: 0, y: -0.5}
   target: {fileID: 6368395161317735550}
-  healCompleteClip: {fileID: 0}
-  dashClip: {fileID: 0}
+  healChanneling: {fileID: 8300000, guid: e8fe706a04f89b84aaf8d9cb88b09bcb, type: 3}
+  healCompleteClip: {fileID: 8300000, guid: a650dff7ab6a13442a7aab5f8b221488, type: 3}
+  dashClip: {fileID: 8300000, guid: 74f6d763d4f8708449694da985139cdb, type: 3}
   healParticle: {fileID: 5737593819060980840}
+  vcam: {fileID: 0}
+  vcamOriginSize: 0
+  platformEffector: {fileID: 0}
+  readyDownJump: 0
 --- !u!114 &5339910251525109407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,10 +365,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f185d4b9cadc63b4aa4d1f0c2739d3ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 9
-  _currHealth: 9
-  _maxStemina: 99
-  _currStemina: 99
+  _maxHealth: 0
+  _currHealth: 0
+  _maxStemina: 0
+  _currStemina: 0
 --- !u!61 &7945128788555881676
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -396,7 +401,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.028111361}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -407,7 +412,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9, y: 0.1}
+  m_Size: {x: 1.4, y: 0.043777272}
   m_EdgeRadius: 0
 --- !u!1 &1410676653758985325
 GameObject:
@@ -5344,7 +5349,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 1153694066, guid: 3a4687637e80e6b4080cee50449da184, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5389,13 +5394,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479288e3451ce9946a78e02d648170a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footStep: {fileID: 8300000, guid: 240a8441bddf08749a67c739f7a89205, type: 3}
-  attack_1: {fileID: 0}
-  attack_2: {fileID: 0}
-  rangeAttack: {fileID: 0}
-  jump: {fileID: 0}
-  doubleJump: {fileID: 0}
-  damaged: {fileID: 0}
+  footStep_1: {fileID: 8300000, guid: d9001502a02ec5146be856a4d0af4f8d, type: 3}
+  footStep_2: {fileID: 8300000, guid: 7d6a39bac2314fb4994587b830642b68, type: 3}
+  attack_1: {fileID: 8300000, guid: 8cb4eb2f2930d48448b79d7a0b0b550e, type: 3}
+  attack_2: {fileID: 8300000, guid: 2a4cc5f5235b9d142be4785e76a25925, type: 3}
+  rangeAttack: {fileID: 8300000, guid: fd73b7f2a4ff31646b54c8585e5b829c, type: 3}
+  jump: {fileID: 8300000, guid: b4b60f086305c6843996cd67dd4a4d36, type: 3}
+  doubleJump: {fileID: 8300000, guid: 6e023be4cadcfee4fb76af1133bcd18b, type: 3}
+  damaged: {fileID: 8300000, guid: 80e3c1966c521584097b9e34bf36c16d, type: 3}
 --- !u!1 &8862771071314822919
 GameObject:
   m_ObjectHideFlags: 0

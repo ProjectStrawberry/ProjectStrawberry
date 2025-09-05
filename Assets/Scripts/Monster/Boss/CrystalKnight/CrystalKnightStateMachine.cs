@@ -8,6 +8,7 @@ public class CrystalKnightStateMachine : StateMachine
     
     public CrystalKnightIdleState IdleState { get; private set; }
     public CrystalKnightAttackState AttackState { get; private set; }
+    public CrystalKnightDeathState DeathState { get; private set; }
 
     private BossActionType[] actionCycle = new BossActionType[]
     {
@@ -29,6 +30,7 @@ public class CrystalKnightStateMachine : StateMachine
     public int cycleIndex { get; set; } = 0;
 
     public BossActionType GetCurrentAction() => actionCycle[cycleIndex];
+    public bool isDead = false;
 
     public CrystalKnightStateMachine(CrystalKnight crystalKnight)
     {
@@ -36,6 +38,9 @@ public class CrystalKnightStateMachine : StateMachine
 
         IdleState = new CrystalKnightIdleState(this);
         AttackState = new CrystalKnightAttackState(this);
+        DeathState = new CrystalKnightDeathState(this);
+
+        isDead = false;
     }
 
     public void PlusCycleIndex()

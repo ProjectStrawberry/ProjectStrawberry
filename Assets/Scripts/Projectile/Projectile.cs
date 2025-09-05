@@ -5,37 +5,36 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour, IPoolable
 {
-    [SerializeField] private LayerMask hitLayer;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] protected LayerMask hitLayer;
+    [SerializeField] protected LayerMask groundLayer;
 
+    protected StatHandler statHandler;
 
-    private StatHandler statHandler;
+    protected int damgage;
+    protected float speed;
 
-    private int damgage;
-    private float speed;
+    protected ProjectileHandler projectileHandler;
 
-    private ProjectileHandler projectileHandler;
+    protected float currentDuration;
+    protected Vector2 direction;
+    protected bool isReady;
+    protected Transform pivot;
 
-    private float currentDuration;
-    private Vector2 direction;
-    private bool isReady;
-    private Transform pivot;
+    protected Rigidbody2D _rigidbody;
+    protected SpriteRenderer spriteRenderer;
 
-    private Rigidbody2D _rigidbody;
-    private SpriteRenderer spriteRenderer;
+    protected ProjectileManager projectileManager;
 
-    private ProjectileManager projectileManager;
+    protected Action<GameObject> returnToPool;
 
-    private Action<GameObject> returnToPool;
-
-    private void Awake()
+    protected virtual void Awake()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
         pivot = transform.GetChild(0);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!isReady)
         {
@@ -52,7 +51,7 @@ public class Projectile : MonoBehaviour, IPoolable
         _rigidbody.velocity = direction * projectileHandler.Speed;
     }
 
-    private void OnTriggerEnter2D(Collider2D hit)
+    protected virtual void OnTriggerEnter2D(Collider2D hit)
     {
         if (groundLayer.value == (groundLayer.value | (1 << hit.gameObject.layer)))
         {
@@ -72,9 +71,8 @@ public class Projectile : MonoBehaviour, IPoolable
             DestroyProjectile();
         }
     }
-
-
-    public void Init(Vector2 direction, ProjectileHandler inpuProjectileHandler, ProjectileManager projectileManager)
+    
+    public virtual void Init(Vector2 direction, ProjectileHandler inpuProjectileHandler, ProjectileManager projectileManager)
     {
         this.projectileManager = projectileManager;
 
@@ -95,7 +93,7 @@ public class Projectile : MonoBehaviour, IPoolable
         isReady = true;
     }
 
-    private void DestroyProjectile()
+    protected virtual void DestroyProjectile()
     {
         // Destroy(this.gameObject);
         OnDespawn();

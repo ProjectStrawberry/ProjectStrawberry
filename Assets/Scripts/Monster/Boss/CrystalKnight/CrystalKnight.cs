@@ -23,6 +23,7 @@ public class CrystalKnight : MonoBehaviour
         AttackHandler = GetComponent<CrystalKnightAttackHandler>();
         AnimationHandler = GetComponentInChildren<CrystalKnightAnimationHandler>();
         AttackHitBoxHandler = GetComponentInChildren<CrystalKnightAttackHitBoxHandler>();
+        Condition = GetComponent<CrystalKnightCondition>();
         Rigidbody = GetComponent<Rigidbody2D>();
     }
 
