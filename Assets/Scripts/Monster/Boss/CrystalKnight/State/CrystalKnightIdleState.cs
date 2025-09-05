@@ -34,8 +34,6 @@ public class CrystalKnightIdleState : CrystalKnightBaseState
     private void ChooseWaitTime()
     {
         var action = stateMachine.GetCurrentAction();
-        Debug.Log("Cycle Index: " + stateMachine.cycleIndex);
-        Debug.Log("Action: " + action);
         if (action == BossActionType.WaitShort)
         {
             stateMachine.CrystalKnight.AttackHandler.WaitForIdleState(BossActionType.WaitShort);

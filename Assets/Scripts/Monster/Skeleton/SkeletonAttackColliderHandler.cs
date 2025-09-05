@@ -27,13 +27,10 @@ public class SkeletonAttackColliderHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("other: " + other);
         if (other.CompareTag("Player"))
         {
-            Debug.Log("플레이어에게 데미지");
             if (other.TryGetComponent(out IDamagable playerCondition))
             {
-                Debug.Log("플레이어를 찾았습니다");
                 playerCondition.GetDamage(Skeleton.StatData.damage);
             }
         }

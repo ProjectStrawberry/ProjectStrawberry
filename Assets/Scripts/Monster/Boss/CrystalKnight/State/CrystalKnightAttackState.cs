@@ -31,9 +31,7 @@ public class CrystalKnightAttackState : CrystalKnightBaseState
 
     private void ChooseBossAction()
     {
-        Debug.Log("Cycle Index: " + stateMachine.cycleIndex);
         var action = stateMachine.GetCurrentAction();
-        Debug.Log("Action: " + action);
         switch (action)
         {
             case BossActionType.Close:

@@ -34,7 +34,6 @@ public class CrystalKnightCondition : MonoBehaviour, IDamagable
                 Dead();
             }
             
-            Debug.Log(CrystalKnight.name + "가 데미지 " + damage + "을 받음!");
             onTakeDamage?.Invoke();
 
             if (_invincibleCoroutine == null)

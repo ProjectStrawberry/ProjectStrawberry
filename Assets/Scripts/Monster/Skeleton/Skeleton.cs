@@ -71,7 +71,6 @@ public class Skeleton : MonoBehaviour
 
     public void RushAttackMove()
     {
-        Debug.Log("돌진합니다");
         StartCoroutine(RushCoroutine());
     }
 
@@ -97,7 +96,6 @@ public class Skeleton : MonoBehaviour
             
             if (hitObstacle.collider != null || hit.collider == null)
             {
-                Debug.Log("더는 돌진하지 못합니다!");
                 break;
             }
             

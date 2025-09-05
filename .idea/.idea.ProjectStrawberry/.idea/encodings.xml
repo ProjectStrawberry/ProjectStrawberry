@@ -10,5 +10,6 @@
     <file url="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/Assets/Scripts/Projectile/Projectile.cs" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/Assets/Scripts/Projectile/ProjectileHandler.cs" charset="EUC-KR" />
+    <file url="file://$PROJECT_DIR$/Assets/Scripts/UI/UIGame.cs" charset="EUC-KR" />
   </component>
 </project>

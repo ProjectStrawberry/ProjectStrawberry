@@ -44,7 +44,6 @@ public class SkeletonChasingState : SkeletonBaseState
             }
             else
             {
-                Debug.Log("Skeleton 몬스터가 더는 못 걸어갑니다!");
                 WaitPlayer();
             }
         }

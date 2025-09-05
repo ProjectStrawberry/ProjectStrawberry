@@ -26,7 +26,6 @@ public class SkeletonCondition : MonoBehaviour, IDamagable
         if (isDead) return;
         
         curHealth -= damage;
-        Debug.Log(Skeleton.name + " 데미지를 입음: " + damage);
         SoundManager.PlayClip(Skeleton.damagedSfx, true);
         
         if (curHealth <= 0)
