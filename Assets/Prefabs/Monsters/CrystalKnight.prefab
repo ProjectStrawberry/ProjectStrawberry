@@ -498,6 +498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CrystalKnight: {fileID: 0}
+  Sprite: {fileID: 0}
   bossRoomMin: {x: -17, y: -9}
   bossRoomMax: {x: 17, y: 9}
   ComboAttackDashSpeed: 28
@@ -836,6 +837,7 @@ MonoBehaviour:
     longProjectileFireParameterName: LongProjectileFire
     laserFireParameterName: LaserFire
     rushAttackParameterName: RushAttack
+    deadParameterName: Dead
   <StatData>k__BackingField: {fileID: 11400000, guid: e43de02f43f7e1144b6f7a5cad2fc4e2, type: 2}
   <AttackHandler>k__BackingField: {fileID: 0}
   <AnimationHandler>k__BackingField: {fileID: 0}
@@ -856,6 +858,8 @@ MonoBehaviour:
   CrystalKnight: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
+  invincibleTime: 0.5
+  _isInvincible: 0
 --- !u!114 &1572697730283291547
 MonoBehaviour:
   m_ObjectHideFlags: 0
