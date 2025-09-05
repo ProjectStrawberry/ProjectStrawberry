@@ -339,8 +339,8 @@ MonoBehaviour:
   canDoubleJump: 0
   attackRange: 3
   attackOffset: {x: 1.5, y: 1}
-  airAttackRange: 3
-  airAttackOffset: {x: 0, y: -0.5}
+  airAttackRange: 4
+  airAttackOffset: {x: 0, y: 1}
   target: {fileID: 6368395161317735550}
   healChanneling: {fileID: 8300000, guid: e8fe706a04f89b84aaf8d9cb88b09bcb, type: 3}
   healCompleteClip: {fileID: 8300000, guid: a650dff7ab6a13442a7aab5f8b221488, type: 3}
