@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class StatHandler : MonoBehaviour
 {
-    public StatData statData;
+    public StatData normalStatData;
+    public StatData hardStatData;
     private Dictionary<StatType, float> currentStats = new Dictionary<StatType, float>();
 
     private void Awake()
     {
-        InitializeStats();
+        InitializeStats(Difficulty.Normal);
+        GameManager.Instance.SubscribeOnDifficultyChange(InitializeStats);
     }
 
-    private void InitializeStats()
+    private void InitializeStats(Difficulty difficulty)
     {
+        StatData statData;
+        if (difficulty == Difficulty.Normal)
+            statData = normalStatData;
+        else
+            statData = hardStatData;
         foreach (StatEntry entry in statData.stats)
         {
             currentStats[entry.statType] = entry.baseValue;
