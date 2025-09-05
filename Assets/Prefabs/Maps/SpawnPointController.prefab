@@ -213,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 5704468923610476481}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 18.3, y: -25.4, z: 0}
+  m_LocalPosition: {x: 20, y: -32, z: 0}
   m_LocalScale: {x: 1, y: 40, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -331,7 +331,8 @@ MonoBehaviour:
   stageInfo: {fileID: 11400000, guid: 254183a3cb14f634aba510b490a2dcbf, type: 2}
   skeletonPrefab: {fileID: 180331001443548539, guid: 06224a4ced5784d4d84d39aeca478ff5, type: 3}
   floatingSKullPrefab: {fileID: 2099329591637960241, guid: 2cafa690502064b41a8bb00e3ba544eb, type: 3}
-  crystalKnight: {fileID: 7583348036468141242, guid: c035ffe38a7da5340896d6e832e2ced9, type: 3}
+  crystalKnightPrefab: {fileID: 7583348036468141242, guid: c035ffe38a7da5340896d6e832e2ced9, type: 3}
+  clearTile: {fileID: 2437359179941742179, guid: 3b91cf5c98c8896418f5d4fe4e13c695, type: 3}
 --- !u!1 &8759680266122117259
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd83919275e572498daed48b9ca173a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoint: {x: -8.7, y: 125.2, z: 0}
+  spawnPoint: {x: -8.7, y: -125.2, z: 0}
   spawnPosition: {fileID: 0}
   savePointNum: 2
 --- !u!1001 &5072834161733241026
@@ -439,11 +440,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5381884801696597452, guid: afe39563dc8073e4cb205cbd42497951, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 5381884801696597452, guid: afe39563dc8073e4cb205cbd42497951, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -50.5
+      value: -64.89
       objectReference: {fileID: 0}
     - target: {fileID: 5381884801696597452, guid: afe39563dc8073e4cb205cbd42497951, type: 3}
       propertyPath: m_LocalPosition.z
@@ -477,8 +478,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8070045498076775356, guid: afe39563dc8073e4cb205cbd42497951, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.39
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 671272012299180738, guid: afe39563dc8073e4cb205cbd42497951, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afe39563dc8073e4cb205cbd42497951, type: 3}
