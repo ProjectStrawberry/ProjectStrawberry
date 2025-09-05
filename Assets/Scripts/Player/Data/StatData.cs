@@ -24,7 +24,8 @@ public enum StatType
     HealSteminaConsumeInterval,  //몇 초 간격으로
     DamagedInvincibleDuration,
     DamagedAnimatingDuration,
-    ComboResetTime
+    ComboResetTime,
+    RequireAttackForStemina
 }
 
 [System.Serializable]

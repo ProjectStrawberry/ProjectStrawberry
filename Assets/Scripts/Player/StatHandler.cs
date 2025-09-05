@@ -10,7 +10,7 @@ public class StatHandler : MonoBehaviour
 
     private void Awake()
     {
-        InitializeStats(Difficulty.Normal);
+        InitializeStats(Difficulty.Hard);
         GameManager.Instance.SubscribeOnDifficultyChange(InitializeStats);
     }
 

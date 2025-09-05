@@ -5388,8 +5388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479288e3451ce9946a78e02d648170a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footStep_1: {fileID: 8300000, guid: d9001502a02ec5146be856a4d0af4f8d, type: 3}
-  footStep_2: {fileID: 8300000, guid: 7d6a39bac2314fb4994587b830642b68, type: 3}
+  footStep_1: {fileID: 8300000, guid: ea33f711f095c48469f4623ccd590cc0, type: 3}
+  footStep_2: {fileID: 8300000, guid: e6eb95c0a1a8c9d4b8ade67da26b6bb5, type: 3}
   attack_1: {fileID: 8300000, guid: 8cb4eb2f2930d48448b79d7a0b0b550e, type: 3}
   attack_2: {fileID: 8300000, guid: 2a4cc5f5235b9d142be4785e76a25925, type: 3}
   rangeAttack: {fileID: 8300000, guid: fd73b7f2a4ff31646b54c8585e5b829c, type: 3}
