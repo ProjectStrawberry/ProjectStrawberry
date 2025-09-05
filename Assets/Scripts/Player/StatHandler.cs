@@ -25,6 +25,7 @@ public class StatHandler : MonoBehaviour
         return currentStats.ContainsKey(statType) ? currentStats[statType] : 0;
     }
 
+    //스탯 영구 상승 혹은 일시 상승 메서드들 혹시 쓰나?
     //public void ModifyStat(StatType statType, float amount, bool isPermanent = true, float duration = 0)
     //{
     //    if (!currentStats.ContainsKey(statType)) return;
