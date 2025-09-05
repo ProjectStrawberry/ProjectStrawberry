@@ -10,6 +10,7 @@ public class VirtualCameraController : MonoBehaviour
 
     public int currentPriority = 5;
     public int activeProiority = 20;
+    public bool isFollow = true;
 
     private void Awake()
     {
@@ -21,7 +22,7 @@ public class VirtualCameraController : MonoBehaviour
         if (collision.gameObject.GetComponent<PlayerController>())
         {
             vcam.Priority = activeProiority;
-            vcam.Follow = collision.gameObject.transform;
+            if(isFollow) vcam.Follow = collision.gameObject.transform;
             PlayerManager.Instance.player.playerController.vcam = vcam;
 
         }
