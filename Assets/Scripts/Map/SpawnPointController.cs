@@ -12,6 +12,7 @@ public class SpawnPointController : MonoBehaviour
     Queue<GameObject> skeletonPrefabList = new Queue<GameObject>();
     Queue<GameObject> floatingPrefabList = new Queue<GameObject>();
     GameObject crystal;
+    GameObject clearTIle;
 
     Coroutine currentClearTileCoroutine;
 
@@ -47,10 +48,11 @@ public class SpawnPointController : MonoBehaviour
 
     public void SpawnMonsters(int spawnpointNum)
     {
-        if(spawnpointNum == 4&&lastActivatedPoint.IsAlreadyActivated==false) 
+        if(spawnpointNum == 4&& lastActivatedPoint.IsAlreadyActivated == false) 
         {
             platformSpawner.StartSpawning();
-            currentClearTileCoroutine= StartCoroutine(ClearTileCoroutine());
+            currentClearTileCoroutine = StartCoroutine(ClearTileCoroutine());
+            
         }
         StageLevel stageLevel = stageInfo.stages[spawnpointNum-1];
 
@@ -157,9 +159,10 @@ public class SpawnPointController : MonoBehaviour
 
     void RespawnMonsters()
     {
-        lastActivatedPoint.IsAlreadyActivated = true;
-        SpawnMonsters(lastActivatedPoint.savePointNum);
         
+        SpawnMonsters(lastActivatedPoint.savePointNum);
+        lastActivatedPoint.IsAlreadyActivated = true;
+
     }
     public void ResetSpawnPointSavers()
     {
@@ -177,13 +180,22 @@ public class SpawnPointController : MonoBehaviour
         {
             StopCoroutine(currentClearTileCoroutine);
         }
+        clearTIle?.SetActive(false);
     }
     private IEnumerator ClearTileCoroutine()
     {
         yield return new WaitForSeconds(0.7f);
 
         SoundManager.Instance.ChangeBackGroundMusice(SoundManager.Instance.bossBgm);
-        Instantiate(clearTile, new Vector3(17.8f, -30.9f, 0f), Quaternion.identity);
+        if(clearTIle!=null)
+        {
+            clearTIle.SetActive(true);
+        }
+        else
+        {
+            clearTIle = Instantiate(clearTile, new Vector3(17.8f, -30.9f, 0f), Quaternion.identity);
+        }
+            
     }
 }
 
