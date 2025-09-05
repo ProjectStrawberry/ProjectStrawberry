@@ -44,7 +44,6 @@ public class SoundManager : MonoSingleton<SoundManager>
 
         //musicClip = Resources.Load("Sound/BGM/사운드 이름") as AudioClip; //배경음악
         soundSourcePrefab = Resources.Load("Prefabs/SoundSource") as GameObject;
-        Debug.Log(soundSourcePrefab);
 
 
     }

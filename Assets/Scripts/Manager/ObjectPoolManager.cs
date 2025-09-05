@@ -24,7 +24,6 @@ public class ObjectPoolManager : MonoBehaviour
     {
         if (!pools.ContainsKey(prefabIndex))
         {
-            Debug.LogError($"프리팹 인덱스 {prefabIndex}에 대한 풀이 존재하지 않습니다.");
             return null;
         }
 
