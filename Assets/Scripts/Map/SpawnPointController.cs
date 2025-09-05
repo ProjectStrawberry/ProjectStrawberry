@@ -17,7 +17,7 @@ public class SpawnPointController : MonoBehaviour
 
     [SerializeField] GameObject skeletonPrefab;
     [SerializeField] GameObject floatingSKullPrefab;
-    [SerializeField] GameObject crystalKnight;
+    [SerializeField] GameObject crystalKnightPrefab;
     [SerializeField] private GameObject clearTile;
 
     Vector3 firstSpawnPosition = new Vector3(-2.7f, -5.0f, 0);
