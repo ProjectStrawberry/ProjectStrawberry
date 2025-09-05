@@ -102,11 +102,26 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
                 break;
             }
 
+            // 보스룸 범위 체크
+            Vector2 pos = CrystalKnight.transform.position;
+            if (pos.x < bossRoomMin.x) { pos.x = bossRoomMin.x; break; }
+            if (pos.x > bossRoomMax.x) { pos.x = bossRoomMax.x; break; }
+            if (pos.y < bossRoomMin.y) { pos.y = bossRoomMin.y; break; }
+            if (pos.y > bossRoomMax.y) { pos.y = bossRoomMax.y; break; }
+
+            CrystalKnight.transform.position = pos;
+            
             elapsed += Time.deltaTime;
             yield return null;
         }
 
         CrystalKnight.Rigidbody.velocity = Vector2.zero;
+        
+        Vector2 fixedPos = CrystalKnight.transform.position;
+        fixedPos.x = Mathf.Clamp(fixedPos.x, bossRoomMin.x, bossRoomMax.x);
+        fixedPos.y = Mathf.Clamp(fixedPos.y, bossRoomMin.y, bossRoomMax.y);
+        CrystalKnight.transform.position = fixedPos;
+        
         isDashing = false;
     }
     
@@ -184,12 +199,27 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
                 Debug.Log("목표 지점 +2 유닛 도달 → 돌진 중단");
                 break;
             }
+            
+            // 보스룸 범위 체크
+            Vector2 pos = CrystalKnight.transform.position;
+            if (pos.x < bossRoomMin.x) { pos.x = bossRoomMin.x; break; }
+            if (pos.x > bossRoomMax.x) { pos.x = bossRoomMax.x; break; }
+            if (pos.y < bossRoomMin.y) { pos.y = bossRoomMin.y; break; }
+            if (pos.y > bossRoomMax.y) { pos.y = bossRoomMax.y; break; }
+
+            CrystalKnight.transform.position = pos;
 
             yield return null;
         }
 
         // 돌진 멈춤
         CrystalKnight.Rigidbody.velocity = Vector2.zero;
+        
+        Vector2 fixedPos = CrystalKnight.transform.position;
+        fixedPos.x = Mathf.Clamp(fixedPos.x, bossRoomMin.x, bossRoomMax.x);
+        fixedPos.y = Mathf.Clamp(fixedPos.y, bossRoomMin.y, bossRoomMax.y);
+        CrystalKnight.transform.position = fixedPos;
+        
         isRushing = false;
     }
 
@@ -209,7 +239,7 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
         
         for (int i = 0; i < 3; i++)
         {
-            var randPos = new Vector2(Random.Range(bossRoomMin.x, bossRoomMax.x), 0);
+            var randPos = new Vector2(Random.Range(bossRoomMin.x, bossRoomMax.x), -41.5f);
 
             var beforeThunder = Instantiate(beforeThunderLaser, randPos, Quaternion.identity);
             beforeThunder.GetComponent<BeforeThunderLaser>().Init(randTime, thunderLaser, CrystalKnight.StatData.damage);

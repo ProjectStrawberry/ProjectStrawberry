@@ -33,11 +33,13 @@ public class UIPopUp : UIBase
     private void PressYesButton()
     {
         OnpressYes?.Invoke();
+        ButtonSound();
     }
 
     private void PressNoButton()
     {
         OnpressNo?.Invoke();
+        ButtonSound();
     }
 
 

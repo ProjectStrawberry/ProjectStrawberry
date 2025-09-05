@@ -17,7 +17,8 @@ public class SpawnPointController : MonoBehaviour
 
     [SerializeField] GameObject skeletonPrefab;
     [SerializeField] GameObject floatingSKullPrefab;
-    [SerializeField] GameObject crystalKnightPrefab;
+    [SerializeField] GameObject crystalKnight;
+    [SerializeField] private GameObject clearTile;
 
     Vector3 firstSpawnPosition = new Vector3(-2.7f, -5.0f, 0);
 
@@ -26,7 +27,7 @@ public class SpawnPointController : MonoBehaviour
 
     SpawnPointSaver lastActivatedPoint;
 
-    //½ºÆùÇØ¾ßÇÒ »óÈ²ÀÌ ¿À¸é currentspawnpositionÀ¸·Î ½ºÆùµÇ¸é µÊ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ ï¿½ï¿½È²ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ currentspawnpositionï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½
     // Start is called before the first frame update
     void Start()
     {
@@ -46,16 +47,17 @@ public class SpawnPointController : MonoBehaviour
 
     public void SpawnMonsters(int spawnpointNum)
     {
-        if(spawnpointNum ==4)
+        if(spawnpointNum == 4)
         {
             platformSpawner.StartSpawning();
+            StartCoroutine(ClearTileCoroutine());
         }
         StageLevel stageLevel = stageInfo.stages[spawnpointNum-1];
 
 
         foreach( var monster in stageLevel.monsters )
         {
-            if(monster.type==MonsterType.Skeleton)
+            if(monster.type == MonsterType.Skeleton)
             {
                 for(int i=0; i<monster.spawnPoints.Length; i++)
                 {
@@ -161,5 +163,11 @@ public class SpawnPointController : MonoBehaviour
         }
     }
 
+    private IEnumerator ClearTileCoroutine()
+    {
+        yield return new WaitForSeconds(0.7f);
+        
+        Instantiate(clearTile, new Vector3(17.8f, -30.9f, 0f), Quaternion.identity);
+    }
 }
 

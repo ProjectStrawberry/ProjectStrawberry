@@ -14,6 +14,8 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public int _maxStemina;
     public int _currStemina;
 
+    private bool isInvincible;
+
     private Action<int> OnHealthChange;
     private Action<int> OnStaminaChange;
 
@@ -60,10 +62,14 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void GetDamage(int damage)
     {
+        if (isInvincible) return;
         _currHealth -= 1;
+        StartCoroutine(Invincible());
+        
+        Debug.Log("플레이어 현재 체력: " + _currHealth);
 
         StartCoroutine(playerController.Damaged());
-        StartCoroutine(playerController.Invincible());
+        
         OnHealthChange?.Invoke(_currHealth);
         if( _currHealth <= 0 ) Dead();
     }
@@ -85,5 +91,14 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         _maxStemina = (int)statHandler.GetStat(StatType.Stemina);
         _currHealth = _maxHealth;
         _currStemina = _maxStemina;
+    }
+
+    public IEnumerator Invincible()
+    {
+        isInvincible = true;
+
+        yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedInvincibleDuration));
+
+        isInvincible = false;
     }
 }

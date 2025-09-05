@@ -19,6 +19,7 @@ public class UISettings : UIBase
     void PressBackButton()
     {
         this.gameObject.SetActive(false);
+        ButtonSound();
     }
     
 }

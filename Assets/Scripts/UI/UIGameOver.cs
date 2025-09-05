@@ -18,12 +18,14 @@ public class UIGameOver : UIBase
     {
         GameManager.Instance.ReStart();
         CloseUI();
+        ButtonSound();
     }
 
     void PressMainMenuButton()
     {
         UIManager.Instance.OpenUI<UIStartScene>();
         CloseUI();
+        ButtonSound();
     }
 }
 

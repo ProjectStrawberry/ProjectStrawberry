@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float airAttackRange = 1.0f;   // 공격 반경
     [SerializeField] private Vector2 airAttackOffset = new Vector2(1f, 0f); // 캐릭터 기준 오프셋
 
+    [Header("원거리 공격 방향")]
     [SerializeField] private GameObject target;
 
     [Header("힐, 대시 소리")]
@@ -414,9 +415,9 @@ public class PlayerController : MonoBehaviour
     {
         animationHandler.AirAttack();
 
-        Vector2 attackPos = (Vector2)transform.position + new Vector2(attackOffset.x, attackOffset.y);
+        Vector2 attackPos = (Vector2)transform.position + new Vector2(airAttackOffset.x, airAttackOffset.y);
 
-        Vector2 attackSize = new Vector2(attackRange, attackRange); // 가로 세로 비율
+        Vector2 attackSize = new Vector2(airAttackRange, airAttackRange); // 가로 세로 비율
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(attackPos, attackSize, 0f, enemyMask);
 
@@ -566,14 +567,6 @@ public class PlayerController : MonoBehaviour
         animationHandler.stopDamaged();
 
     }
-    public IEnumerator Invincible()
-    {
-        _boxCollider.excludeLayers += excludeMask;
-        
-        yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedInvincibleDuration));
-
-        _boxCollider.excludeLayers -= excludeMask;
-    } 
 
     public IEnumerator DownJump()
     {

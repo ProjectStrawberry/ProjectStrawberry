@@ -29,16 +29,19 @@ public class UITemporaryStop : UIBase
 
         GameManager.Instance.ResumeGame();
         CloseUI();
+        ButtonSound();
     }
 
     void PressOptionsButton()
     {
         UIManager.Instance.OpenUI<UISettings>();
+        ButtonSound();
     }
 
     void PressBackToMainButton()
     {
         UIManager.Instance.OpenUI<UIStartScene>();
         CloseUI();
+        ButtonSound();
     }
 }

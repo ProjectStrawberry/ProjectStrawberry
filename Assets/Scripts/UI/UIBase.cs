@@ -33,4 +33,9 @@ public abstract class UIBase : MonoBehaviour
 
 
     protected virtual void OnClose() { }
+
+    public virtual void ButtonSound() 
+    {
+        SoundManager.PlayClip(SoundManager.Instance.buttonClip);
+    }
 }

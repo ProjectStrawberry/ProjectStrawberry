@@ -26,18 +26,21 @@ public class UIStartScene : UIBase
     {
         UIManager.Instance.OpenUI<UIDifficulty>();
         CloseUI();
+        ButtonSound();
     }
 
     void PressOptionsButton()
     {
         UIManager.Instance.OpenUI<UISettings>();
+        ButtonSound();
     }
 
     void PressExitButton()
     {
-        
-        
-            var popUp = UIManager.Instance.GetUI<UIPopUp>();
+        ButtonSound();
+
+
+        var popUp = UIManager.Instance.GetUI<UIPopUp>();
             popUp.OpenPopUP(messageText, ExitGame, ClosePopup);
 
  
