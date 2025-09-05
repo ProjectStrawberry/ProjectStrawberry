@@ -1,5 +1,98 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &664237365087864594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4090683938844410584}
+  - component: {fileID: 4680728012122223688}
+  - component: {fileID: 4948583500342529398}
+  m_Layer: 0
+  m_Name: SavePoint_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4090683938844410584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664237365087864594}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 79.3, y: 8.1, z: 0}
+  m_LocalScale: {x: 1, y: 8, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5427798184166391915}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &4680728012122223688
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664237365087864594}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &4948583500342529398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664237365087864594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd83919275e572498daed48b9ca173a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {x: -2.7, y: -5, z: 0}
+  spawnPosition: {fileID: 0}
+  savePointNum: 1
 --- !u!1 &2290694004021133761
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {x: 68.6, y: -81.3, z: 0}
   spawnPosition: {fileID: 0}
+  savePointNum: 3
 --- !u!1 &5704468923610476481
 GameObject:
   m_ObjectHideFlags: 0
@@ -184,6 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {x: 1, y: -12.9, z: 0}
   spawnPosition: {fileID: 0}
+  savePointNum: 4
 --- !u!1 &6381250958445392338
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +309,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 4090683938844410584}
   - {fileID: 4682518569335703928}
   - {fileID: 4932022168519805725}
   - {fileID: 3354369447453556931}
@@ -231,6 +327,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1f58c1768f1a54488f74df84105fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageInfo: {fileID: 11400000, guid: 254183a3cb14f634aba510b490a2dcbf, type: 2}
+  skeletonPrefab: {fileID: 180331001443548539, guid: 06224a4ced5784d4d84d39aeca478ff5, type: 3}
+  floatingSKullPrefab: {fileID: 2099329591637960241, guid: 2cafa690502064b41a8bb00e3ba544eb, type: 3}
+  crystalKnight: {fileID: 7583348036468141242, guid: c035ffe38a7da5340896d6e832e2ced9, type: 3}
 --- !u!1 &8759680266122117259
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,3 +423,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {x: -8.7, y: 125.2, z: 0}
   spawnPosition: {fileID: 0}
+  savePointNum: 2

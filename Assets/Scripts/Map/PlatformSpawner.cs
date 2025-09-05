@@ -32,7 +32,7 @@ public class PlatformSpawner : MonoBehaviour
     {
         for(int i = 0; i < platformPaternList.Count; i++)
         {
-            Debug.Log($"{i+1}번 패턴 시작");
+           
             foreach (var platforminfo in platformPaternList[i].platformDatas)
             {
                 if(platforminfo.platformPlacement==PlatformPlacement.Skip)
@@ -51,7 +51,7 @@ public class PlatformSpawner : MonoBehaviour
         while (true)
         {
             PlatformPatternSO platformPattern=ChooseRandomPattern();
-            Debug.Log($"{platformPattern.name} 패턴 시작");
+            
             foreach (var platforminfo in platformPattern.platformDatas)
             {
 

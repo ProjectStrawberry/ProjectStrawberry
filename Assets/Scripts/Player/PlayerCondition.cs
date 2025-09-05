@@ -33,14 +33,13 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Heal(int amount)
     {
-        Debug.Log(amount);
-        _currHealth += amount;
+        _currHealth = Math.Min(_maxHealth, _currHealth + amount);
         OnHealthChange?.Invoke(_currHealth);
     }
 
     public void RestoreStemina()
     {
-        _currStemina += 1;
+        _currStemina = Math.Min(_maxStemina, _currStemina + 1);
         OnStaminaChange?.Invoke(_currStemina);
     }
 
@@ -80,5 +79,13 @@ public class PlayerCondition : MonoBehaviour, IDamagable
     public void SubscribeOnStaminaChange(Action<int> action)
     {
         OnStaminaChange += action;
+    }
+
+    public void ResetHealthAndStamina()
+    {
+        _maxHealth = (int)statHandler.GetStat(StatType.Health);
+        _maxStemina = (int)statHandler.GetStat(StatType.Stemina);
+        _currHealth = _maxHealth;
+        _currStemina = _maxStemina;
     }
 }

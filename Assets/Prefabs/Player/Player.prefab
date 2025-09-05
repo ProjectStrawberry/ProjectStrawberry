@@ -312,7 +312,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f08923a85db189945bb20e33c0e659c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statData: {fileID: 11400000, guid: c3129823d191aa14197250fe555d3e0e, type: 2}
+  normalStatData: {fileID: 11400000, guid: c3129823d191aa14197250fe555d3e0e, type: 2}
+  hardStatData: {fileID: 11400000, guid: 022b3ac61dfd39f4d9560caa04139521, type: 2}
 --- !u!114 &127879680327299109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,10 +336,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   characterRenderer: {fileID: 6785683613500711969}
-  fallMultiplier: 2
-  isGrounded: 0
-  isJumping: 0
-  isLanding: 0
   canDoubleJump: 0
   attackRange: 3
   attackOffset: {x: 1.5, y: 1}
@@ -350,9 +347,6 @@ MonoBehaviour:
   dashClip: {fileID: 8300000, guid: 74f6d763d4f8708449694da985139cdb, type: 3}
   healParticle: {fileID: 5737593819060980840}
   vcam: {fileID: 0}
-  vcamOriginSize: 0
-  platformEffector: {fileID: 0}
-  readyDownJump: 0
 --- !u!114 &5339910251525109407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5211,7 +5205,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -5394,8 +5388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479288e3451ce9946a78e02d648170a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footStep_1: {fileID: 8300000, guid: d9001502a02ec5146be856a4d0af4f8d, type: 3}
-  footStep_2: {fileID: 8300000, guid: 7d6a39bac2314fb4994587b830642b68, type: 3}
+  footStep_1: {fileID: 8300000, guid: ea33f711f095c48469f4623ccd590cc0, type: 3}
+  footStep_2: {fileID: 8300000, guid: e6eb95c0a1a8c9d4b8ade67da26b6bb5, type: 3}
   attack_1: {fileID: 8300000, guid: 8cb4eb2f2930d48448b79d7a0b0b550e, type: 3}
   attack_2: {fileID: 8300000, guid: 2a4cc5f5235b9d142be4785e76a25925, type: 3}
   rangeAttack: {fileID: 8300000, guid: fd73b7f2a4ff31646b54c8585e5b829c, type: 3}
