@@ -98589,7 +98589,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicVolume: 0
   isBgmMuted: 0
-  musicClip: {fileID: 8300000, guid: 240a8441bddf08749a67c739f7a89205, type: 3}
+  titleBgm: {fileID: 0}
+  stageBgm: {fileID: 0}
+  bossBgm: {fileID: 0}
   soundSourcePrefab: {fileID: 975567718282296320, guid: 27c68309fc978884a8834ada917659d7, type: 3}
 --- !u!4 &1955461444
 Transform:
