@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4376387350786462601}
   - component: {fileID: 413704678915908006}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Spike
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5061746918090426224}
   - component: {fileID: 6487585059863487040}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

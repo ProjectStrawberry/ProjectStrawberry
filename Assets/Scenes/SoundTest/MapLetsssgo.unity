@@ -1688,8 +1688,8 @@ PolygonCollider2D:
     - - {x: 85, y: -55}
       - {x: 85, y: -127}
       - {x: 107, y: -127}
-      - {x: 107, y: -108}
-      - {x: 120, y: -108}
+      - {x: 107, y: -109}
+      - {x: 120, y: -109}
       - {x: 120, y: -55}
   m_UseDelaunayMesh: 0
 --- !u!114 &500630501
@@ -3692,6 +3692,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3482775847348168277, guid: 49d87744ae5930b45a8ce448df3f7a47, type: 3}
+      propertyPath: spawnPoint.y
+      value: -125.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5427798184166391915, guid: 49d87744ae5930b45a8ce448df3f7a47, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -98325,10 +98329,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 107, y: -108}
+    - - {x: 107, y: -109}
       - {x: 107, y: -130}
       - {x: 143, y: -130}
-      - {x: 143, y: -108}
+      - {x: 143, y: -109}
   m_UseDelaunayMesh: 0
 --- !u!114 &1904095918
 MonoBehaviour:

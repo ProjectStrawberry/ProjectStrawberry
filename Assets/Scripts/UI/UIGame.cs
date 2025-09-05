@@ -93,7 +93,7 @@ public class UIGame : UIBase
     void ChangeHealthNumber(int currentHealth)
     {
         //현재체력
-        Debug.Log(currentHealth);
+       
         foreach(GameObject go in healthList)
         {
             go.SetActive(false);

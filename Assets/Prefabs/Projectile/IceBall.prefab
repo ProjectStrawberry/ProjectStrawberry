@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 539366821773316891}
   - component: {fileID: 4583926007106893973}
   - component: {fileID: 6117928501734938818}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: IceBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5997359099809179302}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pivot (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
