@@ -79,9 +79,16 @@ public class UIGame : UIBase
             maxHealth = playerCondition._maxHealth;
             maxStamina = playerCondition._maxStemina;
             ChangeHealthNumber(playerCondition._currHealth);
+            Debug.Log(playerCondition._currHealth);
             ChangeStaminaNumber(playerCondition._currStemina);
         }
     }
+    public void ResetUI()
+    {
+        ChangeHealthNumber(PlayerManager.Instance.player.playerCondition._currHealth);
+        ChangeStaminaNumber(PlayerManager.Instance.player.playerCondition._currStemina);
+    }
+
 
     void ChangeHealthNumber(int currentHealth)
     {

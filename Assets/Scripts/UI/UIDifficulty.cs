@@ -9,6 +9,8 @@ public class UIDifficulty : UIBase
     [SerializeField] Button normalButton;
     [SerializeField] Button hardButton;
     [SerializeField] Button backButton;
+
+    bool isAlreadyStarted = false;
     private void Start()
     {
         normalButton.onClick.AddListener(PressNormalButton);
@@ -19,15 +21,37 @@ public class UIDifficulty : UIBase
     void PressNormalButton()
     {
         GameManager.Instance.ChangeDifficulty(Difficulty.Normal);
-        GameManager.Instance.StartGame();
+        if (!isAlreadyStarted)
+        {
+            
+            GameManager.Instance.StartGame();
+            isAlreadyStarted = true;
+            
+        }
+        else
+        {
+            GameManager.Instance.ReStart();
+           
+        }
         CloseUI();
+
     }
 
     void PressHardButton()
     {
         GameManager.Instance.ChangeDifficulty(Difficulty.Hard);
-        GameManager.Instance.StartGame();
+        if(!isAlreadyStarted)
+        {
+            GameManager.Instance.StartGame();
+            isAlreadyStarted = true;
+        }
+        else
+        {
+            GameManager.Instance.ReStart();
+        }
         CloseUI();
+
+
     }
 
     void PressBackButton()

@@ -41,6 +41,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Player player=PlayerManager.Instance.player;
         player.playerCondition.ResetHealthAndStamina();
+        FindObjectOfType<UIGame>().ResetUI();
         player.transform.position = PlayerManager.Instance.spawnPointController.CurrentSpawnPosition;
         UIManager.Instance.CloseUI<UIGameOver>();
         Time.timeScale = 1;
