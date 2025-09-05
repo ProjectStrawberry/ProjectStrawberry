@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.ComponentModel.Design;
 
 public class SoundManager : MonoSingleton<SoundManager>
 {
@@ -160,6 +161,15 @@ public class SoundManager : MonoSingleton<SoundManager>
         GameObject obj = Instantiate(Instance.soundSourcePrefab);
         SoundSource soundSource = obj.GetComponent<SoundSource>();
         soundSource.Play(clip, SoundManager.soundEffectVolume, SoundManager.isSfxMuted, SoundManager.soundEffectPitchVariance);
+    }
+
+    public static GameObject PlayClip(AudioClip clip, bool isTrue)
+    {
+        GameObject obj = Instantiate(Instance.soundSourcePrefab);
+        SoundSource soundSource = obj.GetComponent<SoundSource>();
+        soundSource.Play(clip, SoundManager.soundEffectVolume, SoundManager.isSfxMuted, SoundManager.soundEffectPitchVariance);
+        if (isTrue) return obj;
+        else return null;
     }
 
     public void GetSettingsUI(UISettings settings)
