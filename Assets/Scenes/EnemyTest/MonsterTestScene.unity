@@ -986,18 +986,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CrystalKnight
       objectReference: {fileID: 0}
-    - target: {fileID: 8682084441348227088, guid: c035ffe38a7da5340896d6e832e2ced9, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8682084441348227088, guid: c035ffe38a7da5340896d6e832e2ced9, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8682084441348227088, guid: c035ffe38a7da5340896d6e832e2ced9, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
