@@ -152,6 +152,9 @@ MonoBehaviour:
     m_Bits: 8
   _rigidbody: {fileID: 0}
   skeletonSprite: {fileID: 6893211121372988130}
+  closeAttackSfx: {fileID: 8300000, guid: 704392492425a8d43a287c1bab9efe2a, type: 3}
+  damagedSfx: {fileID: 8300000, guid: cac9eebc3376e3f48afd06b089c7dad1, type: 3}
+  deadSfx: {fileID: 8300000, guid: c17dfafd21aa55844a0b963d014e5eea, type: 3}
 --- !u!114 &3686452043128248778
 MonoBehaviour:
   m_ObjectHideFlags: 0

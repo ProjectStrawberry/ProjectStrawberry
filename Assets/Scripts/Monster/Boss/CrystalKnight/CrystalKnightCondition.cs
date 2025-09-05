@@ -27,6 +27,7 @@ public class CrystalKnightCondition : MonoBehaviour, IDamagable
         if (!_isInvincible)
         {
             currentHealth -= damage;
+            SoundManager.PlayClip(CrystalKnight.damagedSFX, true);
 
             if (currentHealth <= 0)
             {

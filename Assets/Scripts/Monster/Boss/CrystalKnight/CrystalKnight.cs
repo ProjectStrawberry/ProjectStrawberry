@@ -14,6 +14,11 @@ public class CrystalKnight : MonoBehaviour
     [field:SerializeField] public CrystalKnightAnimationHandler AnimationHandler { get; private set; }
     [field:SerializeField] public CrystalKnightAttackHitBoxHandler AttackHitBoxHandler { get; private set; }
     [field:SerializeField] public Rigidbody2D Rigidbody { get; private set; }
+    
+    [Header("SFX")]
+    [SerializeField] public AudioClip closeAttackSFX;
+    [SerializeField] public AudioClip damagedSFX;
+    [SerializeField] public AudioClip rangedAttackSFX;
 
     private void Awake()
     {

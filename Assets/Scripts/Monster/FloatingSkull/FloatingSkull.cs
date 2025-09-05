@@ -18,6 +18,11 @@ public class FloatingSkull : MonoBehaviour
     public CircleCollider2D fieldOfVision;
     public Player targetPlayer;
     public ProjectileHandler ProjectileHandler;
+    
+    [Header("SFX")]
+    [SerializeField] public AudioClip projectileFireSFX;
+    [SerializeField] public AudioClip damagedSFX;
+    [SerializeField] public AudioClip deadSFX;
 
     private void Awake()
     {

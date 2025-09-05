@@ -331,7 +331,7 @@ MonoBehaviour:
     m_Bits: 8256
   excludeMask:
     serializedVersion: 2
-    m_Bits: 16000
+    m_Bits: 32384
   enemyMask:
     serializedVersion: 2
     m_Bits: 128

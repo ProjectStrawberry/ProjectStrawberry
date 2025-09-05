@@ -736,7 +736,7 @@ Transform:
   m_GameObject: {fileID: 7583348036468141242}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.22, y: 5.72, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -843,6 +843,9 @@ MonoBehaviour:
   <AnimationHandler>k__BackingField: {fileID: 0}
   <AttackHitBoxHandler>k__BackingField: {fileID: 0}
   <Rigidbody>k__BackingField: {fileID: 0}
+  closeAttackSFX: {fileID: 8300000, guid: 367722d24be6b3248a133584fe27b221, type: 3}
+  damagedSFX: {fileID: 8300000, guid: b1090a6100673ae4d908d2c329062286, type: 3}
+  rangedAttackSFX: {fileID: 8300000, guid: 8ab01dd4347c31f4d941c69b7a11c183, type: 3}
 --- !u!114 &8902497331060180841
 MonoBehaviour:
   m_ObjectHideFlags: 0

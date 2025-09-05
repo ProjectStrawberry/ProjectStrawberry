@@ -57,7 +57,6 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
         if (isInvincible)
         {
             curTime += Time.deltaTime;
-            Debug.Log(curTime);
             Sprite.color = blinkColor;
 
             // 무적 시간 끝나면 종료
@@ -73,6 +72,7 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
     public void StartComboAttack()
     {
         CrystalKnight.AttackHitBoxHandler.comboAttackCollider.enabled = true;
+        SoundManager.PlayClip(CrystalKnight.closeAttackSFX, true);
         StartCoroutine(MoveToPlayer());
         isComboAttackFirst++;
     }
@@ -179,7 +179,8 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
     private IEnumerator RushToPlayer()
     {
         isRushing = true;
-
+        SoundManager.PlayClip(CrystalKnight.closeAttackSFX, true);
+        
         // 패턴 시작 시 플레이어 위치 저장
         Vector2 targetPos = PlayerManager.Instance.player.transform.position;
         Vector2 startPos = CrystalKnight.transform.position;
@@ -263,12 +264,12 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
         int randIndex = Random.Range(0, randPosList.Count);
         var startPos = CrystalKnight.transform.position;
         var targetPos = randPosList[randIndex];
-        float curTime = 0f;
+        float curTimer = 0f;
 
-        while (curTime <= moveDuration)
+        while (curTimer <= moveDuration)
         {
-            curTime += Time.deltaTime;
-            float t = curTime / moveDuration;
+            curTimer += Time.deltaTime;
+            float t = curTimer / moveDuration;
             
             CrystalKnight.transform.position = Vector2.Lerp(startPos, targetPos, t);
             
@@ -286,17 +287,19 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
 
     private IEnumerator LongProjectileFireCoroutine()
     {
-        float curTime = 0f;
+        float curTimer = 0f;
         float fireTime = 0f;
         float rotationSpeed = 360f / longProjectileTime;
 
-        while (curTime <= longProjectileTime)
+        while (curTimer <= longProjectileTime)
         {
-            targetMiddle.transform.Rotate(Vector3.forward, -rotationSpeed * Time.deltaTime);
+            targetMiddle.transform.Rotate(Vector3.forward, 
+                -rotationSpeed * Time.deltaTime);
 
             fireTime += Time.deltaTime;
             if (fireTime >= projectileFireRate)
             {
+                SoundManager.PlayClip(CrystalKnight.rangedAttackSFX, true);
                 fireTime = 0f;
                 for (int i = 0; i < projectileHandlers.Count; i++)
                 {
@@ -305,7 +308,7 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
                 }
             }
             
-            curTime += Time.deltaTime;
+            curTimer += Time.deltaTime;
             yield return null;
         }
     }

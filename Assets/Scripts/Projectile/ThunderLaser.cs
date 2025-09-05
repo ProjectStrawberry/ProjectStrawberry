@@ -5,9 +5,15 @@ using UnityEngine;
 
 public class ThunderLaser : MonoBehaviour
 {
+    [SerializeField] private AudioClip thunderSFX;
     [SerializeField] private int damage;
     private bool isDamaged = false;
-    
+
+    private void Start()
+    {
+        SoundManager.PlayClip(thunderSFX, true);
+    }
+
     public void Init(int damage)
     {
         this.damage = damage;

@@ -104,6 +104,9 @@ MonoBehaviour:
   fieldOfVision: {fileID: 3029573663229890697}
   targetPlayer: {fileID: 0}
   ProjectileHandler: {fileID: 0}
+  projectileFireSFX: {fileID: 8300000, guid: d0bbfc12065990740869db0d2600280f, type: 3}
+  damagedSFX: {fileID: 8300000, guid: cac9eebc3376e3f48afd06b089c7dad1, type: 3}
+  deadSFX: {fileID: 8300000, guid: c17dfafd21aa55844a0b963d014e5eea, type: 3}
 --- !u!114 &8316522976749017508
 MonoBehaviour:
   m_ObjectHideFlags: 0

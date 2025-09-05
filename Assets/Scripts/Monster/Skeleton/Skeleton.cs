@@ -31,6 +31,11 @@ public class Skeleton : MonoBehaviour
     public event Action<Collision2D> OnCollide;
     public event Action<Collision2D> OnCollideExit;
 
+    [Header("SFX")] 
+    [SerializeField] public AudioClip closeAttackSfx;
+    [SerializeField] public AudioClip damagedSfx;
+    [SerializeField] public AudioClip deadSfx;
+
     private void Awake()
     {
         stateMachine = new SkeletonStateMachine(this);
@@ -75,6 +80,7 @@ public class Skeleton : MonoBehaviour
         var dir = stateMachine.Skeleton.transform.localScale.x > 0 ? 1 : -1;
         Vector3 startPos = transform.position;
         Vector3 targetPos = startPos + new Vector3(dir, 0, 0) * StatData.rushDistance;
+        SoundManager.PlayClip(closeAttackSfx, true);
         
         while (Vector3.Distance(transform.position, startPos) < StatData.rushDistance)
         {
