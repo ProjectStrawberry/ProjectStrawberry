@@ -21,6 +21,7 @@ public class UIGame : UIBase
     void Start()
     {
         GameManager.Instance.SubscribeOnDifficultyChange(ChangeUIDifficulty);
+
         playerCondition = PlayerManager.Instance.player.playerCondition;
         maxHealth = playerCondition._maxHealth;
         Debug.Log(playerCondition._maxHealth);
@@ -42,7 +43,9 @@ public class UIGame : UIBase
         currentdifficulty=GameManager.Instance.currentDifficulty;
         ChangeUIDifficulty(currentdifficulty);
         stopButton.onClick.AddListener(PressStopButton);
-        
+
+       
+
 
     }
 
@@ -71,7 +74,7 @@ public class UIGame : UIBase
             healthbarRect.sizeDelta = healthRect;
 
             Vector2 staminaRect = staminabarRect.sizeDelta;
-            staminaRect.x =90;
+            staminaRect.x = 240;
             staminabarRect.sizeDelta = staminaRect;
             maxHealth = playerCondition._maxHealth;
             maxStamina = playerCondition._maxStemina;

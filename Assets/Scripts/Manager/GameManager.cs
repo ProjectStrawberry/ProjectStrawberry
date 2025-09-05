@@ -51,7 +51,9 @@ public class GameManager : MonoSingleton<GameManager>
     public void ChangeDifficulty(Difficulty difficulty)
     {
         currentDifficulty = difficulty;
+        
         OnDifficultyChange?.Invoke(currentDifficulty);
+        PlayerManager.Instance.player.playerCondition.ResetHealthAndStamina();
     }
 
     public void SubscribeOnDifficultyChange(Action<Difficulty> action)
