@@ -9,6 +9,8 @@ public class SkeletonCondition : MonoBehaviour, IDamagable
     [SerializeField] private int maxHealth;
 
     public Skeleton Skeleton;
+    
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -16,10 +18,13 @@ public class SkeletonCondition : MonoBehaviour, IDamagable
 
         maxHealth = Skeleton.StatData.health;
         curHealth = maxHealth;
+        isDead = false;
     }
 
     public void GetDamage(int damage)
     {
+        if (isDead) return;
+        
         curHealth -= damage;
         Debug.Log(Skeleton.name + " 데미지를 입음: " + damage);
         
@@ -35,6 +40,22 @@ public class SkeletonCondition : MonoBehaviour, IDamagable
 
     public void Dead()
     {
+        isDead = true;
+        Skeleton.fieldOfVision.enabled = false;
+
+        int layer = LayerMask.NameToLayer("EnemyCorpse");
+        ChangeLayerRecursively(Skeleton.gameObject, layer);
+        
         Skeleton.Animator.SetTrigger(Skeleton.AnimationData.DieParameterHash);
+    }
+    
+    private void ChangeLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+        
+        foreach(Transform child in obj.transform)
+        {
+            ChangeLayerRecursively(child.gameObject, layer);
+        }
     }
 }

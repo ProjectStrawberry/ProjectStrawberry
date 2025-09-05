@@ -14,7 +14,6 @@ public class SkeletonAnimationHandler : MonoBehaviour
 
     public void OnAttackAnimationStart()
     {
-        Debug.Log("근접 공격 실행 메서드");
         Skeleton.AttackColliderHandler.TurnOnAttackCollider();
     }
 
@@ -27,7 +26,6 @@ public class SkeletonAnimationHandler : MonoBehaviour
 
     public void OnRushAttackAnimationStart()
     {
-        Debug.Log("돌진 공격 실행 메서드");
         Skeleton.AttackColliderHandler.TurnOnAttackCollider();
         Skeleton.RushAttackMove();
     }

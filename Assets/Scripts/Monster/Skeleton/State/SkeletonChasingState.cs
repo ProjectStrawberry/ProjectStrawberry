@@ -33,8 +33,9 @@ public class SkeletonChasingState : SkeletonBaseState
         base.Update();
 
         if (stateMachine.Skeleton.targetPlayer == null)
-            return;
-        
+        {
+            WaitPlayer();
+        }
         else
         {
             if (CheckCanWalk())
@@ -73,8 +74,8 @@ public class SkeletonChasingState : SkeletonBaseState
         }
         stateMachine.Skeleton.transform.localScale = new Vector3(isRight ? 2 : -2, 2, 1);
         
-        stateMachine.Skeleton.rigidbody.velocity = new Vector2(dir * stateMachine.Skeleton.StatData.walkSpeed,
-            stateMachine.Skeleton.rigidbody.velocity.y);
+        stateMachine.Skeleton._rigidbody.velocity = new Vector2(dir * stateMachine.Skeleton.StatData.walkSpeed,
+            stateMachine.Skeleton._rigidbody.velocity.y);
     }
 
     private void WaitPlayer()

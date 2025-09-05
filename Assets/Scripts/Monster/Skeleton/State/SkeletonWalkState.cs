@@ -39,7 +39,7 @@ public class SkeletonWalkState : SkeletonBaseState
         base.Update();
 
         // Skeleton 이동
-        stateMachine.Skeleton.rigidbody.velocity = new Vector2((isRight ? 1 : -1) * 2, stateMachine.Skeleton.rigidbody.velocity.y);
+        stateMachine.Skeleton._rigidbody.velocity = new Vector2((isRight ? 1 : -1) * 2, stateMachine.Skeleton._rigidbody.velocity.y);
         
         // 발판이 있는지 없는지 체크
         RaycastHit2D hit = Physics2D.Raycast(stateMachine.Skeleton.groundCheck.position, Vector3.down,

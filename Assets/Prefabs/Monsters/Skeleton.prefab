@@ -146,6 +146,9 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 64
+  rushStopLayer:
+    serializedVersion: 2
+    m_Bits: 8
   rigidbody: {fileID: 0}
   skeletonSprite: {fileID: 6893211121372988130}
 --- !u!114 &3686452043128248778
@@ -204,6 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6081705729192462338}
   - component: {fileID: 3202199024122715695}
+  - component: {fileID: 4972776071482938222}
   m_Layer: 8
   m_Name: FieldOfVision
   m_TagString: Untagged
@@ -258,7 +262,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2, y: 0}
+  m_Offset: {x: 2.25, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -269,8 +273,21 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5, y: 2.1}
+  m_Size: {x: 4.5, y: 2.1}
   m_EdgeRadius: 0
+--- !u!114 &4972776071482938222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3531486023660974706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b28a1c253c1a64590133e8187cf16b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Skeleton: {fileID: 0}
 --- !u!1 &5773154210655496025
 GameObject:
   m_ObjectHideFlags: 0

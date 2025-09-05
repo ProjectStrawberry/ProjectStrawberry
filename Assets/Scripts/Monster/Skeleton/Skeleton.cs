@@ -10,21 +10,23 @@ public class Skeleton : MonoBehaviour
     public Animator Animator { get; private set; }
     public SkeletonAnimationHandler AnimationHandler { get; private set; }
     [field:SerializeField] public SkeletonSO StatData { get; private set; }
-    public PlayerController targetPlayer;
-    public SkeletonCondition SkeletonCondition;
+    public Player targetPlayer;
+    public SkeletonCondition skeletonCondition;
 
     [Header("공격 관련")] 
     public Collider2D fieldOfVision;
     public Collider2D attackCollider;
     public LayerMask playerLayer;
     public SkeletonAttackColliderHandler AttackColliderHandler;
+    public Collider2D hitbox;
 
     [Header("이동 관련")] 
     public Transform groundCheck;
     public float groundCheckDistance = 0.5f;
     public LayerMask groundLayer;
     public LayerMask obstacleLayer;
-    [SerializeField] public Rigidbody2D rigidbody;
+    public LayerMask rushStopLayer;
+    [SerializeField] public Rigidbody2D _rigidbody;
     public SpriteRenderer skeletonSprite;
     public event Action<Collision2D> OnCollide;
     public event Action<Collision2D> OnCollideExit;
@@ -32,13 +34,12 @@ public class Skeleton : MonoBehaviour
     private void Awake()
     {
         stateMachine = new SkeletonStateMachine(this);
-        SkeletonCondition = GetComponent<SkeletonCondition>();
+        skeletonCondition = GetComponent<SkeletonCondition>();
         Animator = GetComponentInChildren<Animator>();
         AnimationHandler = GetComponentInChildren<SkeletonAnimationHandler>();
         AnimationData.Initialize();
         attackCollider.enabled = false;
-        rigidbody = GetComponent<Rigidbody2D>();
-        targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        _rigidbody = GetComponent<Rigidbody2D>();
         AttackColliderHandler = GetComponentInChildren<SkeletonAttackColliderHandler>();
     }
 
@@ -63,21 +64,10 @@ public class Skeleton : MonoBehaviour
         OnCollideExit?.Invoke(other);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") && !stateMachine.IsCurrentStateAttackState())
-        {
-            stateMachine.ChangeState(stateMachine.ChasingState);
-        }
-    }
-
     public void RushAttackMove()
     {
         Debug.Log("돌진합니다");
         StartCoroutine(RushCoroutine());
-        // var dir = stateMachine.Skeleton.transform.localScale.x > 0 ? 1 : -1;
-        //
-        // rigidbody.velocity = new Vector2(dir * StatData.rushSpeed * 5, rigidbody.velocity.y);
     }
 
     private IEnumerator RushCoroutine()
@@ -90,15 +80,22 @@ public class Skeleton : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, targetPos, 10 * StatData.rushSpeed * Time.deltaTime);
             
+            // 앞에 플레이어가 있는지 체크
             RaycastHit2D hitObstacle = Physics2D.Raycast(groundCheck.position + Vector3.up * 0.5f, 
                 Vector3.right * Mathf.Sign(transform.localScale.x)
                 , groundCheckDistance, playerLayer);
-            if (hitObstacle.collider != null)
+            
+            // 발 앞에 땅이 없는지 체크
+            RaycastHit2D hit = Physics2D.Raycast(stateMachine.Skeleton.groundCheck.position, Vector3.down,
+                stateMachine.Skeleton.groundCheckDistance, stateMachine.Skeleton.groundLayer);
+            
+            if (hitObstacle.collider != null || hit.collider == null)
             {
+                Debug.Log("더는 돌진하지 못합니다!");
                 break;
             }
             
-            yield return null; // 다음 프레임까지 대기
+            yield return null;
         }
     }
 }

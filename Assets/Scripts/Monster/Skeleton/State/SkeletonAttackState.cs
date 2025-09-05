@@ -47,13 +47,11 @@ public class SkeletonAttackState : SkeletonBaseState
 
     private void DefaultAttack()
     {
-        Debug.Log("근접 공격 실행2");
         StartAnimation(stateMachine.Skeleton.AnimationData.AttackParameterHash);
     }
 
     private void RushAttack()
     {
-        Debug.Log("돌진 공격 실행2");
         StartAnimation(stateMachine.Skeleton.AnimationData.RushAttackParameterHash);
     }
 
