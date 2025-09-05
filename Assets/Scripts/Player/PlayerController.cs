@@ -10,10 +10,13 @@ public class PlayerController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody;
     protected BoxCollider2D _boxCollider;
+
+    [Header("레이어 마스크 설정")]
     [SerializeField] private LayerMask GroundMask;
     [SerializeField] private LayerMask excludeMask;
     [SerializeField] private LayerMask enemyMask;
 
+    [Header("캐릭터 스프라이트")]
     [SerializeField] private SpriteRenderer characterRenderer;
 
     protected Vector2 movementDirection = Vector2.zero;
@@ -30,16 +33,16 @@ public class PlayerController : MonoBehaviour
 
     protected bool isRangeAttack;
 
-    public float fallMultiplier = 2f;
     private Vector2 moveInput;
-    public bool isGrounded;               // 바닥 체크
-    public bool isJumping;
-    public bool isLanding;
+    private bool isGrounded;               // 바닥 체크
+    private bool isJumping;
+    private bool isLanding;
     private bool isDash;
     private bool isHeal;
     private bool isDamaged;
     private bool isUpDown;
 
+    [HideInInspector]
     public bool canDoubleJump = false;
 
     private float dashCoolTime;
@@ -55,32 +58,34 @@ public class PlayerController : MonoBehaviour
 
     private float airAttackCoolTime;
 
-    [Header("Attack Settings")]
+    [Header("근접 공격 범위")]
     [SerializeField] private float attackRange = 1.0f;   // 공격 반경
     [SerializeField] private Vector2 attackOffset = new Vector2(1f, 0f); // 캐릭터 기준 오프셋
 
-    [Header("Air Attack Settings")]
+    [Header("공중 공격 범위")]
     [SerializeField] private float airAttackRange = 1.0f;   // 공격 반경
     [SerializeField] private Vector2 airAttackOffset = new Vector2(1f, 0f); // 캐릭터 기준 오프셋
 
     [SerializeField] private GameObject target;
 
-    [Header("얘가 낼 수 있는 소리들")]
+    [Header("힐, 대시 소리")]
     [SerializeField] private AudioClip healChanneling;
     [SerializeField] private AudioClip healCompleteClip;
     [SerializeField] private AudioClip dashClip;
 
     private GameObject healClip;
 
+    [Header("힐 파티클")]
     [SerializeField] private ParticleSystem healParticle;
 
+    [HideInInspector]
     public CinemachineVirtualCamera vcam;
-    public float vcamOriginSize;
-    Coroutine heailingZoomIn;
+    private float vcamOriginSize;
+    private Coroutine heailingZoomIn;
     private float zoomMultiplier = 0.2f;
 
-    public PlatformEffector2D platformEffector;
-    public bool readyDownJump;
+    private PlatformEffector2D platformEffector;
+    private bool readyDownJump;
 
 
 
@@ -138,11 +143,6 @@ public class PlayerController : MonoBehaviour
             animationHandler.HoldJumpLastFrame();
         }
 
-        // --- 낙하 속도 보정 (낙하가 더 빠르게 하고 싶다면) ---
-        //if (_rigidbody.velocity.y < 0)
-        //{
-        //    _rigidbody.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-        //}
     }
 
     private float Movement(Vector2 direction)
@@ -165,7 +165,6 @@ public class PlayerController : MonoBehaviour
     {
         if ((GroundMask & (1 << collision.gameObject.layer)) != 0) isLanding = true;
         animationHandler.StartSpeed();
-        //platformEffector = collision.GetComponent<PlatformEffector2D>();
 
     }
 
