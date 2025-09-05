@@ -17,8 +17,6 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
     private bool isInvincible = false;
     private int isComboAttackFirst = 0;
     private float curTime = 0f;
-    private float blinkTimer = 0f;
-    private bool isBlink = false;
 
     [Header("공격 관련 수치들")] 
     [SerializeField] private Vector2 bossRoomMin;
@@ -293,8 +291,6 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
     {
         isInvincible = true;
         curTime = 0f;
-        blinkTimer = 0f;
-        isBlink = true;
         Sprite.color = blinkColor;
     }
 
