@@ -150,6 +150,8 @@ public class SpawnPointController : MonoBehaviour
             crystal.gameObject.SetActive(false);
         }
         ResetTileSpawningAndClearTIles();
+
+        //마지막으로 상호작용된 포인트가 있으면 그 포인트의 몬스터만 수동으로 리스폰 해주고, activated 를 true로 만들어줘서 더이상 스폰되지않게한다
         if(lastActivatedPoint!=null)
         {
             RespawnMonsters();
