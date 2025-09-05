@@ -27,6 +27,7 @@ public class SkeletonAttackColliderHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("other: " + other);
         if (other.CompareTag("Player"))
         {
             Debug.Log("플레이어에게 데미지");

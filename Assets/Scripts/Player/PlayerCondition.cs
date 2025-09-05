@@ -65,6 +65,9 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         if (isInvincible) return;
         _currHealth -= 1;
         StartCoroutine(Invincible());
+        
+        Debug.Log("플레이어 현재 체력: " + _currHealth);
+
         StartCoroutine(playerController.Damaged());
         
         OnHealthChange?.Invoke(_currHealth);
