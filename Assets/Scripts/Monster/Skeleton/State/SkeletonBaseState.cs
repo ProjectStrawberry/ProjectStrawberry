@@ -49,7 +49,7 @@ public class SkeletonBaseState : IState
     protected bool IsInDefaultAttackRange()
     {
         var dist = Mathf.Abs(stateMachine.Skeleton.transform.position.x -
-                             stateMachine.Skeleton.targetPlayer.transform.position.x);
+                             PlayerManager.Instance.player.transform.position.x);
 
         if (dist <= stateMachine.Skeleton.StatData.DefaultAttackRange)
         {
@@ -64,7 +64,7 @@ public class SkeletonBaseState : IState
     protected bool IsInRushAttackRange()
     {
         var dist = Mathf.Abs(stateMachine.Skeleton.transform.position.x -
-                             stateMachine.Skeleton.targetPlayer.transform.position.x);
+                             PlayerManager.Instance.player.transform.position.x);
 
         if (dist <= stateMachine.Skeleton.StatData.RushAttackRange && dist > stateMachine.Skeleton.StatData.DefaultAttackRange)
         {
