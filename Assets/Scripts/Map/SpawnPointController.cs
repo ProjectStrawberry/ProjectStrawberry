@@ -14,7 +14,7 @@ public class SpawnPointController : MonoBehaviour
 
     Vector3 firstSpawnPosition = new Vector3(-2.7f, -5.0f, 0);
 
-
+    PlatformSpawner platformSpawner;
     public Vector3 CurrentSpawnPosition {  get; private set; }
 
     //스폰해야할 상황이 오면 currentspawnposition으로 스폰되면 됨
@@ -24,6 +24,7 @@ public class SpawnPointController : MonoBehaviour
         CurrentSpawnPosition=firstSpawnPosition;
         PlayerManager.Instance.GetSpawnPointController(this);
         spawnPointSavers=GetComponentsInChildren<SpawnPointSaver>().ToList();
+        platformSpawner=GetComponentInChildren<PlatformSpawner>();
     }
 
     // Update is called once per frame
@@ -35,8 +36,12 @@ public class SpawnPointController : MonoBehaviour
 
     public void SpawnMonsters(int spawnpointNum)
     {
+        if(spawnpointNum ==4)
+        {
+            platformSpawner.StartSpawning();
+        }
         StageLevel stageLevel = stageInfo.stages[spawnpointNum-1];
-        Debug.Log("몬스터 소환");
+
 
         foreach( var monster in stageLevel.monsters )
         {

@@ -24,10 +24,15 @@ public class PlatformSpawner : MonoBehaviour
     private void Start()
     {
         waitingtime = new WaitForSeconds(spawnInterval);
-        StartCoroutine(SetSpawnData());
+        
 
     }
 
+
+    public void StartSpawning()
+    {
+        StartCoroutine(SetSpawnData());
+    }
     IEnumerator SetSpawnData()
     {
         for(int i = 0; i < platformPaternList.Count; i++)
