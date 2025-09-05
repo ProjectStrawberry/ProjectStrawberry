@@ -50,7 +50,7 @@ public class SkeletonChasingState : SkeletonBaseState
         }
         
         var dist = Mathf.Abs(stateMachine.Skeleton.transform.position.x -
-                             stateMachine.Skeleton.targetPlayer.transform.position.x);
+                            PlayerManager.Instance.player.transform.position.x);
         if (dist <= stateMachine.Skeleton.StatData.RushAttackRange)
         {
             stateMachine.ChangeState(stateMachine.AttackState);
