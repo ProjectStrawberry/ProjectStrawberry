@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 9206055083087737493}
   - component: {fileID: 5473958007611030248}
   - component: {fileID: 6013299122495757392}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -499,8 +499,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrystalKnight: {fileID: 0}
   Sprite: {fileID: 0}
-  bossRoomMin: {x: -17, y: -9}
-  bossRoomMax: {x: 17, y: 9}
+  bossRoomMin: {x: 3, y: -48.5}
+  bossRoomMax: {x: 33, y: -35}
   ComboAttackDashSpeed: 28
   dashDuration: 0.5
   stopLayer:
@@ -510,9 +510,9 @@ MonoBehaviour:
   longProjectileTime: 6
   projectileFireRate: 0.2
   randPosList:
-  - {x: 0, y: 7}
-  - {x: 14, y: 7}
-  - {x: -14, y: 7}
+  - {x: 3, y: -34}
+  - {x: 18, y: -34}
+  - {x: 33, y: -34}
   moveDuration: 1.5
   thunderLaser: {fileID: 6315010838739722206, guid: f368d84ee66297142b1f136358a426a9, type: 3}
   beforeThunderLaser: {fileID: 2665222474194654207, guid: b76889fce5f8c5a40892a7ee846623d6, type: 3}
