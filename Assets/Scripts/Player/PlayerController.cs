@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip healCompleteClip;
     [SerializeField] private AudioClip dashClip;
 
+    private GameObject healClip;
+
     [SerializeField] private ParticleSystem healParticle;
 
     public CinemachineVirtualCamera vcam;
@@ -302,6 +304,8 @@ public class PlayerController : MonoBehaviour
             vcamOriginSize = vcam.m_Lens.OrthographicSize;
             heailingZoomIn = StartCoroutine(HealingZoomInCoroutine());
 
+            healClip = SoundManager.PlayClip(healChanneling, true);
+
             isHeal = true;
 
             float healDelay = statHandler.GetStat(StatType.HealDelay);
@@ -529,6 +533,7 @@ public class PlayerController : MonoBehaviour
 
     private void CancelHeal()
     {
+        Destroy(healClip);
         StopCoroutine(heailingZoomIn);
         vcam.m_Lens.OrthographicSize = vcamOriginSize;
         animationHandler.Heal(false);
