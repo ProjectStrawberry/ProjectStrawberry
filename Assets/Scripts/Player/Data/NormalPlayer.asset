@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4beacd36e2570864e876c6ca2e54e2ae, type: 3}
+  m_Name: NormalPlayer
+  m_EditorClassIdentifier: 
+  characterName: "\uB178\uBA40\uBAA8\uB4DC\uC758 \uAC81\uC7C1\uC774\uC624\uB9AC"
+  stats:
+  - statType: 0
+    baseValue: 5
+  - statType: 1
+    baseValue: 3
+  - statType: 2
+    baseValue: 8
+  - statType: 3
+    baseValue: 5
+  - statType: 4
+    baseValue: 0.5
+  - statType: 5
+    baseValue: 1
+  - statType: 6
+    baseValue: 3
+  - statType: 7
+    baseValue: 0.25
+  - statType: 21
+    baseValue: 0.5
+  - statType: 8
+    baseValue: 2
+  - statType: 9
+    baseValue: 10
+  - statType: 10
+    baseValue: 2
+  - statType: 11
+    baseValue: 0.3
+  - statType: 12
+    baseValue: 0.75
+  - statType: 13
+    baseValue: 0.3
+  - statType: 14
+    baseValue: 0.6
+  - statType: 15
+    baseValue: 8
+  - statType: 16
+    baseValue: 2
+  - statType: 17
+    baseValue: 2.4
+  - statType: 18
+    baseValue: 2.4
+  - statType: 19
+    baseValue: 0.4
+  - statType: 20
+    baseValue: 0.2
+  - statType: 21
+    baseValue: 0.5
+  - statType: 22
+    baseValue: 3

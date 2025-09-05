@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4beacd36e2570864e876c6ca2e54e2ae, type: 3}
-  m_Name: Player
+  m_Name: HardPlayer
   m_EditorClassIdentifier: 
-  characterName: "\u314E\u3147"
+  characterName: "\uD558\uB4DC\uBAA8\uB4DC\uC758 \uC6A9\uAC10\uD55C\uC624\uB9AC"
   stats:
   - statType: 0
-    baseValue: 5
+    baseValue: 3
   - statType: 1
-    baseValue: 5
+    baseValue: 3
   - statType: 2
     baseValue: 8
   - statType: 3
@@ -58,3 +58,7 @@ MonoBehaviour:
     baseValue: 0.4
   - statType: 20
     baseValue: 0.2
+  - statType: 21
+    baseValue: 0.5
+  - statType: 22
+    baseValue: 3

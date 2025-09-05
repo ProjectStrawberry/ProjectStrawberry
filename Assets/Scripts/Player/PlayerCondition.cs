@@ -33,14 +33,13 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Heal(int amount)
     {
-        Debug.Log(amount);
-        _currHealth += amount;
+        _currHealth = Math.Min(_maxHealth, _currHealth + amount);
         OnHealthChange?.Invoke(_currHealth);
     }
 
     public void RestoreStemina()
     {
-        _currStemina += 1;
+        _currStemina = Math.Min(_maxStemina, _currStemina + 1);
         OnStaminaChange?.Invoke(_currStemina);
     }
 

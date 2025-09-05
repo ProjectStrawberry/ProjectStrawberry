@@ -84,6 +84,8 @@ public class PlayerController : MonoBehaviour
     private PlatformEffector2D platformEffector;
     private bool readyDownJump;
 
+    private int attackCountForStemina;
+
 
 
     //private GameManager gameManager;
@@ -481,6 +483,9 @@ public class PlayerController : MonoBehaviour
 
                 target.GetDamage(damage);
                 Debug.Log($"{hit.name} 에게 {damage} 데미지를 입힘");
+                attackCountForStemina += 1;
+                Debug.Log($"{hit.name} 에게 {damage} 데미지를 입힘");
+                CheckAttackCountForStemina();
             }
         }
     }
@@ -501,6 +506,15 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
     }
 
+    private void CheckAttackCountForStemina()
+    {
+        if(attackCountForStemina >= statHandler.GetStat(StatType.RequireAttackForStemina))
+        {
+            attackCountForStemina = 0;
+            playerCondition.RestoreStemina();
+        }
+    }
+
     private void UseStemina()
     {
         // 스태미나 사용 실패 시 힐 취소
@@ -517,7 +531,7 @@ public class PlayerController : MonoBehaviour
     private void CancelHeal()
     {
         Destroy(healClip);
-        StopCoroutine(heailingZoomIn);
+        if(heailingZoomIn != null) StopCoroutine(heailingZoomIn);
         vcam.m_Lens.OrthographicSize = vcamOriginSize;
         animationHandler.Heal(false);
         CancelInvoke(); // 예약된 힐/스태미나 소모 취소
@@ -525,7 +539,7 @@ public class PlayerController : MonoBehaviour
 
     private void Heal()
     {
-        StopCoroutine(heailingZoomIn);
+        if (heailingZoomIn != null) StopCoroutine(heailingZoomIn);
         vcam.m_Lens.OrthographicSize = vcamOriginSize;
         if(healCompleteClip != null) SoundManager.PlayClip(healCompleteClip);
         isHeal = false;
