@@ -32,6 +32,9 @@ public class SoundManager : MonoSingleton<SoundManager>
     public AudioClip stageBgm;
     public AudioClip bossBgm;
 
+    public AudioClip buttonClip;
+    public AudioClip clearClip;
+
     public GameObject soundSourcePrefab;
 
     private void Awake()

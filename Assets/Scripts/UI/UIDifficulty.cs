@@ -35,6 +35,7 @@ public class UIDifficulty : UIBase
            
         }
         CloseUI();
+        ButtonSound();
 
     }
 
@@ -52,7 +53,7 @@ public class UIDifficulty : UIBase
             GameManager.Instance.ReStart();
         }
         CloseUI();
-
+        ButtonSound();
 
     }
 
@@ -60,5 +61,6 @@ public class UIDifficulty : UIBase
     {
         UIManager.Instance.OpenUI<UIStartScene>();
         CloseUI();
+        ButtonSound();
     }
 }

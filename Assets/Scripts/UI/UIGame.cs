@@ -121,6 +121,7 @@ public class UIGame : UIBase
     void PressStopButton()
     {
         UIManager.Instance.OpenUI<UITemporaryStop>();
+        ButtonSound();
 
     }
 }

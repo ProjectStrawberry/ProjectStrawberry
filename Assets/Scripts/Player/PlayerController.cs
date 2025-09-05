@@ -567,14 +567,6 @@ public class PlayerController : MonoBehaviour
         animationHandler.stopDamaged();
 
     }
-    public IEnumerator Invincible()
-    {
-        _boxCollider.excludeLayers += excludeMask;
-        
-        yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedInvincibleDuration));
-
-        _boxCollider.excludeLayers -= excludeMask;
-    } 
 
     public IEnumerator DownJump()
     {

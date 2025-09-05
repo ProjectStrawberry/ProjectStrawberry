@@ -10,11 +10,14 @@ public class UIClear :UIBase
     [SerializeField] Button mainmenuButton;
     void PressRestartButton()
     {
+        ButtonSound();
         //저장된 지점으로 가기
     }
 
     void PressMainMenuButton()
     {
+        ButtonSound();
 
     }
+
 }
