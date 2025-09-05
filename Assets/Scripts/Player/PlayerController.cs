@@ -22,9 +22,6 @@ public class PlayerController : MonoBehaviour
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
 
-    private Vector2 knockback = Vector2.zero;
-    private float knockbackDuration = 0.0f;
-
     protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
     protected PlayerCondition playerCondition;
@@ -148,12 +145,6 @@ public class PlayerController : MonoBehaviour
     private float Movement(Vector2 direction)
     {
         float targetSpeed = direction.x * statHandler.GetStat(StatType.Speed);
-        //넉백 구현 시 사용==============================================================================
-        //if (knockbackDuration > 0.0f)
-        //{
-        //    direction *= 0.2f;
-        //    direction += knockback;
-        //}
 
         animationHandler.Move(direction);
         targetVector = direction + adjustVector;
@@ -191,12 +182,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void ApplyKnockback(Transform other, float power, float duration)
-    {
-        knockbackDuration = duration;
-        knockback = -(other.position - transform.position).normalized * power;
-    }
-
 
     public void Dead()
     {
@@ -214,7 +199,6 @@ public class PlayerController : MonoBehaviour
             component.enabled = false;
         }
 
-        Destroy(gameObject, 2f);
     }
     //gameManager.GameOver();
 
@@ -596,7 +580,7 @@ public class PlayerController : MonoBehaviour
         isDamaged = true;
         animationHandler.playDamaged();
 
-        yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedKnockBackDuration));
+        yield return new WaitForSeconds(statHandler.GetStat(StatType.DamagedAnimatingDuration));
 
         isDamaged = false;
         animationHandler.stopDamaged();
@@ -620,4 +604,5 @@ public class PlayerController : MonoBehaviour
 
         originEffector.surfaceArc = 180;
     }
+   
 }
