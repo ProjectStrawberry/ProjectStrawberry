@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6156247171340819700}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5147707697492759174}
   - component: {fileID: 1380483154779770540}
   - component: {fileID: 4511905860025330318}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 2256604213344590652}
   - component: {fileID: 7543917456162539436}
   - component: {fileID: 7684702390853336648}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PlayerProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

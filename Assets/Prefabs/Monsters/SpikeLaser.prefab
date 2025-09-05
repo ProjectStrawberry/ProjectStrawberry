@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3486024130148716664}
   - component: {fileID: 251942265176418130}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 200421826236437290}
   - component: {fileID: 2676688946446864679}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: SpikeLaser
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3411992998972793536}
   - component: {fileID: 3805335007039208313}
-  m_Layer: 6
+  m_Layer: 13
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}

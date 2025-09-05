@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6823895233815984986}
   - component: {fileID: 1466260740292315884}
   - component: {fileID: 2993416987900174692}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FloatingSkullProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 572866799986772234}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 508701071368787679}
   - component: {fileID: 4574198997877791370}
   - component: {fileID: 2134990196450825664}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

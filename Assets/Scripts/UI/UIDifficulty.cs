@@ -21,6 +21,7 @@ public class UIDifficulty : UIBase
     void PressNormalButton()
     {
         GameManager.Instance.ChangeDifficulty(Difficulty.Normal);
+        SoundManager.Instance.ChangeBackGroundMusice(SoundManager.Instance.stageBgm);
         if (!isAlreadyStarted)
         {
             
@@ -40,7 +41,8 @@ public class UIDifficulty : UIBase
     void PressHardButton()
     {
         GameManager.Instance.ChangeDifficulty(Difficulty.Hard);
-        if(!isAlreadyStarted)
+        SoundManager.Instance.ChangeBackGroundMusice(SoundManager.Instance.stageBgm);
+        if (!isAlreadyStarted)
         {
             GameManager.Instance.StartGame();
             isAlreadyStarted = true;
