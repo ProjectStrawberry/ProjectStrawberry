@@ -43,8 +43,9 @@ public class GameManager : MonoSingleton<GameManager>
         player.playerCondition.ResetHealthAndStamina();
         FindObjectOfType<UIGame>().ResetUI();
         SpawnPointController spawnController = FindObjectOfType<SpawnPointController>();
-        spawnController.ReturnMonstersToPool();
         spawnController.ResetSpawnPointSavers();
+        spawnController.ReturnMonstersToPool();
+        
         player.transform.position = PlayerManager.Instance.spawnPointController.CurrentSpawnPosition;
         UIManager.Instance.CloseUI<UIGameOver>();
         Time.timeScale = 1;
