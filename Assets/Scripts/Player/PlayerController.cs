@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject target;
 
     [Header("얘가 낼 수 있는 소리들")]
+    [SerializeField] private AudioClip healChanneling;
     [SerializeField] private AudioClip healCompleteClip;
     [SerializeField] private AudioClip dashClip;
 

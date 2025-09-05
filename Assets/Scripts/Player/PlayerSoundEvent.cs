@@ -15,42 +15,42 @@ public class PlayerSoundEvent : MonoBehaviour
 
     public void FootStep_1()
     {
-        SoundManager.PlayClip(footStep);
+        SoundManager.PlayClip(footStep_1);
     }
 
     public void FootStep_2()
     {
-        SoundManager.PlayClip(footStep);
+        SoundManager.PlayClip(footStep_2);
     }
 
     public void Attack_1()
     {
-        //SoundMnager.PlayClip(attack_1);
+        SoundManager.PlayClip(attack_1);
     }
 
     public void Attack_2()
     {
-        //SoundMnager.PlayClip(attack_2);
+        SoundManager.PlayClip(attack_2);
     }
 
     public void RangeAttack()
     {
-        //SoundMnager.PlayClip(rangeAttack);
+        SoundManager.PlayClip(rangeAttack);
     }
 
     public void Jump()
     {
-        //SoundMnager.PlayClip(jump);
+        SoundManager.PlayClip(jump);
     }
 
     public void DoubleJump()
     {
-        //SoundMnager.PlayClip(doubleJump);
+        SoundManager.PlayClip(doubleJump);
     }
 
     public void Damaged()
     {
-        //SoundMnager.PlayClip(damaged);
+        SoundManager.PlayClip(damaged);
     }
 
 }

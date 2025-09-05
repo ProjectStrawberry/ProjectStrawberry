@@ -3834,9 +3834,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 127879680327299109, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: dashClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 74f6d763d4f8708449694da985139cdb, type: 3}
+    - target: {fileID: 127879680327299109, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
       propertyPath: groundCheck
       value: 
       objectReference: {fileID: 997046455}
+    - target: {fileID: 127879680327299109, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: healChanneling
+      value: 
+      objectReference: {fileID: 8300000, guid: e8fe706a04f89b84aaf8d9cb88b09bcb, type: 3}
+    - target: {fileID: 127879680327299109, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: healCompleteClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a650dff7ab6a13442a7aab5f8b221488, type: 3}
     - target: {fileID: 327210880986023357, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -3849,6 +3861,38 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3116700359293452728, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: jump
+      value: 
+      objectReference: {fileID: 8300000, guid: b4b60f086305c6843996cd67dd4a4d36, type: 3}
+    - target: {fileID: 3116700359293452728, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: damaged
+      value: 
+      objectReference: {fileID: 8300000, guid: 80e3c1966c521584097b9e34bf36c16d, type: 3}
+    - target: {fileID: 3116700359293452728, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: attack_1
+      value: 
+      objectReference: {fileID: 8300000, guid: 8cb4eb2f2930d48448b79d7a0b0b550e, type: 3}
+    - target: {fileID: 3116700359293452728, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: attack_2
+      value: 
+      objectReference: {fileID: 8300000, guid: 2a4cc5f5235b9d142be4785e76a25925, type: 3}
+    - target: {fileID: 3116700359293452728, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: doubleJump
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e023be4cadcfee4fb76af1133bcd18b, type: 3}
+    - target: {fileID: 3116700359293452728, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: footStep_1
+      value: 
+      objectReference: {fileID: 8300000, guid: d9001502a02ec5146be856a4d0af4f8d, type: 3}
+    - target: {fileID: 3116700359293452728, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: footStep_2
+      value: 
+      objectReference: {fileID: 8300000, guid: 7d6a39bac2314fb4994587b830642b68, type: 3}
+    - target: {fileID: 3116700359293452728, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
+      propertyPath: rangeAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: fd73b7f2a4ff31646b54c8585e5b829c, type: 3}
     - target: {fileID: 3205574222752280842, guid: 5e5bc663d6cf2734b9a6b98bdd02a9c8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.3
@@ -100043,7 +100087,7 @@ Transform:
   m_GameObject: {fileID: 1814238715}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.7777777, y: 2.4899998, z: -10}
+  m_LocalPosition: {x: 5.7777777, y: 3.2899904, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
