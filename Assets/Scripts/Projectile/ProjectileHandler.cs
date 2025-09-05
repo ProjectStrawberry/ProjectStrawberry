@@ -63,8 +63,6 @@ public class ProjectileHandler : MonoBehaviour
             angle += randomSpread;
             CreateProjectile(DirectionToTarget(target), angle);
         }
-
-        //if (attackSoundClip)  SoundManager.PlayClip(attackSoundClip); // 발사 사운드 삽입시
     }
     public void Attack(GameObject targetObj)
     {
@@ -81,8 +79,6 @@ public class ProjectileHandler : MonoBehaviour
             angle += randomSpread;
             CreateProjectile(DirectionToTarget(target), angle);
         }
-
-        //if (attackSoundClip)  SoundManager.PlayClip(attackSoundClip); // 발사 사운드 삽입시
     }
 
     private void CreateProjectile(Vector2 _lookDirection, float angle)

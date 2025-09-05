@@ -55,7 +55,6 @@ public class PlayerCondition : MonoBehaviour, IDamagable
 
     public void Dead()
     {
-        playerController.Dead();
         GameManager.Instance.GameOver();
     }
 
@@ -66,7 +65,6 @@ public class PlayerCondition : MonoBehaviour, IDamagable
         StartCoroutine(playerController.Damaged());
         StartCoroutine(playerController.Invincible());
         OnHealthChange?.Invoke(_currHealth);
-        Debug.Log("플레이어 현재 체력: " + _currHealth);
         if( _currHealth <= 0 ) Dead();
     }
 

@@ -28,7 +28,9 @@ public class SoundManager : MonoSingleton<SoundManager>
 
 
     private AudioSource musicAudioSource;
-    public AudioClip musicClip;
+    public AudioClip titleBgm;
+    public AudioClip stageBgm;
+    public AudioClip bossBgm;
 
     public GameObject soundSourcePrefab;
 
@@ -44,7 +46,6 @@ public class SoundManager : MonoSingleton<SoundManager>
 
         //musicClip = Resources.Load("Sound/BGM/사운드 이름") as AudioClip; //배경음악
         soundSourcePrefab = Resources.Load("Prefabs/SoundSource") as GameObject;
-        Debug.Log(soundSourcePrefab);
 
 
     }
@@ -147,7 +148,7 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     private void Start()
     {
-        ChangeBackGroundMusice(musicClip);
+        ChangeBackGroundMusice(titleBgm);
     }
 
     public void ChangeBackGroundMusice(AudioClip clip)

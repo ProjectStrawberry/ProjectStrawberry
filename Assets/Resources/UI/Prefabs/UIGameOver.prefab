@@ -744,7 +744,7 @@ GameObject:
   - component: {fileID: 367075926745565192}
   - component: {fileID: 8273279923707427537}
   m_Layer: 5
-  m_Name: ClearText
+  m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -797,7 +797,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Clear
+  m_text: GameOVer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6003357793e108742b4e8dd57648ae94, type: 2}
   m_sharedMaterial: {fileID: -8839356453700110526, guid: 6003357793e108742b4e8dd57648ae94, type: 2}
