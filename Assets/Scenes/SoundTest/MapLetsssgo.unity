@@ -1688,8 +1688,8 @@ PolygonCollider2D:
     - - {x: 85, y: -55}
       - {x: 85, y: -127}
       - {x: 107, y: -127}
-      - {x: 107, y: -108}
-      - {x: 120, y: -108}
+      - {x: 107, y: -109}
+      - {x: 120, y: -109}
       - {x: 120, y: -55}
   m_UseDelaunayMesh: 0
 --- !u!114 &500630501
@@ -98325,10 +98325,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 107, y: -108}
+    - - {x: 107, y: -109}
       - {x: 107, y: -130}
       - {x: 143, y: -130}
-      - {x: 143, y: -108}
+      - {x: 143, y: -109}
   m_UseDelaunayMesh: 0
 --- !u!114 &1904095918
 MonoBehaviour:
