@@ -28,7 +28,9 @@ public class SoundManager : MonoSingleton<SoundManager>
 
 
     private AudioSource musicAudioSource;
-    public AudioClip musicClip;
+    public AudioClip titleBgm;
+    public AudioClip stageBgm;
+    public AudioClip bossBgm;
 
     public GameObject soundSourcePrefab;
 
@@ -146,7 +148,7 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     private void Start()
     {
-        ChangeBackGroundMusice(musicClip);
+        ChangeBackGroundMusice(titleBgm);
     }
 
     public void ChangeBackGroundMusice(AudioClip clip)
