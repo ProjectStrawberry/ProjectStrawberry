@@ -4,7 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerController : MonoBehaviour
 {
@@ -387,7 +386,7 @@ public class PlayerController : MonoBehaviour
         {
             animationHandler.HoldJumpLastFrame();
         }
-        _boxCollider.includeLayers = excludeMask;
+        //_boxCollider.includeLayers = excludeMask;
         _boxCollider.excludeLayers = curExcludeLayers;
     }
 
