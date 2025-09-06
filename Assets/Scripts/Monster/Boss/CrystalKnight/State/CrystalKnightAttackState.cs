@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CrystalKnightAttackState : CrystalKnightBaseState
 {
+    private bool isActed = false;
+    
     public CrystalKnightAttackState(CrystalKnightStateMachine stateMachine) : base(stateMachine)
     {
     }
@@ -12,21 +14,47 @@ public class CrystalKnightAttackState : CrystalKnightBaseState
     {
         base.Enter();
         Debug.Log(stateMachine.CrystalKnight.name + " Attack 상태 입장");
+        isActed = false;
 
-        if (!stateMachine.isDead)
-        {
-            ChooseBossAction();
-        }
-        else
-        {
-            stateMachine.ChangeState(stateMachine.DeathState);
-        }
+        // if (!stateMachine.isDead)
+        // {
+        //     ChooseBossAction();
+        // }
+        // else
+        // {
+        //     stateMachine.ChangeState(stateMachine.DeathState);
+        // }
     }
 
     public override void Exit()
     {
         base.Exit();
         Debug.Log(stateMachine.CrystalKnight.name + " Attack 상태 퇴장");
+        isActed = true;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if (stateMachine.TargetPlayer.playerCondition._currHealth <= 0)
+        {
+            return;
+        }
+        
+        if (isActed == false)
+        {
+            if (!stateMachine.isDead)
+            {
+                ChooseBossAction();
+            }
+            else
+            {
+                stateMachine.ChangeState(stateMachine.DeathState);
+            }
+
+            isActed = true;
+        }
     }
 
     private void ChooseBossAction()

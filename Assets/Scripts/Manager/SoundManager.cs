@@ -152,6 +152,8 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     public void ChangeBackGroundMusice(AudioClip clip)
     {
+        if (clip == musicAudioSource.clip) return;
+        
         musicAudioSource.Stop();
         musicAudioSource.clip = clip;
         musicAudioSource.Play();

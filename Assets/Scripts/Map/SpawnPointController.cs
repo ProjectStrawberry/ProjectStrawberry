@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using System.Reflection;
+
 public class SpawnPointController : MonoBehaviour
 {
 
@@ -11,8 +13,8 @@ public class SpawnPointController : MonoBehaviour
 
     Queue<GameObject> skeletonPrefabList = new Queue<GameObject>();
     Queue<GameObject> floatingPrefabList = new Queue<GameObject>();
-    GameObject crystal;
-    GameObject clearTIle;
+    public GameObject crystal;
+    [SerializeField] public GameObject clearTIle;
 
     Coroutine currentClearTileCoroutine;
 
@@ -20,6 +22,7 @@ public class SpawnPointController : MonoBehaviour
     [SerializeField] GameObject floatingSKullPrefab;
     [SerializeField] GameObject crystalKnightPrefab;
     [SerializeField] private GameObject clearTile;
+    [SerializeField] private GameObject fragileTile;
 
     Vector3 firstSpawnPosition = new Vector3(-2.7f, -5.0f, 0);
 
@@ -43,10 +46,19 @@ public class SpawnPointController : MonoBehaviour
         lastActivatedPoint = spawnPointSaver;
     }
 
+    public void SpawnClearTile()
+    {
+        currentClearTileCoroutine = StartCoroutine(ClearTileCoroutine());
+    }
+    
     public void SpawnMonsters(int spawnpointNum)
     {
         if (spawnpointNum == 4 && lastActivatedPoint.IsAlreadyActivated == false) 
         {
+            if (!GameObject.Find("FragileTile"))
+            {
+                Instantiate(fragileTile, new Vector3(17.5f, -48.5f, 0f), Quaternion.identity);
+            }
             platformSpawner.StartSpawning();
             currentClearTileCoroutine = StartCoroutine(ClearTileCoroutine());
         }
@@ -96,6 +108,8 @@ public class SpawnPointController : MonoBehaviour
                     if(crystal!=null)
                     {
                         crystal.SetActive(true);
+                        crystal.GetComponent<CrystalKnight>().StateMachine.ChangeState(crystal.GetComponent<CrystalKnight>().StateMachine.IdleState);
+                        crystal.GetComponent<CrystalKnight>().StateMachine.cycleIndex = 0;
                         crystal.transform.position = monster.spawnPoints[i];
                     }
                     else
@@ -157,11 +171,17 @@ public class SpawnPointController : MonoBehaviour
         {
             StopCoroutine(currentClearTileCoroutine);
         }
-        clearTIle?.SetActive(false);
+
+        if (clearTIle != null)
+        {
+            clearTIle?.SetActive(false);
+        }
+        
     }
     
     private IEnumerator ClearTileCoroutine()
     {
+        Debug.Log("123");
         yield return new WaitForSeconds(0.7f);
 
         SoundManager.Instance.ChangeBackGroundMusice(SoundManager.Instance.bossBgm);
@@ -171,6 +191,7 @@ public class SpawnPointController : MonoBehaviour
         }
         else
         {
+            Debug.Log("Clear Tile 생성");
             clearTIle = Instantiate(clearTile, new Vector3(17.8f, -30.9f, 0f), Quaternion.identity);
         }
     }

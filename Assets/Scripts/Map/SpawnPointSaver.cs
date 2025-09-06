@@ -9,7 +9,7 @@ public class SpawnPointSaver : MonoBehaviour
     [SerializeField] Transform spawnPosition;
     [SerializeField] public int savePointNum;
 
-    public bool IsAlreadyActivated { get; set; }=false;
+    public bool IsAlreadyActivated { get; set; } = false;
     private void Start()
     {
         controller = GetComponentInParent<SpawnPointController>();
@@ -17,18 +17,19 @@ public class SpawnPointSaver : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             controller.GetSpawnpoint(spawnPoint,this);
            
-            if(IsAlreadyActivated==false)
+            if (IsAlreadyActivated == false)
             {
-                
                 controller.SpawnMonsters(savePointNum);
-                
+                controller.ResetSpawnPointSavers();
+                controller.ReturnMonstersToPool();
             }
             IsAlreadyActivated = true;
 
+            controller.SpawnClearTile();
         }
     }
 

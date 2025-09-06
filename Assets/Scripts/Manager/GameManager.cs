@@ -33,6 +33,10 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void GameOver()
     {
+        FindObjectOfType<CrystalKnight>().StateMachine.ChangeState(FindObjectOfType<CrystalKnight>().StateMachine.VictoryState);
+        Destroy(GameObject.Find("ClearTile(Clone)"));
+        GameObject.Find("SpawnPointController").GetComponent<SpawnPointController>().clearTIle = null;
+        
         Time.timeScale = 0;
         UIManager.Instance.OpenUI<UIGameOver>();
     }
@@ -43,13 +47,12 @@ public class GameManager : MonoSingleton<GameManager>
         player.playerCondition.ResetHealthAndStamina();
         FindObjectOfType<UIGame>().ResetUI();
         SpawnPointController spawnController = FindObjectOfType<SpawnPointController>();
-        spawnController.ResetSpawnPointSavers();
-        spawnController.ReturnMonstersToPool();
+        // spawnController.ResetSpawnPointSavers();
+        // spawnController.ReturnMonstersToPool();
         
         player.transform.position = PlayerManager.Instance.spawnPointController.CurrentSpawnPosition;
         UIManager.Instance.CloseUI<UIGameOver>();
         Time.timeScale = 1;
-
     }
 
 

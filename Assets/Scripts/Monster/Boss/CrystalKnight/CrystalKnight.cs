@@ -34,6 +34,11 @@ public class CrystalKnight : MonoBehaviour
 
     private void Start()
     {
+        if (PlayerManager.Instance.player != null)
+        {
+            StateMachine.TargetPlayer = PlayerManager.Instance.player;
+        }
+        
         StateMachine.ChangeState(StateMachine.IdleState);
     }
 
