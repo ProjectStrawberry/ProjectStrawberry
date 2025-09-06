@@ -66,7 +66,6 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
                 Sprite.color = originColor; // 원래 색상으로 복구
             }
         }
-        
     }
 
     public void StartComboAttack()

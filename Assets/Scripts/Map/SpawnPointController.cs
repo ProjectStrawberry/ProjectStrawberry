@@ -29,16 +29,13 @@ public class SpawnPointController : MonoBehaviour
     SpawnPointSaver lastActivatedPoint;
 
     //�����ؾ��� ��Ȳ�� ���� currentspawnposition���� �����Ǹ� ��
-    // Start is called before the first frame update
     void Start()
     {
-        CurrentSpawnPosition=firstSpawnPosition;
+        CurrentSpawnPosition = firstSpawnPosition;
         PlayerManager.Instance.GetSpawnPointController(this);
-        spawnPointSavers=GetComponentsInChildren<SpawnPointSaver>().ToList();
-        platformSpawner=GetComponentInChildren<PlatformSpawner>();
+        spawnPointSavers = GetComponentsInChildren<SpawnPointSaver>().ToList();
+        platformSpawner = GetComponentInChildren<PlatformSpawner>();
     }
-
-    // Update is called once per frame
 
     public void GetSpawnpoint(Vector3 vector3,SpawnPointSaver spawnPointSaver)
     {
@@ -48,42 +45,35 @@ public class SpawnPointController : MonoBehaviour
 
     public void SpawnMonsters(int spawnpointNum)
     {
-        if(spawnpointNum == 4&& lastActivatedPoint.IsAlreadyActivated == false) 
+        if (spawnpointNum == 4 && lastActivatedPoint.IsAlreadyActivated == false) 
         {
             platformSpawner.StartSpawning();
             currentClearTileCoroutine = StartCoroutine(ClearTileCoroutine());
-            
         }
+        
         StageLevel stageLevel = stageInfo.stages[spawnpointNum-1];
-
-
-        foreach( var monster in stageLevel.monsters )
+        
+        foreach (var monster in stageLevel.monsters)
         {
-            if(monster.type == MonsterType.Skeleton)
+            if (monster.type == MonsterType.Skeleton)
             {
-                for(int i=0; i<monster.spawnPoints.Length; i++)
+                for (int i = 0; i < monster.spawnPoints.Length; i++)
                 {
-                    if(skeletonPrefabList.Count>0)
+                    if (skeletonPrefabList.Count>0)
                     {
                         GameObject go=skeletonPrefabList.Dequeue();
                         go.SetActive(true);
                         go.transform.position=monster.spawnPoints[i];
-                       
-                        
                     }
                     else
                     {
                         GameObject go= Instantiate(skeletonPrefab, monster.spawnPoints[i], Quaternion.identity);
                         go.SetActive(true) ;
-                        
                     }
-                        
                 }
-                
             }
             else if(monster.type == MonsterType.FloatingSkull)
             {
-
                 for (int i = 0; i < monster.spawnPoints.Length; i++)
                 {
                     if (floatingPrefabList.Count > 0)
@@ -91,16 +81,12 @@ public class SpawnPointController : MonoBehaviour
                         GameObject go = floatingPrefabList.Dequeue();
                         go.SetActive(true);
                         go.transform.position = monster.spawnPoints[i];
-                        
-                        
                     }
                     else
                     {
                         GameObject go= Instantiate(floatingSKullPrefab, monster.spawnPoints[i], Quaternion.identity);
                         go.SetActive(true);
-                        
                     }
-                        
                 }
             }
             else
@@ -111,7 +97,6 @@ public class SpawnPointController : MonoBehaviour
                     {
                         crystal.SetActive(true);
                         crystal.transform.position = monster.spawnPoints[i];
-
                     }
                     else
                     {
@@ -119,15 +104,10 @@ public class SpawnPointController : MonoBehaviour
                         go.SetActive(true);
                         crystal = go;
                     }
-                        
-                        
-                    
-                       
                 }
             }
         }
     }
-
 
     public void ReturnMonstersToPool()
     {
@@ -137,35 +117,31 @@ public class SpawnPointController : MonoBehaviour
         {
             skeleton.gameObject.SetActive(false);
             skeletonPrefabList.Enqueue(skeleton.gameObject);
-            
-            
         }
-        foreach(FloatingSkull floatingSkull in currentfloatingSkulls)
+        foreach (FloatingSkull floatingSkull in currentfloatingSkulls)
         {
             floatingSkull.gameObject.SetActive(false);
             floatingPrefabList.Enqueue(floatingSkull.gameObject);
         }
-        if(crystal != null)
+        if (crystal != null)
         {
             crystal.gameObject.SetActive(false);
         }
         ResetTileSpawningAndClearTIles();
 
         //마지막으로 상호작용된 포인트가 있으면 그 포인트의 몬스터만 수동으로 리스폰 해주고, activated 를 true로 만들어줘서 더이상 스폰되지않게한다
-        if(lastActivatedPoint!=null)
+        if (lastActivatedPoint!=null)
         {
             RespawnMonsters();
         }
-        
     }
 
     void RespawnMonsters()
     {
-        
         SpawnMonsters(lastActivatedPoint.savePointNum);
         lastActivatedPoint.IsAlreadyActivated = true;
-
     }
+    
     public void ResetSpawnPointSavers()
     {
         foreach (var savepoint in spawnPointSavers)
@@ -173,8 +149,7 @@ public class SpawnPointController : MonoBehaviour
             savepoint.ResetSpawnerCondition();
         }
     }
-
-
+    
     void ResetTileSpawningAndClearTIles()
     {
         platformSpawner.StopSpawning();
@@ -184,6 +159,7 @@ public class SpawnPointController : MonoBehaviour
         }
         clearTIle?.SetActive(false);
     }
+    
     private IEnumerator ClearTileCoroutine()
     {
         yield return new WaitForSeconds(0.7f);
@@ -197,7 +173,6 @@ public class SpawnPointController : MonoBehaviour
         {
             clearTIle = Instantiate(clearTile, new Vector3(17.8f, -30.9f, 0f), Quaternion.identity);
         }
-            
     }
 }
 
