@@ -308,11 +308,34 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
 
     public void EndLongProjectileFire()
     {
+        StartCoroutine(ReturnToBossRoom());
+    }
+
+    private IEnumerator ReturnToBossRoom()
+    {
+        Vector2 current = CrystalKnight.transform.position;
+
+        // 목표 위치 계산
+        float targetX = Mathf.Clamp(current.x, bossRoomMin.x, bossRoomMax.x);
+        float targetY = Mathf.Clamp(current.y, bossRoomMin.y, bossRoomMax.y);
+        Vector2 target = new Vector2(targetX, targetY);
+
+        // 타겟까지 Lerp로 이동
+        while ((current - target).sqrMagnitude > 0.01f)
+        {
+            current = Vector2.Lerp(current, target, Time.deltaTime * 5f);
+            CrystalKnight.transform.position = current;
+            yield return null;
+        }
+
+        // 정확히 타겟에 고정
+        CrystalKnight.transform.position = target;
+        
         // 이후 Idle 상태로 돌아가 정해진 시간만큼 대기한다.
         CrystalKnight.Animator.SetBool(CrystalKnight.AnimationData.LongProjectileFireParameterHash, false);
         CrystalKnight.StateMachine.ChangeState(CrystalKnight.StateMachine.IdleState);
     }
-
+    
     public void BlinkSprite()
     {
         isInvincible = true;
@@ -330,5 +353,8 @@ public class CrystalKnightAnimationHandler : MonoBehaviour
         yield return new WaitForSeconds(2f);
         
         Destroy(CrystalKnight.gameObject);
+
+        Time.timeScale = 0f;
+        UIManager.Instance.OpenUI<UIClear>();
     }
 }

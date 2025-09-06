@@ -342,6 +342,8 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DashCoroutine(float duration)
     {
+        var curExcludeLayers = _boxCollider.excludeLayers;
+        
         _boxCollider.excludeLayers = excludeMask;
         animationHandler.Dash(true);
 
@@ -386,6 +388,7 @@ public class PlayerController : MonoBehaviour
             animationHandler.HoldJumpLastFrame();
         }
         _boxCollider.includeLayers = excludeMask;
+        _boxCollider.excludeLayers = curExcludeLayers;
     }
 
     private void HandleComboAttack()

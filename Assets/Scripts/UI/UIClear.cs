@@ -11,13 +11,14 @@ public class UIClear :UIBase
     void PressRestartButton()
     {
         ButtonSound();
-        //ÀúÀåµÈ ÁöÁ¡À¸·Î °¡±â
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
-    void PressMainMenuButton()
+    public void PressMainMenuButton()
     {
         ButtonSound();
-
+        UIManager.Instance.CloseUI<UIClear>();
+        UIManager.Instance.OpenUI<UIStartScene>();
     }
 
 }

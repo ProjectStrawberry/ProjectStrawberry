@@ -29,7 +29,10 @@ public class SpawnPointSaver : MonoBehaviour
             }
             IsAlreadyActivated = true;
 
-            controller.SpawnClearTile();
+            if (savePointNum == 4)
+            {
+                controller.SpawnClearTile();
+            }
         }
     }
 

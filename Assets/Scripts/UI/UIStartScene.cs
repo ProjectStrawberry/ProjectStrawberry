@@ -6,12 +6,10 @@ using UnityEngine.UI;
 
 public class UIStartScene : UIBase
 {
-    // Start is called before the first frame update
     [SerializeField] Button startButton;
     [SerializeField] Button optionsButton;
     [SerializeField] Button exitButton;
-
-   
+    
     string messageText = "Quit the Game?";
     void Start()
     {
@@ -19,8 +17,6 @@ public class UIStartScene : UIBase
         optionsButton.onClick.AddListener(PressOptionsButton);
         exitButton.onClick.AddListener(PressExitButton);
     }
-
-
 
     void PressStartButton()
     {
@@ -39,13 +35,8 @@ public class UIStartScene : UIBase
     {
         ButtonSound();
 
-
         var popUp = UIManager.Instance.GetUI<UIPopUp>();
             popUp.OpenPopUP(messageText, ExitGame, ClosePopup);
-
- 
-        
-        
     }
 
     //구체적 행동도 여기 써야하나?

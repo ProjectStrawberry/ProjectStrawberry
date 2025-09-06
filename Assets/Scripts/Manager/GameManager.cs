@@ -33,7 +33,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void GameOver()
     {
-        FindObjectOfType<CrystalKnight>().StateMachine.ChangeState(FindObjectOfType<CrystalKnight>().StateMachine.VictoryState);
+        FindObjectOfType<CrystalKnight>()?.StateMachine.ChangeState(FindObjectOfType<CrystalKnight>().StateMachine.VictoryState);
         Destroy(GameObject.Find("ClearTile(Clone)"));
         GameObject.Find("SpawnPointController").GetComponent<SpawnPointController>().clearTIle = null;
         

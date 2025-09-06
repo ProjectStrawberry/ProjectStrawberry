@@ -51,6 +51,11 @@ public class IceBallProjectile : Projectile
     {
         if (groundLayer.value == (groundLayer.value | (1 << hit.gameObject.layer)))
         {
+            if (hit.CompareTag("SemiSolid"))
+            {
+                return;
+            }
+            
             DestroyProjectile();
         }
         else if (hitLayer.value == (hitLayer.value | (1 << hit.gameObject.layer)))
