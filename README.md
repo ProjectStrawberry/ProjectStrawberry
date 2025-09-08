@@ -56,6 +56,7 @@
 <br />
 
 **Blasphemous - 보스 및 맵 패턴**
+
 ![MaLNIc](https://github.com/user-attachments/assets/6d6789d1-f685-4bf1-9a1b-9cb2a5987a2e)
 
 ### 탐험 확장성
