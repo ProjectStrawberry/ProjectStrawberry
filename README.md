@@ -8,7 +8,7 @@
 
 장르: 2D 액션 플랫포머
 
-제작 툴: Unity 2022.3.17f1, Visual Studio, Rider
+제작 툴: Unity 2022.3.17f1, Visual Studio, Rider, Logic Pro
 
 제작 기간: 25/09/01 ~ 25/09/05
 
