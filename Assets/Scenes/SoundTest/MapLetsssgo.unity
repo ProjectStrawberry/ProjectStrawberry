@@ -98193,6 +98193,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8497212339865733436, guid: 8b7556651d8245b4883f71949f467363, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8789257474459123613, guid: 8b7556651d8245b4883f71949f467363, type: 3}
       propertyPath: m_text
       value: 'Heal
